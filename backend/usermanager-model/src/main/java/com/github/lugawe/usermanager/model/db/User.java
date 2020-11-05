@@ -2,11 +2,12 @@ package com.github.lugawe.usermanager.model.db;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.security.Principal;
 import java.util.UUID;
 
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Principal {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -38,6 +39,7 @@ public class User extends BaseEntity {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
