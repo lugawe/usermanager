@@ -9,6 +9,27 @@ import java.util.UUID;
 @Table(name = "user")
 public class User extends BaseEntity implements Principal {
 
+    public enum Type {
+
+        UNDEFINED("undefined"),
+        VISITOR("visitor"),
+        USER("user"),
+        VERIFIED_USER("verified_user"),
+        MANAGER("manager"),
+        ADMIN("admin");
+
+        private final String type;
+
+        private Type(final String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+    }
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "user_id", updatable = false)
@@ -17,6 +38,11 @@ public class User extends BaseEntity implements Principal {
     @NotNull
     @Column(name = "name", unique = true)
     private String name;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private Type type = Type.UNDEFINED;
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
@@ -46,6 +72,17 @@ public class User extends BaseEntity implements Principal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        if (type == null) {
+            throw new NullPointerException();
+        }
+        this.type = type;
     }
 
     public Password getPassword() {
