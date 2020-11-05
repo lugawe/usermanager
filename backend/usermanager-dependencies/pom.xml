@@ -16,8 +16,35 @@
     <packaging>pom</packaging>
 
     <properties>
+        <persistence-api.version>2.2</persistence-api.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <joda-time.version>2.10.8</joda-time.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>${persistence-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>
