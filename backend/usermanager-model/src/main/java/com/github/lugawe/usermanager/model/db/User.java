@@ -19,8 +19,12 @@ public class User extends BaseEntity {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "password", referencedColumnName = "password_id")
+    @JoinColumn(name = "password")
     private Password password;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_set")
+    private RoleSet roleSet;
 
     public User() {
     }
@@ -48,6 +52,14 @@ public class User extends BaseEntity {
 
     public void setPassword(Password password) {
         this.password = password;
+    }
+
+    public RoleSet getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(RoleSet roleSet) {
+        this.roleSet = roleSet;
     }
 
 }
