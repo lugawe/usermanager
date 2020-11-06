@@ -42,7 +42,7 @@ public abstract class BaseDAO<T extends Persistable> {
         return new HibernateInsertClause(getCurrentSession(), getEntityPath());
     }
 
-    public UUID insertEntity(T entity) {
+    public UUID insert(T entity) {
         if (entity == null) {
             throw new NullPointerException();
         }
