@@ -23,7 +23,7 @@ public abstract class BaseDAO<T extends Persistable> {
         this.entityClass = Objects.requireNonNull(entityClass);
     }
 
-    protected HibernateQuery<T> query(final long offset, final long limit) {
+    public HibernateQuery<T> query(final long offset, final long limit) {
         HibernateQuery<T> query = new HibernateQuery<>(getCurrentSession());
         if (offset > 0) {
             query = query.offset(offset);
@@ -34,23 +34,30 @@ public abstract class BaseDAO<T extends Persistable> {
         return query;
     }
 
-    protected HibernateQuery<T> query() {
+    public HibernateQuery<T> query() {
         return query(0, 0);
     }
 
-    protected HibernateInsertClause insert() {
+    public HibernateInsertClause insert() {
         return new HibernateInsertClause(getCurrentSession(), getEntityPath());
     }
 
-    protected HibernateUpdateClause update() {
+    public UUID insertEntity(T entity) {
+        if (entity == null) {
+            throw new NullPointerException();
+        }
+        return (UUID) getCurrentSession().save(entity);
+    }
+
+    public HibernateUpdateClause update() {
         return new HibernateUpdateClause(getCurrentSession(), getEntityPath());
     }
 
-    protected HibernateDeleteClause delete() {
+    public HibernateDeleteClause delete() {
         return new HibernateDeleteClause(getCurrentSession(), getEntityPath());
     }
 
-    protected Optional<T> get(UUID id) {
+    public Optional<T> get(UUID id) {
         if (id == null) {
             throw new NullPointerException();
         }
