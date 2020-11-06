@@ -1,0 +1,81 @@
+package com.github.lugawe.usermanager.db;
+
+import com.github.lugawe.usermanager.model.db.Persistable;
+import com.querydsl.core.types.EntityPath;
+import com.querydsl.jpa.hibernate.HibernateDeleteClause;
+import com.querydsl.jpa.hibernate.HibernateInsertClause;
+import com.querydsl.jpa.hibernate.HibernateQuery;
+import com.querydsl.jpa.hibernate.HibernateUpdateClause;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+
+public abstract class BaseDAO<T extends Persistable> {
+
+    private final SessionFactory sessionFactory;
+    private final Class<T> entityClass;
+
+    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass) {
+        this.sessionFactory = Objects.requireNonNull(sessionFactory);
+        this.entityClass = Objects.requireNonNull(entityClass);
+    }
+
+    protected HibernateQuery<T> query(final long offset, final long limit) {
+        HibernateQuery<T> query = new HibernateQuery<>(getCurrentSession());
+        if (offset > 0) {
+            query = query.offset(offset);
+        }
+        if (limit > 0) {
+            query = query.limit(limit);
+        }
+        return query;
+    }
+
+    protected HibernateQuery<T> query() {
+        return query(0, 0);
+    }
+
+    protected HibernateInsertClause insert(EntityPath<T> entityPath) {
+        if (entityPath == null) {
+            throw new NullPointerException();
+        }
+        return new HibernateInsertClause(getCurrentSession(), entityPath);
+    }
+
+    protected HibernateUpdateClause update(EntityPath<T> entityPath) {
+        if (entityPath == null) {
+            throw new NullPointerException();
+        }
+        return new HibernateUpdateClause(getCurrentSession(), entityPath);
+    }
+
+    protected HibernateDeleteClause delete(EntityPath<T> entityPath) {
+        if (entityPath == null) {
+            throw new NullPointerException();
+        }
+        return new HibernateDeleteClause(getCurrentSession(), entityPath);
+    }
+
+    protected Optional<T> get(UUID id) {
+        if (id == null) {
+            throw new NullPointerException();
+        }
+        return Optional.ofNullable(getCurrentSession().get(getEntityClass(), id));
+    }
+
+    protected Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+    protected SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public Class<T> getEntityClass() {
+        return entityClass;
+    }
+
+}
