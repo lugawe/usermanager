@@ -17,6 +17,7 @@
         <module>usermanager-dependencies</module>
         <module>usermanager-parent</module>
 
+        <module>usermanager-auth</module>
         <module>usermanager-db</module>
         <module>usermanager-model</module>
         <module>usermanager-server</module>
