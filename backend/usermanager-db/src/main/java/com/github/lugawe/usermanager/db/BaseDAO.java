@@ -38,25 +38,16 @@ public abstract class BaseDAO<T extends Persistable> {
         return query(0, 0);
     }
 
-    protected HibernateInsertClause insert(EntityPath<T> entityPath) {
-        if (entityPath == null) {
-            throw new NullPointerException();
-        }
-        return new HibernateInsertClause(getCurrentSession(), entityPath);
+    protected HibernateInsertClause insert() {
+        return new HibernateInsertClause(getCurrentSession(), getEntityPath());
     }
 
-    protected HibernateUpdateClause update(EntityPath<T> entityPath) {
-        if (entityPath == null) {
-            throw new NullPointerException();
-        }
-        return new HibernateUpdateClause(getCurrentSession(), entityPath);
+    protected HibernateUpdateClause update() {
+        return new HibernateUpdateClause(getCurrentSession(), getEntityPath());
     }
 
-    protected HibernateDeleteClause delete(EntityPath<T> entityPath) {
-        if (entityPath == null) {
-            throw new NullPointerException();
-        }
-        return new HibernateDeleteClause(getCurrentSession(), entityPath);
+    protected HibernateDeleteClause delete() {
+        return new HibernateDeleteClause(getCurrentSession(), getEntityPath());
     }
 
     protected Optional<T> get(UUID id) {
@@ -77,5 +68,7 @@ public abstract class BaseDAO<T extends Persistable> {
     public Class<T> getEntityClass() {
         return entityClass;
     }
+
+    public abstract EntityPath<T> getEntityPath();
 
 }
