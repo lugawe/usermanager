@@ -9,9 +9,7 @@ import com.querydsl.jpa.hibernate.HibernateUpdateClause;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class BaseDAO<T extends Persistable> {
 
@@ -62,6 +60,10 @@ public abstract class BaseDAO<T extends Persistable> {
             throw new NullPointerException();
         }
         return Optional.ofNullable(getCurrentSession().get(getEntityClass(), id));
+    }
+
+    public List<T> fetchAll() {
+        return Collections.unmodifiableList(query().fetch());
     }
 
     protected Session getCurrentSession() {
