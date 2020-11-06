@@ -24,6 +24,7 @@
         <joda-time.version>2.10.8</joda-time.version>
         <hibernate-core.version>5.4.23.Final</hibernate-core.version>
         <querydsl.version>4.4.0</querydsl.version>
+        <auth0-java-jwt.version>3.11.0</auth0-java-jwt.version>
         <!-- plugins -->
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -85,6 +86,12 @@
                 <groupId>com.querydsl</groupId>
                 <artifactId>querydsl-sql</artifactId>
                 <version>${querydsl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${auth0-java-jwt.version}</version>
             </dependency>
 
         </dependencies>
