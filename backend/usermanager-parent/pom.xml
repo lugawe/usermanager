@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
+        <encoding>UTF-8</encoding>
         <java.version>8</java.version>
     </properties>
 
@@ -24,10 +25,19 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${encoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <encoding>${encoding}</encoding>
                 </configuration>
             </plugin>
 
