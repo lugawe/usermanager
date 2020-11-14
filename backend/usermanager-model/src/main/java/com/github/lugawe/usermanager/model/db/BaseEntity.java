@@ -30,7 +30,7 @@ public abstract class BaseEntity implements Persistable {
         return locked;
     }
 
-    protected void setLocked(boolean locked) {
+    public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
