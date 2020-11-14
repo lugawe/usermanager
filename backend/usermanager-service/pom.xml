@@ -14,5 +14,23 @@
 
     <artifactId>usermanager-service</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.lugawe.usermanager</groupId>
+            <artifactId>usermanager-db</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>
