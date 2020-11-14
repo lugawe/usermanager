@@ -3,7 +3,7 @@ package com.github.lugawe.usermanager.service.validation;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class RegexValidator implements Validator<String> {
+public class RegexValidator implements StringValidator {
 
     private final String value;
     private final String regex;
