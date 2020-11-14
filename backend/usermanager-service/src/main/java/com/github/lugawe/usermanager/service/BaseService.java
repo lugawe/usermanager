@@ -5,15 +5,15 @@ import com.github.lugawe.usermanager.model.db.Persistable;
 
 import java.util.Objects;
 
-public abstract class BaseService<T extends Persistable> {
+public abstract class BaseService<T extends BaseDAO<? extends Persistable>> {
 
-    private final BaseDAO<T> baseDAO;
+    private final T baseDAO;
 
-    public BaseService(BaseDAO<T> baseDAO) {
+    public BaseService(T baseDAO) {
         this.baseDAO = Objects.requireNonNull(baseDAO);
     }
 
-    public BaseDAO<T> getBaseDAO() {
+    public final T getBaseDAO() {
         return baseDAO;
     }
 
