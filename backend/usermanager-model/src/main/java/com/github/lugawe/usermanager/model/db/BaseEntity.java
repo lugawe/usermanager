@@ -22,7 +22,7 @@ public abstract class BaseEntity implements Persistable {
         return createdAt;
     }
 
-    protected void setCreatedAt(DateTime createdAt) {
+    public void setCreatedAt(DateTime createdAt) {
         this.createdAt = createdAt;
     }
 
