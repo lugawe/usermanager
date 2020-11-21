@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.service;
+package com.github.lugawe.usermanager.service.db;
 
 import com.github.lugawe.usermanager.db.PasswordDAO;
 
