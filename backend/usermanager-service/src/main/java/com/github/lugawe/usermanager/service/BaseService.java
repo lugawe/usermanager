@@ -1,11 +1,10 @@
 package com.github.lugawe.usermanager.service;
 
 import com.github.lugawe.usermanager.db.BaseDAO;
-import com.github.lugawe.usermanager.model.db.Persistable;
 
 import java.util.Objects;
 
-public abstract class BaseService<T extends BaseDAO<? extends Persistable>> {
+public abstract class BaseService<T extends BaseDAO<?>> {
 
     private final T baseDAO;
 
