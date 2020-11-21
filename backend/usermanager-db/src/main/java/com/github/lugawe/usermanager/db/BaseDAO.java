@@ -42,7 +42,7 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public UUID insert(T entity) {
         if (entity == null) {
-            throw new NullPointerException();
+            throw new NullPointerException("param entity is null");
         }
         return (UUID) getCurrentSession().save(entity);
     }
@@ -55,11 +55,15 @@ public abstract class BaseDAO<T extends Persistable> {
         return new HibernateDeleteClause(getCurrentSession(), getEntityPath());
     }
 
-    public Optional<T> get(UUID id) {
+    public Optional<T> tryGet(UUID id) {
         if (id == null) {
-            throw new NullPointerException();
+            throw new NullPointerException("param id is null");
         }
         return Optional.ofNullable(getCurrentSession().get(getEntityClass(), id));
+    }
+
+    public T get(UUID id) {
+        return tryGet(id).orElseThrow(() -> new NullPointerException("entity not found"));
     }
 
     public List<T> fetchAll() {
@@ -70,11 +74,11 @@ public abstract class BaseDAO<T extends Persistable> {
         return sessionFactory.getCurrentSession();
     }
 
-    protected SessionFactory getSessionFactory() {
+    protected final SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    public Class<T> getEntityClass() {
+    public final Class<T> getEntityClass() {
         return entityClass;
     }
 
