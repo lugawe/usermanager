@@ -1,11 +1,12 @@
 package com.github.lugawe.usermanager.model.db;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
-public abstract class BaseEntity implements Persistable {
+public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable {
 
     @NotNull
     @Column(name = "created_at", updatable = false)
@@ -32,6 +33,11 @@ public abstract class BaseEntity implements Persistable {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    @Override
+    public int compareTo(BaseEntity entity) {
+        return ObjectUtils.compare(getCreatedAt(), entity.getCreatedAt());
     }
 
 }
