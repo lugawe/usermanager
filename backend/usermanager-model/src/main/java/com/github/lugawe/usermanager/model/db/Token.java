@@ -10,6 +10,26 @@ import java.util.UUID;
 @Table(name = "token")
 public class Token extends BaseEntity {
 
+    public enum Type {
+
+        CUSTOM("custom"),
+        ID("id"),
+        RANDOM("random"),
+        REFRESH("refresh"),
+        ACCESS("access");
+
+        private final String type;
+
+        private Type(final String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+    }
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "token_id", updatable = false)
@@ -19,8 +39,10 @@ public class Token extends BaseEntity {
     @Column(name = "value")
     private String value;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private String type;
+    private Type type = Type.CUSTOM;
 
     @NotNull
     @Column(name = "expires_at")
@@ -50,11 +72,14 @@ public class Token extends BaseEntity {
         this.value = value;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
+        if (type == null) {
+            throw new NullPointerException();
+        }
         this.type = type;
     }
 
