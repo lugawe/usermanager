@@ -9,23 +9,14 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-  css: [
-  ],
-  plugins: [
-  ],
+  css: [],
+  plugins: [],
   components: true,
-  buildModules: [
-    '@nuxtjs/eslint-module'
-  ],
-  modules: [
-    'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
-  ],
+  buildModules: ['@nuxtjs/eslint-module'],
+  modules: ['bootstrap-vue/nuxt', '@nuxtjs/axios', 'nuxt-i18n'],
   axios: {},
-  build: {
-  }
+  i18n: {},
+  build: {}
 }
