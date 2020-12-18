@@ -13,5 +13,7 @@ module.exports = {
   ],
   plugins: [
   ],
-  rules: {}
+  rules: {
+    'space-before-function-paren': 0
+  }
 }
