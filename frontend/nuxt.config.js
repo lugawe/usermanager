@@ -1,3 +1,10 @@
+const availableLocales = [
+  {
+    code: 'en-US',
+    file: 'en-US.json'
+  }
+]
+
 export default {
   ssr: false,
   target: 'static',
@@ -17,6 +24,11 @@ export default {
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['bootstrap-vue/nuxt', '@nuxtjs/axios', 'nuxt-i18n'],
   axios: {},
-  i18n: {},
+  i18n: {
+    locales: availableLocales,
+    defaultLocale: 'en-US',
+    lazy: true,
+    langDir: 'locales/'
+  },
   build: {}
 }
