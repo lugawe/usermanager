@@ -1,5 +1,6 @@
 {
   "welcome": "Welcome",
+  "usermanager": "Usermanager",
   "auth": {
     "login": {
       "login": "Login",
