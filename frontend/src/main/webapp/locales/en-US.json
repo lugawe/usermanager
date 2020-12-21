@@ -1,3 +1,13 @@
 {
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "auth": {
+    "login": {
+      "login": "Login",
+      "username": "Username",
+      "enterUsername": "Enter username...",
+      "password": "Password",
+      "enterPassword": "Enter password...",
+      "canNotLogin": "Can't login?"
+    }
+  }
 }
