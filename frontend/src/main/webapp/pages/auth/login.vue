@@ -21,6 +21,7 @@
           id="input-password"
           v-model="password"
           class="mb-1"
+          type="password"
           :placeholder="$t('auth.login.password')"
           :readonly="loading"
           required
