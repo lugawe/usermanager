@@ -1,6 +1,7 @@
 const availableLocales = [
   {
     code: 'en-US',
+    name: 'English',
     file: 'en-US.json'
   }
 ]

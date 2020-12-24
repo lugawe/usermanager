@@ -3,7 +3,8 @@
   "usermanager": "Usermanager",
   "nav": {
     "dashboard": "Dashboard",
-    "login": "Login"
+    "login": "Login",
+    "language": "Language"
   },
   "auth": {
     "login": {
