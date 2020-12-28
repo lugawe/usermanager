@@ -1,8 +1,11 @@
 {
   "welcome": "Welcome",
   "usermanager": "Usermanager",
+  "disabled": "Disabled",
+  "enabled": "Enabled",
   "nav": {
     "dashboard": "Dashboard",
+    "register": "Register",
     "login": "Login",
     "language": "Language"
   },
