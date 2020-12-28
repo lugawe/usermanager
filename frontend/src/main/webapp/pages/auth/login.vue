@@ -8,7 +8,7 @@
         <b-form-input
           id="input-username"
           v-model="username"
-          class="mb-1"
+          class="mb-2"
           :placeholder="$t('auth.login.username')"
           :readonly="loading"
           required
@@ -20,7 +20,7 @@
         <b-form-input
           id="input-password"
           v-model="password"
-          class="mb-1"
+          class="mb-2"
           type="password"
           :placeholder="$t('auth.login.password')"
           :readonly="loading"
@@ -33,7 +33,7 @@
         <hr>
         <div class="bottom">
           <div v-if="loading">
-            <b-button type="submit" variant="primary" class="float-right" disabled>
+            <b-button variant="primary" class="float-right" disabled>
               <b-spinner small />
             </b-button>
           </div>
