@@ -22,17 +22,17 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown :text="$t('nav.user.user')" right>
             <div v-if="isLoggedIn">
-              <b-dropdown-item>
+              <nuxt-link tag="b-dropdown-item" :to="localePath('/main/users/me')">
                 {{ $t('nav.user.profile') }}
-              </b-dropdown-item>
-              <b-dropdown-item>
+              </nuxt-link>
+              <nuxt-link tag="b-dropdown-item" :to="localePath({ path: '/auth/login', query: { logout: 'direct' } })">
                 {{ $t('nav.user.logout') }}
-              </b-dropdown-item>
+              </nuxt-link>
             </div>
             <div v-else>
-              <b-dropdown-item>
+              <nuxt-link tag="b-dropdown-item" :to="localePath('/auth/login')">
                 {{ $t('nav.user.login') }}
-              </b-dropdown-item>
+              </nuxt-link>
             </div>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown :text="$t('nav.language')" right>

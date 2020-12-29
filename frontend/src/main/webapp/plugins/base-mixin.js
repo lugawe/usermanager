@@ -12,6 +12,9 @@ if (!Vue.__base_mixin__) {
       }
     },
     methods: {
+      logout() {
+        this.$store.commit('auth/logout')
+      },
       toast(toastTitle, toastText, toastAutoHideDelay, toastVariant) {
         this.$bvToast.toast(toastText, {
           title: toastTitle,

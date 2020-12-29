@@ -76,6 +76,9 @@ export default {
       this.token = ''
     },
     parseQueryParams() {
+      if (this.$route.query.logout === 'direct') {
+        this.logout()
+      }
       this.username = this.$route.query.username || ''
       this.password = this.$route.query.password || ''
       this.token = this.$route.query.token || ''
