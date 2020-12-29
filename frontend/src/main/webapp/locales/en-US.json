@@ -16,6 +16,8 @@
       "enterUsername": "Enter username...",
       "password": "Password",
       "enterPassword": "Enter password...",
+      "token": "Token",
+      "enterToken": "Enter token...",
       "canNotLogin": "Can't login?"
     },
     "register": {
@@ -29,5 +31,11 @@
       "confirmPassword": "Confirm password",
       "enterConfirmPassword": "Re-Enter password..."
     }
+  },
+  "validation": {
+    "invalidUsername": "invalidUsername",
+    "invalidEmail": "invalidEmail",
+    "invalidPassword": "invalidPassword",
+    "invalidConfirmPassword": "invalidConfirmPassword"
   }
 }
