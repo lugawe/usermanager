@@ -20,7 +20,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   css: [],
-  plugins: ['~/plugins/auth-plugin', '~/plugins/utils-mixin'],
+  plugins: ['~/plugins/auth-plugin', '~/plugins/base-mixin'],
   components: true,
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['bootstrap-vue/nuxt', '@nuxtjs/axios', 'nuxt-i18n'],

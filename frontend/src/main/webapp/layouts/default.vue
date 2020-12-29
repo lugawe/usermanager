@@ -20,6 +20,21 @@
           </nuxt-link>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown :text="$t('nav.user.user')" right>
+            <div v-if="isLoggedIn">
+              <b-dropdown-item>
+                {{ $t('nav.user.profile') }}
+              </b-dropdown-item>
+              <b-dropdown-item>
+                {{ $t('nav.user.logout') }}
+              </b-dropdown-item>
+            </div>
+            <div v-else>
+              <b-dropdown-item>
+                {{ $t('nav.user.login') }}
+              </b-dropdown-item>
+            </div>
+          </b-nav-item-dropdown>
           <b-nav-item-dropdown :text="$t('nav.language')" right>
             <b-dropdown-item
               v-for="locale in locales"
@@ -55,9 +70,6 @@ export default {
   computed: {
     isRouterEnabled() {
       return this.enabled
-    },
-    isLoggedIn() {
-      return this.$store.state.auth.isLoggedIn
     },
     locales() {
       return this.$i18n.locales

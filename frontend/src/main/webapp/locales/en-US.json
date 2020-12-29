@@ -7,7 +7,13 @@
     "dashboard": "Dashboard",
     "register": "Register",
     "login": "Login",
-    "language": "Language"
+    "language": "Language",
+    "user": {
+      "user": "User",
+      "login": "Login",
+      "profile": "Profile",
+      "logout": "Logout"
+    }
   },
   "auth": {
     "login": {

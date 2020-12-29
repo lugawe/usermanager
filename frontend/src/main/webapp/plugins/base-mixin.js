@@ -1,8 +1,16 @@
 import Vue from 'vue'
 
-if (!Vue.__utils_mixin__) {
-  Vue.__utils_mixin__ = true
-  const utils = {
+if (!Vue.__base_mixin__) {
+  Vue.__base_mixin__ = true
+  const base = {
+    computed: {
+      isLoggedIn() {
+        return this.$store.state.auth.isLoggedIn
+      },
+      user() {
+        return this.isLoggedIn ? this.$store.state.auth.user : {}
+      }
+    },
     methods: {
       toast(toastTitle, toastText, toastAutoHideDelay, toastVariant) {
         this.$bvToast.toast(toastText, {
@@ -20,5 +28,5 @@ if (!Vue.__utils_mixin__) {
       }
     }
   }
-  Vue.mixin(utils)
+  Vue.mixin(base)
 }
