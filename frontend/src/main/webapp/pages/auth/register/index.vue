@@ -1,5 +1,5 @@
 <template>
-  <div id="auth-register">
+  <div id="auth-register-index">
     <div class="m-4">
       <b-form class="form-register p-3" @submit="register" @reset="reset">
         <h2>{{ $t('auth.register.register') }}</h2>
@@ -108,6 +108,9 @@ export default {
       return this.isUsernameValid && this.isEmailValid && this.isConfirmPasswordValid
     }
   },
+  mounted() {
+    this.parseQueryParams()
+  },
   methods: {
     register(e) {
       e.preventDefault()
@@ -118,6 +121,10 @@ export default {
       this.email = ''
       this.password = ''
       this.confirmPassword = ''
+    },
+    parseQueryParams() {
+      this.username = this.$route.query.username || ''
+      this.email = this.$route.query.email || ''
     }
   }
 }

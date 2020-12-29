@@ -1,5 +1,5 @@
 <template>
-  <div id="auth-login">
+  <div id="auth-login-index">
     <div class="m-4">
       <b-form class="form-login p-3" @submit="login" @reset="reset">
         <h2>{{ $t('auth.login.login') }}</h2>
@@ -56,8 +56,12 @@ export default {
     return {
       loading: false,
       username: '',
-      password: ''
+      password: '',
+      token: ''
     }
+  },
+  mounted() {
+    this.parseQueryParams()
   },
   methods: {
     login(e) {
@@ -67,6 +71,12 @@ export default {
       e.preventDefault()
       this.username = ''
       this.password = ''
+      this.token = ''
+    },
+    parseQueryParams() {
+      this.username = this.$route.query.username || ''
+      this.password = this.$route.query.password || ''
+      this.token = this.$route.query.token || ''
     }
   }
 }
