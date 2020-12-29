@@ -5,59 +5,63 @@
         <h2>{{ $t('auth.register.register') }}</h2>
         <hr>
         <!-- -->
-        <b-form-input
-          id="input-username"
-          v-model="username"
-          class="mb-2"
-          :placeholder="$t('auth.register.username')"
-          :readonly="loading"
-          :state="isUsernameValid"
-          required
-        />
-        <b-tooltip v-if="!loading" target="input-username" triggers="hover">
-          {{ $t('auth.register.enterUsername') }}
-        </b-tooltip>
+        <b-input-group class="mb-2">
+          <b-form-input
+            id="input-username"
+            v-model="username"
+            :placeholder="$t('auth.register.username')"
+            :readonly="loading"
+            :state="isUsernameValid"
+            required
+          />
+          <b-tooltip v-if="!loading" target="input-username" triggers="hover">
+            {{ $t('auth.register.enterUsername') }}
+          </b-tooltip>
+        </b-input-group>
         <!-- -->
-        <b-form-input
-          id="input-email"
-          v-model="email"
-          class="mb-2"
-          :placeholder="$t('auth.register.email')"
-          :readonly="loading"
-          :state="isEmailValid"
-          required
-        />
-        <b-tooltip v-if="!loading" target="input-email" triggers="hover">
-          {{ $t('auth.register.enterEmail') }}
-        </b-tooltip>
+        <b-input-group class="mb-2">
+          <b-form-input
+            id="input-email"
+            v-model="email"
+            :placeholder="$t('auth.register.email')"
+            :readonly="loading"
+            :state="isEmailValid"
+            required
+          />
+          <b-tooltip v-if="!loading" target="input-email" triggers="hover">
+            {{ $t('auth.register.enterEmail') }}
+          </b-tooltip>
+        </b-input-group>
         <!-- -->
-        <b-form-input
-          id="input-password"
-          v-model="password"
-          class="mb-2"
-          type="password"
-          :placeholder="$t('auth.register.password')"
-          :readonly="loading"
-          :state="isPasswordValid"
-          required
-        />
-        <b-tooltip v-if="!loading" target="input-password" triggers="hover">
-          {{ $t('auth.register.enterPassword') }}
-        </b-tooltip>
+        <b-input-group class="mb-2">
+          <b-form-input
+            id="input-password"
+            v-model="password"
+            type="password"
+            :placeholder="$t('auth.register.password')"
+            :readonly="loading"
+            :state="isPasswordValid"
+            required
+          />
+          <b-tooltip v-if="!loading" target="input-password" triggers="hover">
+            {{ $t('auth.register.enterPassword') }}
+          </b-tooltip>
+        </b-input-group>
         <!-- -->
-        <b-form-input
-          id="input-confirm-password"
-          v-model="confirmPassword"
-          class="mb-2"
-          type="password"
-          :placeholder="$t('auth.register.confirmPassword')"
-          :readonly="loading"
-          :state="isConfirmPasswordValid"
-          required
-        />
-        <b-tooltip v-if="!loading" target="input-confirm-password" triggers="hover">
-          {{ $t('auth.register.enterConfirmPassword') }}
-        </b-tooltip>
+        <b-input-group class="mb-2">
+          <b-form-input
+            id="input-confirm-password"
+            v-model="confirmPassword"
+            type="password"
+            :placeholder="$t('auth.register.confirmPassword')"
+            :readonly="loading"
+            :state="isConfirmPasswordValid"
+            required
+          />
+          <b-tooltip v-if="!loading" target="input-confirm-password" triggers="hover">
+            {{ $t('auth.register.enterConfirmPassword') }}
+          </b-tooltip>
+        </b-input-group>
         <!-- -->
         <hr>
         <div class="bottom">

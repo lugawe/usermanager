@@ -5,30 +5,32 @@
         <h2>{{ $t('auth.login.login') }}</h2>
         <hr>
         <!-- -->
-        <b-form-input
-          id="input-username"
-          v-model="username"
-          class="mb-2"
-          :placeholder="$t('auth.login.username')"
-          :readonly="loading"
-          required
-        />
-        <b-tooltip v-if="!loading" target="input-username" triggers="hover">
-          {{ $t('auth.login.enterUsername') }}
-        </b-tooltip>
+        <b-input-group class="mb-2">
+          <b-form-input
+            id="input-username"
+            v-model="username"
+            :placeholder="$t('auth.login.username')"
+            :readonly="loading"
+            required
+          />
+          <b-tooltip v-if="!loading" target="input-username" triggers="hover">
+            {{ $t('auth.login.enterUsername') }}
+          </b-tooltip>
+        </b-input-group>
         <!-- -->
-        <b-form-input
-          id="input-password"
-          v-model="password"
-          class="mb-2"
-          type="password"
-          :placeholder="$t('auth.login.password')"
-          :readonly="loading"
-          required
-        />
-        <b-tooltip v-if="!loading" target="input-password" triggers="hover">
-          {{ $t('auth.login.enterPassword') }}
-        </b-tooltip>
+        <b-input-group class="mb-2">
+          <b-form-input
+            id="input-password"
+            v-model="password"
+            type="password"
+            :placeholder="$t('auth.login.password')"
+            :readonly="loading"
+            required
+          />
+          <b-tooltip v-if="!loading" target="input-password" triggers="hover">
+            {{ $t('auth.login.enterPassword') }}
+          </b-tooltip>
+        </b-input-group>
         <!-- -->
         <hr>
         <div class="bottom">
