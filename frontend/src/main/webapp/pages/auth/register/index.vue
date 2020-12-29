@@ -21,7 +21,7 @@
               <strong class="text-danger">!</strong>
             </b-input-group-text>
             <b-tooltip target="input-username-invalid" triggers="hover">
-              {{ $t('auth.register.invalidUsername') }}
+              {{ $t('validation.invalidUsername') }}
             </b-tooltip>
           </template>
         </b-input-group>
@@ -42,7 +42,7 @@
               <strong class="text-danger">!</strong>
             </b-input-group-text>
             <b-tooltip target="input-email-invalid" triggers="hover">
-              {{ $t('auth.register.invalidEmail') }}
+              {{ $t('validation.invalidEmail') }}
             </b-tooltip>
           </template>
         </b-input-group>
@@ -64,7 +64,7 @@
               <strong class="text-danger">!</strong>
             </b-input-group-text>
             <b-tooltip target="input-password-invalid" triggers="hover">
-              {{ $t('auth.register.invalidPassword') }}
+              {{ $t('validation.invalidPassword') }}
             </b-tooltip>
           </template>
         </b-input-group>
@@ -86,7 +86,7 @@
               <strong class="text-danger">!</strong>
             </b-input-group-text>
             <b-tooltip target="input-confirm-password-invalid" triggers="hover">
-              {{ $t('auth.register.invalidConfirmPassword') }}
+              {{ $t('validation.invalidConfirmPassword') }}
             </b-tooltip>
           </template>
         </b-input-group>
