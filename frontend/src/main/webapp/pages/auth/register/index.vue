@@ -17,7 +17,12 @@
             {{ $t('auth.register.enterUsername') }}
           </b-tooltip>
           <template v-if="!isUsernameValid" #append>
-            <b-input-group-text><strong class="text-danger">!</strong></b-input-group-text>
+            <b-input-group-text id="input-username-invalid" class="unselectable">
+              <strong class="text-danger">!</strong>
+            </b-input-group-text>
+            <b-tooltip target="input-username-invalid" triggers="hover">
+              {{ $t('auth.register.invalidUsername') }}
+            </b-tooltip>
           </template>
         </b-input-group>
         <!-- -->
@@ -33,7 +38,12 @@
             {{ $t('auth.register.enterEmail') }}
           </b-tooltip>
           <template v-if="!isEmailValid" #append>
-            <b-input-group-text><strong class="text-danger">!</strong></b-input-group-text>
+            <b-input-group-text id="input-email-invalid" class="unselectable">
+              <strong class="text-danger">!</strong>
+            </b-input-group-text>
+            <b-tooltip target="input-email-invalid" triggers="hover">
+              {{ $t('auth.register.invalidEmail') }}
+            </b-tooltip>
           </template>
         </b-input-group>
         <!-- -->
@@ -50,7 +60,12 @@
             {{ $t('auth.register.enterPassword') }}
           </b-tooltip>
           <template v-if="!isPasswordValid" #append>
-            <b-input-group-text><strong class="text-danger">!</strong></b-input-group-text>
+            <b-input-group-text id="input-password-invalid" class="unselectable">
+              <strong class="text-danger">!</strong>
+            </b-input-group-text>
+            <b-tooltip target="input-password-invalid" triggers="hover">
+              {{ $t('auth.register.invalidPassword') }}
+            </b-tooltip>
           </template>
         </b-input-group>
         <!-- -->
@@ -67,7 +82,12 @@
             {{ $t('auth.register.enterConfirmPassword') }}
           </b-tooltip>
           <template v-if="!isConfirmPasswordValid" #append>
-            <b-input-group-text><strong class="text-danger">!</strong></b-input-group-text>
+            <b-input-group-text id="input-confirm-password-invalid" class="unselectable">
+              <strong class="text-danger">!</strong>
+            </b-input-group-text>
+            <b-tooltip target="input-confirm-password-invalid" triggers="hover">
+              {{ $t('auth.register.invalidConfirmPassword') }}
+            </b-tooltip>
           </template>
         </b-input-group>
         <!-- -->
@@ -148,5 +168,8 @@ export default {
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+.unselectable {
+  user-select: none;
 }
 </style>
