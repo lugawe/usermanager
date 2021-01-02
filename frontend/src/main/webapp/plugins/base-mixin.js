@@ -12,8 +12,11 @@ if (!Vue.__base_mixin__) {
       }
     },
     methods: {
-      logout() {
-        this.$store.commit('auth/logout')
+      gotoLoginPage() {
+        this.$router.push({ path: this.localePath('/auth/login') })
+      },
+      gotoMainPage() {
+        this.$router.push({ path: this.localePath('/') })
       },
       toast(toastTitle, toastText, toastAutoHideDelay, toastVariant) {
         this.$bvToast.toast(toastText, {

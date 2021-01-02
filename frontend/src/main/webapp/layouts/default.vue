@@ -25,7 +25,7 @@
               <nuxt-link tag="b-dropdown-item" :to="localePath('/main/users/me')">
                 {{ $t('nav.user.profile') }}
               </nuxt-link>
-              <nuxt-link tag="b-dropdown-item" :to="localePath({ path: '/auth/login', query: { logout: 'direct' } })">
+              <nuxt-link tag="b-dropdown-item" :to="localePath({ path: '/auth/login', query: { logout: 'true' } })">
                 {{ $t('nav.user.logout') }}
               </nuxt-link>
             </div>
