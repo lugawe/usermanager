@@ -2,19 +2,19 @@
   <div id="auth-register-index">
     <div class="m-4">
       <b-form class="form-register p-3" @submit="register" @reset="reset">
-        <h2>{{ $t('auth.register.register') }}</h2>
+        <h2>{{ $t('auth.register.index.register') }}</h2>
         <hr>
         <!-- -->
         <b-input-group class="mb-2">
           <b-form-input
             id="input-username"
             v-model="username"
-            :placeholder="$t('auth.register.username')"
+            :placeholder="$t('auth.register.index.username')"
             :readonly="loading"
             required
           />
           <b-tooltip v-if="!loading" target="input-username" triggers="hover">
-            {{ $t('auth.register.enterUsername') }}
+            {{ $t('auth.register.index.enterUsername') }}
           </b-tooltip>
           <template v-if="!isUsernameValid" #append>
             <b-input-group-text id="input-username-invalid" class="unselectable">
@@ -30,12 +30,12 @@
           <b-form-input
             id="input-email"
             v-model="email"
-            :placeholder="$t('auth.register.email')"
+            :placeholder="$t('auth.register.index.email')"
             :readonly="loading"
             required
           />
           <b-tooltip v-if="!loading" target="input-email" triggers="hover">
-            {{ $t('auth.register.enterEmail') }}
+            {{ $t('auth.register.index.enterEmail') }}
           </b-tooltip>
           <template v-if="!isEmailValid" #append>
             <b-input-group-text id="input-email-invalid" class="unselectable">
@@ -52,12 +52,12 @@
             id="input-password"
             v-model="password"
             type="password"
-            :placeholder="$t('auth.register.password')"
+            :placeholder="$t('auth.register.index.password')"
             :readonly="loading"
             required
           />
           <b-tooltip v-if="!loading" target="input-password" triggers="hover">
-            {{ $t('auth.register.enterPassword') }}
+            {{ $t('auth.register.index.enterPassword') }}
           </b-tooltip>
           <template v-if="!isPasswordValid" #append>
             <b-input-group-text id="input-password-invalid" class="unselectable">
@@ -74,12 +74,12 @@
             id="input-confirm-password"
             v-model="confirmPassword"
             type="password"
-            :placeholder="$t('auth.register.confirmPassword')"
+            :placeholder="$t('auth.register.index.confirmPassword')"
             :readonly="loading"
             required
           />
           <b-tooltip v-if="!loading" target="input-confirm-password" triggers="hover">
-            {{ $t('auth.register.enterConfirmPassword') }}
+            {{ $t('auth.register.index.enterConfirmPassword') }}
           </b-tooltip>
           <template v-if="!isConfirmPasswordValid" #append>
             <b-input-group-text id="input-confirm-password-invalid" class="unselectable">
@@ -100,7 +100,7 @@
           </div>
           <div v-else>
             <b-button type="submit" variant="primary" class="float-right" :disabled="!isFormValid">
-              {{ $t('auth.register.register') }}
+              {{ $t('auth.register.index.register') }}
             </b-button>
           </div>
         </div>

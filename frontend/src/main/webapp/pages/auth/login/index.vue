@@ -2,19 +2,19 @@
   <div id="auth-login-index">
     <div class="m-4">
       <b-form class="form-login p-3" @submit="login" @reset="reset">
-        <h2>{{ $t('auth.login.login') }}</h2>
+        <h2>{{ $t('auth.login.index.login') }}</h2>
         <hr>
         <!-- -->
         <b-input-group class="mb-2">
           <b-form-input
             id="input-username"
             v-model="username"
-            :placeholder="$t('auth.login.username')"
+            :placeholder="$t('auth.login.index.username')"
             :readonly="loading"
             required
           />
           <b-tooltip v-if="!loading" target="input-username" triggers="hover">
-            {{ $t('auth.login.enterUsername') }}
+            {{ $t('auth.login.index.enterUsername') }}
           </b-tooltip>
         </b-input-group>
         <!-- -->
@@ -23,12 +23,12 @@
             id="input-password"
             v-model="password"
             type="password"
-            :placeholder="$t('auth.login.password')"
+            :placeholder="$t('auth.login.index.password')"
             :readonly="loading"
             required
           />
           <b-tooltip v-if="!loading" target="input-password" triggers="hover">
-            {{ $t('auth.login.enterPassword') }}
+            {{ $t('auth.login.index.enterPassword') }}
           </b-tooltip>
         </b-input-group>
         <!-- -->
@@ -40,9 +40,9 @@
             </b-button>
           </div>
           <div v-else>
-            <b-link>{{ $t('auth.login.canNotLogin') }}</b-link>
+            <b-link>{{ $t('auth.login.index.canNotLogin') }}</b-link>
             <b-button type="submit" variant="primary" class="float-right">
-              {{ $t('auth.login.login') }}
+              {{ $t('auth.login.index.login') }}
             </b-button>
           </div>
         </div>

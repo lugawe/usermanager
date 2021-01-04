@@ -17,25 +17,41 @@
   },
   "auth": {
     "login": {
-      "login": "Login",
-      "username": "Username",
-      "enterUsername": "Enter username...",
-      "password": "Password",
-      "enterPassword": "Enter password...",
-      "token": "Token",
-      "enterToken": "Enter token...",
-      "canNotLogin": "Can't login?"
+      "index": {
+        "login": "Login",
+        "username": "Username",
+        "enterUsername": "Enter username...",
+        "password": "Password",
+        "enterPassword": "Enter password...",
+        "token": "Token",
+        "enterToken": "Enter token...",
+        "canNotLogin": "Can't login?"
+      }
     },
     "register": {
-      "register": "Register",
-      "username": "Username",
-      "enterUsername": "Enter username...",
-      "email": "Email",
-      "enterEmail": "Enter email...",
-      "password": "Password",
-      "enterPassword": "Enter password...",
-      "confirmPassword": "Confirm password",
-      "enterConfirmPassword": "Re-Enter password..."
+      "index": {
+        "register": "Register",
+        "username": "Username",
+        "enterUsername": "Enter username...",
+        "email": "Email",
+        "enterEmail": "Enter email...",
+        "password": "Password",
+        "enterPassword": "Enter password...",
+        "confirmPassword": "Confirm password",
+        "enterConfirmPassword": "Re-Enter password..."
+      }
+    }
+  },
+  "main": {
+    "users": {
+      "index": {
+        "id": "ID",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "username": "Username",
+        "email": "E-Mail",
+        "actions": "Actions"
+      }
     }
   },
   "validation": {
