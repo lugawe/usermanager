@@ -12,11 +12,19 @@ if (!Vue.__base_mixin__) {
       }
     },
     methods: {
+      gotoPage(path) {
+        if (path) {
+          const localePath = this.localePath(path)
+          if (this.$route.path !== localePath) {
+            this.$router.push({ path: localePath })
+          }
+        }
+      },
       gotoLoginPage() {
-        this.$router.push({ path: this.localePath('/auth/login') })
+        this.gotoPage('/auth/login')
       },
       gotoMainPage() {
-        this.$router.push({ path: this.localePath('/') })
+        this.gotoPage('/')
       },
       toast(toastTitle, toastText, toastAutoHideDelay, toastVariant) {
         this.$bvToast.toast(toastText, {
