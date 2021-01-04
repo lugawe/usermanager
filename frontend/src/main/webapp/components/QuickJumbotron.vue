@@ -22,11 +22,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.component-quick-jumbotron :hover {
-  background-color: lightblue;
-}
-.component-quick-jumbotron > .clickable {
-  cursor: pointer;
-}
-</style>
+<style scoped></style>
