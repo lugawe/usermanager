@@ -17,9 +17,11 @@ export const mutations = {
     state.isLoggedIn = false
   },
   login(state, data) {
-    state.user = data.user
-    state.token = data.token
-    state.isLoggedIn = true
+    if (data) {
+      state.user = data.user
+      state.token = data.token
+      state.isLoggedIn = true
+    }
   },
   accessToken(state, token) {
     state.token.access = token
