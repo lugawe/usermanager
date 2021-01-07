@@ -23,10 +23,10 @@
         <persistence-api.version>2.2</persistence-api.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <inject.version>1</inject.version>
-        <joda-time.version>2.10.8</joda-time.version>
+        <joda-time.version>2.10.9</joda-time.version>
         <hibernate-core.version>5.4.23.Final</hibernate-core.version>
         <querydsl.version>4.4.0</querydsl.version>
-        <auth0-java-jwt.version>3.11.0</auth0-java-jwt.version>
+        <auth0-java-jwt.version>3.12.0</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
         <!-- testing -->
         <junit.version>5.7.0</junit.version>
