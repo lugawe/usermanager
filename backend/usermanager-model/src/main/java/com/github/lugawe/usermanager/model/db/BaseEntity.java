@@ -1,6 +1,5 @@
 package com.github.lugawe.usermanager.model.db;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
@@ -37,7 +36,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable 
 
     @Override
     public int compareTo(BaseEntity entity) {
-        return ObjectUtils.compare(getCreatedAt(), entity.getCreatedAt());
+        return getCreatedAt().compareTo(entity.getCreatedAt());
     }
 
 }
