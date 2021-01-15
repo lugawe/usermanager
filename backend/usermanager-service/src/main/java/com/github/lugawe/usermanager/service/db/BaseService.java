@@ -10,7 +10,7 @@ public abstract class BaseService<T extends BaseDAO<?>> {
 
     private static final Logger log = LoggerFactory.getLogger(BaseService.class);
 
-    private final T baseDAO;
+    protected final T baseDAO;
 
     public BaseService(T baseDAO) {
         this.baseDAO = Objects.requireNonNull(baseDAO);
