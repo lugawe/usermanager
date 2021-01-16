@@ -70,11 +70,11 @@ public abstract class BaseDAO<T extends Persistable> {
         return Collections.unmodifiableList(query().fetch());
     }
 
-    protected Session getCurrentSession() {
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    protected final SessionFactory getSessionFactory() {
+    public final SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
