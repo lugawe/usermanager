@@ -4,16 +4,12 @@ import com.github.lugawe.usermanager.db.core.BaseDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
-
-public abstract class BaseService<T extends BaseDAO<?>> {
+public abstract class BaseService<T extends BaseDAO<?>> extends Transactional<T> {
 
     private static final Logger log = LoggerFactory.getLogger(BaseService.class);
 
-    protected final T baseDAO;
-
     public BaseService(T baseDAO) {
-        this.baseDAO = Objects.requireNonNull(baseDAO);
+        super(baseDAO);
         log.debug("construct {} service", baseDAO.getEntityPath());
     }
 
