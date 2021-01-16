@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.db;
+package com.github.lugawe.usermanager.db.core;
 
 import com.github.lugawe.usermanager.model.db.Persistable;
 import com.querydsl.core.types.EntityPath;

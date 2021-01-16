@@ -1,5 +1,6 @@
 package com.github.lugawe.usermanager.db;
 
+import com.github.lugawe.usermanager.db.core.BaseDAO;
 import com.github.lugawe.usermanager.model.db.QRole;
 import com.github.lugawe.usermanager.model.db.Role;
 import com.querydsl.core.types.EntityPath;

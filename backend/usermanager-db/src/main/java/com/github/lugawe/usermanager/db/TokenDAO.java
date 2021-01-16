@@ -1,5 +1,6 @@
 package com.github.lugawe.usermanager.db;
 
+import com.github.lugawe.usermanager.db.core.BaseDAO;
 import com.github.lugawe.usermanager.model.db.QToken;
 import com.github.lugawe.usermanager.model.db.Token;
 import com.querydsl.core.types.EntityPath;
