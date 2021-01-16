@@ -1,6 +1,6 @@
-package com.github.lugawe.usermanager.service.db;
+package com.github.lugawe.usermanager.service.db.core;
 
-import com.github.lugawe.usermanager.db.BaseDAO;
+import com.github.lugawe.usermanager.db.core.BaseDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
