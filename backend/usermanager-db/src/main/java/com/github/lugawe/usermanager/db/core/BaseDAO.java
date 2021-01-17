@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.db.core;
 
-import com.github.lugawe.usermanager.model.db.Persistable;
+import com.github.lugawe.usermanager.model.db.core.Persistable;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.hibernate.HibernateDeleteClause;
 import com.querydsl.jpa.hibernate.HibernateInsertClause;
@@ -59,11 +59,15 @@ public abstract class BaseDAO<T extends Persistable> {
         if (id == null) {
             throw new NullPointerException("param id is null");
         }
-        return Optional.ofNullable(getCurrentSession().get(getEntityClass(), id));
+        return Optional.ofNullable(getCurrentSession().get(entityClass, id));
     }
 
     public T get(UUID id) {
         return tryGet(id).orElseThrow(() -> new NullPointerException("entity not found"));
+    }
+
+    public T insertGet(T entity) {
+        return get(insert(entity));
     }
 
     public List<T> fetchAll() {

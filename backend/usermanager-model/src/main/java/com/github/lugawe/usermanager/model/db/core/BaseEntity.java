@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.model.db;
+package com.github.lugawe.usermanager.model.db.core;
 
 import javax.persistence.Column;
 import javax.persistence.Inheritance;
