@@ -34,7 +34,7 @@ public final class TestDatabase {
         settings.put("hibernate.connection.password", "password");
         settings.put("dialect", "org.hibernate.dialect.H2Dialect");
         settings.put("hibernate.hbm2ddl.auto", "create");
-        settings.put("hibernate.current_session_context_class", "thread");
+        settings.put("hibernate.current_session_context_class", "managed");
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
 
