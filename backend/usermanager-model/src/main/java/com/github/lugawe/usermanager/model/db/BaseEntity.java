@@ -1,15 +1,17 @@
 package com.github.lugawe.usermanager.model.db;
 
-import org.joda.time.DateTime;
-
 import javax.persistence.Column;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable {
 
     @NotNull
     @Column(name = "created_at", updatable = false)
-    private DateTime createdAt;
+    private LocalDateTime createdAt;
 
     @NotNull
     @Column(name = "locked")
@@ -18,11 +20,11 @@ public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable 
     public BaseEntity() {
     }
 
-    public DateTime getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(DateTime createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

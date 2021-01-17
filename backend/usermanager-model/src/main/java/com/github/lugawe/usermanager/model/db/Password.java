@@ -1,9 +1,8 @@
 package com.github.lugawe.usermanager.model.db;
 
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -21,7 +20,7 @@ public class Password extends BaseEntity {
 
     @NotNull
     @Column(name = "last_access")
-    private DateTime lastAccess;
+    private LocalDateTime lastAccess;
 
     public Password() {
     }
@@ -43,11 +42,11 @@ public class Password extends BaseEntity {
         this.hash = hash;
     }
 
-    public DateTime getLastAccess() {
+    public LocalDateTime getLastAccess() {
         return lastAccess;
     }
 
-    public void setLastAccess(DateTime lastAccess) {
+    public void setLastAccess(LocalDateTime lastAccess) {
         this.lastAccess = lastAccess;
     }
 
