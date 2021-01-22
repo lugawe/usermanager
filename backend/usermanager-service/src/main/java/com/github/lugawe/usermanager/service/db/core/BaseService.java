@@ -1,10 +1,11 @@
 package com.github.lugawe.usermanager.service.db.core;
 
 import com.github.lugawe.usermanager.db.core.BaseDAO;
+import com.github.lugawe.usermanager.util.interfaces.CheckedProvider;
+import com.github.lugawe.usermanager.util.interfaces.CheckedRunnable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Provider;
 import java.util.Objects;
 
 public abstract class BaseService<T extends BaseDAO<?>> {
@@ -24,11 +25,11 @@ public abstract class BaseService<T extends BaseDAO<?>> {
         this(baseDAO, new TransactionHandler(baseDAO::getSessionFactory));
     }
 
-    public <R> R inTransaction(Provider<R> transaction) {
+    public <R> R inTransaction(CheckedProvider<R> transaction) {
         return transactionHandler.inTransaction(transaction);
     }
 
-    public void inTransaction(Runnable transaction) {
+    public void inTransaction(CheckedRunnable transaction) {
         transactionHandler.inTransaction(transaction);
     }
 

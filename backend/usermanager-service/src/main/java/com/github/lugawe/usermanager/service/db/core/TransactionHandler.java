@@ -1,5 +1,7 @@
 package com.github.lugawe.usermanager.service.db.core;
 
+import com.github.lugawe.usermanager.util.interfaces.CheckedProvider;
+import com.github.lugawe.usermanager.util.interfaces.CheckedRunnable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,7 +18,7 @@ public class TransactionHandler {
         this.sessionFactoryProvider = Objects.requireNonNull(sessionFactoryProvider);
     }
 
-    public <T> T inTransaction(Provider<T> transaction) {
+    public <T> T inTransaction(CheckedProvider<T> transaction) {
         if (transaction == null) {
             throw new NullPointerException("param transaction is null");
         }
@@ -31,15 +33,15 @@ public class TransactionHandler {
             T result = transaction.get();
             commit(txn);
             return result;
-        } catch (Throwable t) {
+        } catch (Exception ex) {
             rollback(txn);
-            throw t;
+            throw new TransactionException(ex);
         } finally {
             ManagedSessionContext.unbind(sessionFactory);
         }
     }
 
-    public void inTransaction(Runnable transaction) {
+    public void inTransaction(CheckedRunnable transaction) {
         if (transaction == null) {
             throw new NullPointerException("param transaction is null");
         }
