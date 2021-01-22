@@ -34,6 +34,7 @@
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
