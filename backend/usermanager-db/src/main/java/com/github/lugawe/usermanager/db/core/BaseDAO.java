@@ -2,10 +2,7 @@ package com.github.lugawe.usermanager.db.core;
 
 import com.github.lugawe.usermanager.model.db.core.Persistable;
 import com.querydsl.core.types.EntityPath;
-import com.querydsl.jpa.hibernate.HibernateDeleteClause;
-import com.querydsl.jpa.hibernate.HibernateInsertClause;
-import com.querydsl.jpa.hibernate.HibernateQuery;
-import com.querydsl.jpa.hibernate.HibernateUpdateClause;
+import com.querydsl.jpa.hibernate.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -21,8 +18,12 @@ public abstract class BaseDAO<T extends Persistable> {
         this.entityClass = Objects.requireNonNull(entityClass);
     }
 
-    public HibernateQuery<T> query(final long offset, final long limit) {
-        HibernateQuery<T> query = new HibernateQuery<>(getCurrentSession());
+    public HibernateQueryFactory queryFactory() {
+        return new HibernateQueryFactory(getCurrentSession());
+    }
+
+    public HibernateQuery<T> query(long offset, long limit) {
+        HibernateQuery<T> query = queryFactory().selectFrom(getEntityPath());
         if (offset > 0) {
             query = query.offset(offset);
         }
@@ -37,7 +38,15 @@ public abstract class BaseDAO<T extends Persistable> {
     }
 
     public HibernateInsertClause insert() {
-        return new HibernateInsertClause(getCurrentSession(), getEntityPath());
+        return queryFactory().insert(getEntityPath());
+    }
+
+    public HibernateUpdateClause update() {
+        return queryFactory().update(getEntityPath());
+    }
+
+    public HibernateDeleteClause delete() {
+        return queryFactory().delete(getEntityPath());
     }
 
     public UUID insert(T entity) {
@@ -45,14 +54,6 @@ public abstract class BaseDAO<T extends Persistable> {
             throw new NullPointerException("param entity is null");
         }
         return (UUID) getCurrentSession().save(entity);
-    }
-
-    public HibernateUpdateClause update() {
-        return new HibernateUpdateClause(getCurrentSession(), getEntityPath());
-    }
-
-    public HibernateDeleteClause delete() {
-        return new HibernateDeleteClause(getCurrentSession(), getEntityPath());
     }
 
     public Optional<T> tryGet(UUID id) {
@@ -64,10 +65,6 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public T get(UUID id) {
         return tryGet(id).orElseThrow(() -> new NullPointerException("entity not found"));
-    }
-
-    public T insertGet(T entity) {
-        return get(insert(entity));
     }
 
     public List<T> fetchAll() {
