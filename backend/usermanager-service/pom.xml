@@ -22,11 +22,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.lugawe.usermanager</groupId>
-            <artifactId>usermanager-util</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
         </dependency>
