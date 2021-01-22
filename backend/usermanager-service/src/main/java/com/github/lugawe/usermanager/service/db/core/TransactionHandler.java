@@ -6,11 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.context.internal.ManagedSessionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Provider;
 import java.util.Objects;
 
 public class TransactionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(TransactionHandler.class);
 
     private final Provider<SessionFactory> sessionFactoryProvider;
 
@@ -27,7 +31,10 @@ public class TransactionHandler {
             throw new NullPointerException("provided session factory is null");
         }
         Transaction txn = null;
-        try (Session session = sessionFactory.openSession()) {
+        Session session = null;
+        try {
+            log.debug("transaction started");
+            session = sessionFactory.openSession();
             ManagedSessionContext.bind(session);
             txn = session.beginTransaction();
             T result = transaction.get();
@@ -37,7 +44,11 @@ public class TransactionHandler {
             rollback(txn);
             throw new TransactionException(ex);
         } finally {
+            if (session != null) {
+                session.close();
+            }
             ManagedSessionContext.unbind(sessionFactory);
+            log.debug("transaction completed");
         }
     }
 
