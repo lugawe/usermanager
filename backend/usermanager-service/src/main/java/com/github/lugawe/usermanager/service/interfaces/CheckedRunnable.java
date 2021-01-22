@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.util.interfaces;
+package com.github.lugawe.usermanager.service.interfaces;
 
 @FunctionalInterface
 public interface CheckedRunnable {

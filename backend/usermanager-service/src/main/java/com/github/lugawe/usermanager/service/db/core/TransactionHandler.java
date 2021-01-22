@@ -1,7 +1,7 @@
 package com.github.lugawe.usermanager.service.db.core;
 
-import com.github.lugawe.usermanager.util.interfaces.CheckedProvider;
-import com.github.lugawe.usermanager.util.interfaces.CheckedRunnable;
+import com.github.lugawe.usermanager.service.interfaces.CheckedProvider;
+import com.github.lugawe.usermanager.service.interfaces.CheckedRunnable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
