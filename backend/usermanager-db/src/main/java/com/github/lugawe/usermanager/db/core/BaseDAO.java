@@ -5,10 +5,14 @@ import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.hibernate.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public abstract class BaseDAO<T extends Persistable> {
+
+    private static final Logger log = LoggerFactory.getLogger(BaseDAO.class);
 
     private final SessionFactory sessionFactory;
     private final Class<T> entityClass;
@@ -19,7 +23,8 @@ public abstract class BaseDAO<T extends Persistable> {
     }
 
     public HibernateQueryFactory queryFactory() {
-        return new HibernateQueryFactory(getCurrentSession());
+        log.debug("create new hibernate query factory");
+        return new HibernateQueryFactory(this::getCurrentSession);
     }
 
     public HibernateQuery<T> query(long offset, long limit) {
