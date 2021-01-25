@@ -1,7 +1,7 @@
 package com.github.lugawe.usermanager.db.transaction;
 
 @FunctionalInterface
-public interface Transaction<T> {
+public interface GenericTransaction<T> {
 
     T run() throws Exception;
 

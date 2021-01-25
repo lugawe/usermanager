@@ -2,7 +2,7 @@ package com.github.lugawe.usermanager.db.transaction;
 
 public interface TransactionHandler {
 
-    public <T> T inTransaction(Transaction<T> transaction);
+    public <T> T inTransaction(GenericTransaction<T> transaction);
 
     public default void inTransaction(VoidTransaction transaction) {
         if (transaction == null) {
