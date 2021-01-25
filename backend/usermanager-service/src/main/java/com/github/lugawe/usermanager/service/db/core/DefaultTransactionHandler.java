@@ -1,11 +1,11 @@
 package com.github.lugawe.usermanager.service.db.core;
 
-import com.github.lugawe.usermanager.db.transaction.Transaction;
+import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
 import com.github.lugawe.usermanager.db.transaction.TransactionException;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
-import com.github.lugawe.usermanager.db.transaction.VoidTransaction;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.context.internal.ManagedSessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class DefaultTransactionHandler implements TransactionHandler {
         this.sessionFactoryProvider = Objects.requireNonNull(sessionFactoryProvider);
     }
 
-    public <T> T inTransaction(Transaction<T> transaction) {
+    public <T> T inTransaction(GenericTransaction<T> transaction) {
         if (transaction == null) {
             throw new NullPointerException("param transaction is null");
         }
@@ -31,7 +31,7 @@ public class DefaultTransactionHandler implements TransactionHandler {
         if (sessionFactory == null) {
             throw new NullPointerException("provided session factory is null");
         }
-        org.hibernate.Transaction txn = null;
+        Transaction txn = null;
         Session session = null;
         try {
             log.debug("transaction started");
@@ -53,23 +53,13 @@ public class DefaultTransactionHandler implements TransactionHandler {
         }
     }
 
-    public void inTransaction(VoidTransaction transaction) {
-        if (transaction == null) {
-            throw new NullPointerException("param transaction is null");
-        }
-        inTransaction(() -> {
-            transaction.run();
-            return null;
-        });
-    }
-
-    private void commit(org.hibernate.Transaction transaction) {
+    private void commit(Transaction transaction) {
         if (transaction != null && transaction.isActive()) {
             transaction.commit();
         }
     }
 
-    private void rollback(org.hibernate.Transaction transaction) {
+    private void rollback(Transaction transaction) {
         if (transaction != null && transaction.isActive()) {
             transaction.rollback();
         }
