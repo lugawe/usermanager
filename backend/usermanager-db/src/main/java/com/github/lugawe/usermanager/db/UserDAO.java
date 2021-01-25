@@ -18,7 +18,7 @@ public class UserDAO extends BaseDAO<User> {
     }
 
     @Override
-    public EntityPath<User> getEntityPath() {
+    public final EntityPath<User> getEntityPath() {
         return user;
     }
 

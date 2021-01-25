@@ -22,13 +22,13 @@ public abstract class BaseDAO<T extends Persistable> {
         this.entityClass = Objects.requireNonNull(entityClass);
     }
 
-    public HibernateQueryFactory queryFactory() {
+    public HibernateQueryFactory factory() {
         log.debug("create new hibernate query factory");
         return new HibernateQueryFactory(this::getCurrentSession);
     }
 
     public HibernateQuery<T> query(long offset, long limit) {
-        HibernateQuery<T> query = queryFactory().selectFrom(getEntityPath());
+        HibernateQuery<T> query = factory().selectFrom(getEntityPath());
         if (offset > 0) {
             query = query.offset(offset);
         }
@@ -43,15 +43,15 @@ public abstract class BaseDAO<T extends Persistable> {
     }
 
     public HibernateInsertClause insert() {
-        return queryFactory().insert(getEntityPath());
+        return factory().insert(getEntityPath());
     }
 
     public HibernateUpdateClause update() {
-        return queryFactory().update(getEntityPath());
+        return factory().update(getEntityPath());
     }
 
     public HibernateDeleteClause delete() {
-        return queryFactory().delete(getEntityPath());
+        return factory().delete(getEntityPath());
     }
 
     public UUID insert(T entity) {

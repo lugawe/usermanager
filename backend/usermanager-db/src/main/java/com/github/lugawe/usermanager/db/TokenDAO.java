@@ -18,7 +18,7 @@ public class TokenDAO extends BaseDAO<Token> {
     }
 
     @Override
-    public EntityPath<Token> getEntityPath() {
+    public final EntityPath<Token> getEntityPath() {
         return token;
     }
 

@@ -18,7 +18,7 @@ public class RoleSetDAO extends BaseDAO<RoleSet> {
     }
 
     @Override
-    public EntityPath<RoleSet> getEntityPath() {
+    public final EntityPath<RoleSet> getEntityPath() {
         return roleSet;
     }
 

@@ -18,7 +18,7 @@ public class PasswordDAO extends BaseDAO<Password> {
     }
 
     @Override
-    public EntityPath<Password> getEntityPath() {
+    public final EntityPath<Password> getEntityPath() {
         return password;
     }
 
