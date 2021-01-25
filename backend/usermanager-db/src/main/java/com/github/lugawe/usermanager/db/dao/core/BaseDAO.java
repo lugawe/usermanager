@@ -54,24 +54,6 @@ public abstract class BaseDAO<T extends Persistable> {
         return factory().delete(getEntityPath());
     }
 
-    public UUID insert(T entity) {
-        if (entity == null) {
-            throw new NullPointerException("param entity is null");
-        }
-        return (UUID) getCurrentSession().save(entity);
-    }
-
-    public Optional<T> tryGet(UUID id) {
-        if (id == null) {
-            throw new NullPointerException("param id is null");
-        }
-        return Optional.ofNullable(getCurrentSession().get(entityClass, id));
-    }
-
-    public T get(UUID id) {
-        return tryGet(id).orElseThrow(() -> new NullPointerException("entity not found"));
-    }
-
     public List<T> fetchAll() {
         return Collections.unmodifiableList(query().fetch());
     }
