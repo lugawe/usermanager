@@ -55,6 +55,7 @@
                             <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
                             <options>
                                 <querydsl.entityAccessors>true</querydsl.entityAccessors>
+                                <querydsl.packageSuffix>.query</querydsl.packageSuffix>
                             </options>
                         </configuration>
                     </execution>

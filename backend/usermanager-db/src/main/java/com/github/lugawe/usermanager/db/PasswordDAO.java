@@ -2,7 +2,7 @@ package com.github.lugawe.usermanager.db;
 
 import com.github.lugawe.usermanager.db.core.BaseDAO;
 import com.github.lugawe.usermanager.model.db.Password;
-import com.github.lugawe.usermanager.model.db.QPassword;
+import com.github.lugawe.usermanager.model.db.query.QPassword;
 import com.querydsl.core.types.EntityPath;
 import org.hibernate.SessionFactory;
 
