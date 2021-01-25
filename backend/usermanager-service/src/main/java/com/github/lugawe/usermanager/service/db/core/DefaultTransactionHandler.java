@@ -1,10 +1,11 @@
 package com.github.lugawe.usermanager.service.db.core;
 
-import com.github.lugawe.usermanager.service.interfaces.CheckedProvider;
-import com.github.lugawe.usermanager.service.interfaces.CheckedRunnable;
+import com.github.lugawe.usermanager.db.transaction.Transaction;
+import com.github.lugawe.usermanager.db.transaction.TransactionException;
+import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
+import com.github.lugawe.usermanager.db.transaction.VoidTransaction;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.context.internal.ManagedSessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,17 +13,17 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Provider;
 import java.util.Objects;
 
-public class TransactionHandler {
+public class DefaultTransactionHandler implements TransactionHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(TransactionHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultTransactionHandler.class);
 
     private final Provider<SessionFactory> sessionFactoryProvider;
 
-    public TransactionHandler(Provider<SessionFactory> sessionFactoryProvider) {
+    public DefaultTransactionHandler(Provider<SessionFactory> sessionFactoryProvider) {
         this.sessionFactoryProvider = Objects.requireNonNull(sessionFactoryProvider);
     }
 
-    public <T> T inTransaction(CheckedProvider<T> transaction) {
+    public <T> T inTransaction(Transaction<T> transaction) {
         if (transaction == null) {
             throw new NullPointerException("param transaction is null");
         }
@@ -30,14 +31,14 @@ public class TransactionHandler {
         if (sessionFactory == null) {
             throw new NullPointerException("provided session factory is null");
         }
-        Transaction txn = null;
+        org.hibernate.Transaction txn = null;
         Session session = null;
         try {
             log.debug("transaction started");
             session = sessionFactory.openSession();
             ManagedSessionContext.bind(session);
             txn = session.beginTransaction();
-            T result = transaction.get();
+            T result = transaction.run();
             commit(txn);
             return result;
         } catch (Exception ex) {
@@ -52,7 +53,7 @@ public class TransactionHandler {
         }
     }
 
-    public void inTransaction(CheckedRunnable transaction) {
+    public void inTransaction(VoidTransaction transaction) {
         if (transaction == null) {
             throw new NullPointerException("param transaction is null");
         }
@@ -62,13 +63,13 @@ public class TransactionHandler {
         });
     }
 
-    private void commit(Transaction transaction) {
+    private void commit(org.hibernate.Transaction transaction) {
         if (transaction != null && transaction.isActive()) {
             transaction.commit();
         }
     }
 
-    private void rollback(Transaction transaction) {
+    private void rollback(org.hibernate.Transaction transaction) {
         if (transaction != null && transaction.isActive()) {
             transaction.rollback();
         }
