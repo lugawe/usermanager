@@ -54,6 +54,12 @@ public abstract class BaseDAO<T extends Persistable> {
         return factory().delete(getEntityPath());
     }
 
+    public abstract Optional<T> tryGet(UUID id);
+
+    public T get(UUID id) {
+        return tryGet(id).orElseThrow(() -> new NullPointerException("entity not found"));
+    }
+
     public List<T> fetchAll() {
         return Collections.unmodifiableList(query().fetch());
     }
