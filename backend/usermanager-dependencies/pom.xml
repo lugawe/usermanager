@@ -21,7 +21,7 @@
         <jackson.version>2.12.1</jackson.version>
         <guice.version>4.2.3</guice.version>
         <querydsl.version>4.4.0</querydsl.version>
-        <auth0-java-jwt.version>3.12.0</auth0-java-jwt.version>
+        <auth0-java-jwt.version>3.12.1</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
         <!-- hibernate dependencies -->
         <hibernate-core.version>5.4.27.Final</hibernate-core.version>
