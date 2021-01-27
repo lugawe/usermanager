@@ -1,8 +1,8 @@
 package com.github.lugawe.usermanager.db.dao;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
+import com.github.lugawe.usermanager.model.db.QUser;
 import com.github.lugawe.usermanager.model.db.User;
-import com.github.lugawe.usermanager.model.db.query.QUser;
 import com.querydsl.core.types.EntityPath;
 import org.hibernate.SessionFactory;
 
