@@ -32,12 +32,17 @@ public abstract class BaseDAO<T extends Persistable> {
         if (session == null) {
             throw new NullPointerException("param session is null");
         }
+        session.setDefaultReadOnly(readOnly);
         return session;
     }
 
-    public HibernateQueryFactory factory() {
+    protected Session session() {
+        return configureSession(sessionFactory.getCurrentSession());
+    }
+
+    protected HibernateQueryFactory factory() {
         log.debug("create new hibernate query factory");
-        return new HibernateQueryFactory(this::getCurrentSession);
+        return new HibernateQueryFactory(this::session);
     }
 
     public HibernateQuery<T> query(long offset, long limit) {
@@ -56,14 +61,23 @@ public abstract class BaseDAO<T extends Persistable> {
     }
 
     public HibernateInsertClause insert() {
+        if (readOnly) {
+            throw new IllegalStateException("cannot create insert clause: dao is read only");
+        }
         return factory().insert(getEntityPath());
     }
 
     public HibernateUpdateClause update() {
+        if (readOnly) {
+            throw new IllegalStateException("cannot create update clause: dao is read only");
+        }
         return factory().update(getEntityPath());
     }
 
     public HibernateDeleteClause delete() {
+        if (readOnly) {
+            throw new IllegalStateException("cannot create delete clause: dao is read only");
+        }
         return factory().delete(getEntityPath());
     }
 
@@ -75,10 +89,6 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public List<T> fetchAll() {
         return Collections.unmodifiableList(query().fetch());
-    }
-
-    protected Session getCurrentSession() {
-        return configureSession(sessionFactory.getCurrentSession());
     }
 
     public final SessionFactory getSessionFactory() {
