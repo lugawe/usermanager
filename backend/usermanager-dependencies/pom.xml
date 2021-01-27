@@ -17,7 +17,6 @@
 
     <properties>
         <!-- dependencies -->
-        <logback.version>1.2.3</logback.version>
         <jackson.version>2.12.1</jackson.version>
         <guice.version>4.2.3</guice.version>
         <auth0-java-jwt.version>3.12.1</auth0-java-jwt.version>
@@ -35,6 +34,9 @@
         <!-- util dependencies -->
         <apache.commons.version>3.11</apache.commons.version>
         <reflections.version>0.9.12</reflections.version>
+        <!-- logging dependencies -->
+        <slf4j.version>1.7.30</slf4j.version>
+        <logback.version>1.2.3</logback.version>
         <!-- testing -->
         <junit.version>5.7.0</junit.version>
         <h2.version>1.4.200</h2.version>
@@ -48,12 +50,6 @@
         <dependencies>
 
             <!-- dependencies -->
-
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -157,6 +153,20 @@
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
                 <version>${reflections.version}</version>
+            </dependency>
+
+            <!-- logging dependencies -->
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
 
             <!-- testing -->
