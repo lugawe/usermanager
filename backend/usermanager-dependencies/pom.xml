@@ -20,9 +20,10 @@
         <logback.version>1.2.3</logback.version>
         <jackson.version>2.12.1</jackson.version>
         <guice.version>4.2.3</guice.version>
-        <querydsl.version>4.4.0</querydsl.version>
         <auth0-java-jwt.version>3.12.1</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
+        <!-- querydsl dependencies -->
+        <querydsl.version>4.4.0</querydsl.version>
         <!-- hibernate dependencies -->
         <hibernate-core.version>5.4.27.Final</hibernate-core.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
@@ -41,7 +42,6 @@
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -74,6 +74,20 @@
             </dependency>
 
             <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${auth0-java-jwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mindrot</groupId>
+                <artifactId>jbcrypt</artifactId>
+                <version>${jbcrypt.version}</version>
+            </dependency>
+
+            <!-- querydsl dependencies -->
+
+            <dependency>
                 <groupId>com.querydsl</groupId>
                 <artifactId>querydsl-apt</artifactId>
                 <version>${querydsl.version}</version>
@@ -89,18 +103,6 @@
                 <groupId>com.querydsl</groupId>
                 <artifactId>querydsl-sql</artifactId>
                 <version>${querydsl.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>${auth0-java-jwt.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mindrot</groupId>
-                <artifactId>jbcrypt</artifactId>
-                <version>${jbcrypt.version}</version>
             </dependency>
 
             <!-- hibernate dependencies -->
@@ -199,9 +201,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>com.mysema.maven</groupId>
-                    <artifactId>apt-maven-plugin</artifactId>
-                    <version>${apt-maven-plugin.version}</version>
+                    <groupId>com.querydsl</groupId>
+                    <artifactId>querydsl-maven-plugin</artifactId>
+                    <version>${querydsl.version}</version>
                 </plugin>
 
             </plugins>
