@@ -7,16 +7,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "role_set")
 public class RoleSet extends BaseEntity implements Iterable<Role> {
-
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @Column(name = "role_set_id", updatable = false)
-    private UUID id;
 
     @NotNull
     @Column(name = "name", unique = true)
@@ -28,7 +22,7 @@ public class RoleSet extends BaseEntity implements Iterable<Role> {
     @Column(name = "type")
     private String type;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "role_set_role", joinColumns = @JoinColumn(name = "role_set"), inverseJoinColumns = @JoinColumn(name = "role"))
     private Set<Role> roles;
 
@@ -41,15 +35,6 @@ public class RoleSet extends BaseEntity implements Iterable<Role> {
             return roles.iterator();
         }
         return Collections.emptyIterator();
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -2,33 +2,20 @@ package com.github.lugawe.usermanager.model.db;
 
 import com.github.lugawe.usermanager.model.db.core.BaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
 @Entity
 @Table(name = "role")
 public class Role extends BaseEntity {
-
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @Column(name = "role_id", updatable = false)
-    private UUID id;
 
     @NotNull
     @Column(name = "name", unique = true)
     private String name;
 
     public Role() {
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getName() {

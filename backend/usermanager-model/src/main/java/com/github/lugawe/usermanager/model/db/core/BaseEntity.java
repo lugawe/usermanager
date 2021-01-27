@@ -1,13 +1,18 @@
 package com.github.lugawe.usermanager.model.db.core;
 
-import javax.persistence.Column;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable {
+
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @Column(name = "id", updatable = false)
+    private UUID id;
 
     @NotNull
     @Column(name = "created_at", updatable = false)
@@ -18,6 +23,15 @@ public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable 
     private boolean locked;
 
     public BaseEntity() {
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public LocalDateTime getCreatedAt() {

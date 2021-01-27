@@ -5,7 +5,6 @@ import com.github.lugawe.usermanager.model.db.core.BaseEntity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
-import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -32,11 +31,6 @@ public class User extends BaseEntity implements Principal {
 
     }
 
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @Column(name = "user_id", updatable = false)
-    private UUID id;
-
     @NotNull
     @Column(name = "name", unique = true)
     private String name;
@@ -56,15 +50,6 @@ public class User extends BaseEntity implements Principal {
     private RoleSet roleSet;
 
     public User() {
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     @Override

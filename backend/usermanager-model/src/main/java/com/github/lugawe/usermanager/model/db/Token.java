@@ -5,7 +5,6 @@ import com.github.lugawe.usermanager.model.db.core.BaseEntity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "token")
@@ -31,11 +30,6 @@ public class Token extends BaseEntity {
 
     }
 
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @Column(name = "token_id", updatable = false)
-    private UUID id;
-
     @NotNull
     @Column(name = "value")
     private String value;
@@ -54,15 +48,6 @@ public class Token extends BaseEntity {
     private LocalDateTime lastAccess;
 
     public Token() {
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getValue() {
