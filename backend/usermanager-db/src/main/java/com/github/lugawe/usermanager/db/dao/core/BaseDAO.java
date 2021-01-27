@@ -16,10 +16,23 @@ public abstract class BaseDAO<T extends Persistable> {
 
     private final SessionFactory sessionFactory;
     private final Class<T> entityClass;
+    private final boolean readOnly;
 
-    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass) {
+    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, boolean readOnly) {
         this.sessionFactory = Objects.requireNonNull(sessionFactory);
         this.entityClass = Objects.requireNonNull(entityClass);
+        this.readOnly = readOnly;
+    }
+
+    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass) {
+        this(sessionFactory, entityClass, false);
+    }
+
+    protected Session configureSession(Session session) {
+        if (session == null) {
+            throw new NullPointerException("param session is null");
+        }
+        return session;
     }
 
     public HibernateQueryFactory factory() {
@@ -64,8 +77,8 @@ public abstract class BaseDAO<T extends Persistable> {
         return Collections.unmodifiableList(query().fetch());
     }
 
-    public Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
+    protected Session getCurrentSession() {
+        return configureSession(sessionFactory.getCurrentSession());
     }
 
     public final SessionFactory getSessionFactory() {
@@ -74,6 +87,10 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public final Class<T> getEntityClass() {
         return entityClass;
+    }
+
+    public final boolean isReadOnly() {
+        return readOnly;
     }
 
     public abstract EntityPath<T> getEntityPath();
