@@ -14,5 +14,13 @@
 
     <artifactId>usermanager-server</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.lugawe.usermanager</groupId>
+            <artifactId>usermanager-service</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>
