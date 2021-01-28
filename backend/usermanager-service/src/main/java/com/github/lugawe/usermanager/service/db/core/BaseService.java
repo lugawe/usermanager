@@ -22,10 +22,6 @@ public abstract class BaseService<T extends BaseDAO<?>> {
         log.debug("construct {} service", baseDAO.getEntityPath());
     }
 
-    public BaseService(T baseDAO) {
-        this(baseDAO, new DefaultTransactionHandler(baseDAO::getSessionFactory));
-    }
-
     public <R> R inTransaction(GenericTransaction<R> transaction) {
         return transactionHandler.inTransaction(transaction);
     }
