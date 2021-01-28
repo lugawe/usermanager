@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.service.h2;
+package com.github.lugawe.usermanager.service.basetest;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public final class TestDatabase {
+public final class H2TestDatabase {
 
-    private TestDatabase() {
+    private H2TestDatabase() {
     }
 
     /**
