@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.service.basetest;
+package com.github.lugawe.usermanager.service.test;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

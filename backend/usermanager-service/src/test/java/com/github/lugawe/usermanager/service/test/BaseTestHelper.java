@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.service.basetest;
+package com.github.lugawe.usermanager.service.test;
 
 import com.github.lugawe.usermanager.service.config.ServiceConfig;
 import com.github.lugawe.usermanager.service.inject.ServiceModule;
