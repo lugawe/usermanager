@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class RoleService extends BaseService<RoleDAO> {
 
-    private final QRole role = QRole.role;
+    private static final QRole role = RoleDAO.ROLE_PATH;
 
     @Inject
     public RoleService(RoleDAO dao, TransactionHandler handler) {

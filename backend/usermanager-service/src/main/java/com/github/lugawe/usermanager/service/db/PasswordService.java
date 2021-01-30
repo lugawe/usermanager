@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class PasswordService extends BaseService<PasswordDAO> {
 
-    private final QPassword password = QPassword.password;
+    private static final QPassword password = PasswordDAO.PASSWORD_PATH;
 
     @Inject
     public PasswordService(PasswordDAO dao, TransactionHandler handler) {

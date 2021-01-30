@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class TokenService extends BaseService<TokenDAO> {
 
-    private final QToken token = QToken.token;
+    private static final QToken token = TokenDAO.TOKEN_PATH;
 
     @Inject
     public TokenService(TokenDAO dao, TransactionHandler handler) {

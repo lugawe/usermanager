@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class RoleSetService extends BaseService<RoleSetDAO> {
 
-    private final QRoleSet roleSet = QRoleSet.roleSet;
+    private static final QRoleSet roleSet = RoleSetDAO.ROLE_SET_PATH;
 
     @Inject
     public RoleSetService(RoleSetDAO dao, TransactionHandler handler) {

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class UserService extends BaseService<UserDAO> {
 
-    private final QUser user = QUser.user;
+    private static final QUser user = UserDAO.USER_PATH;
 
     @Inject
     public UserService(UserDAO dao, TransactionHandler handler) {
