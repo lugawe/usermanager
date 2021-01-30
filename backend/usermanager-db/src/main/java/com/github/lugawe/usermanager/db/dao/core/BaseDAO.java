@@ -16,16 +16,18 @@ public abstract class BaseDAO<T extends Persistable> {
 
     private final SessionFactory sessionFactory;
     private final Class<T> entityClass;
+    private final EntityPath<T> entityPath;
     private final boolean readOnly;
 
-    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, boolean readOnly) {
+    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, EntityPath<T> entityPath, boolean readOnly) {
         this.sessionFactory = Objects.requireNonNull(sessionFactory);
         this.entityClass = Objects.requireNonNull(entityClass);
+        this.entityPath = Objects.requireNonNull(entityPath);
         this.readOnly = readOnly;
     }
 
-    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass) {
-        this(sessionFactory, entityClass, false);
+    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, EntityPath<T> entityPath) {
+        this(sessionFactory, entityClass, entityPath, false);
     }
 
     protected Session configureSession(Session session) {
@@ -46,7 +48,7 @@ public abstract class BaseDAO<T extends Persistable> {
     }
 
     public HibernateQuery<T> query(long offset, long limit) {
-        HibernateQuery<T> query = factory().selectFrom(getEntityPath());
+        HibernateQuery<T> query = factory().selectFrom(entityPath);
         if (offset > 0) {
             query = query.offset(offset);
         }
@@ -64,21 +66,21 @@ public abstract class BaseDAO<T extends Persistable> {
         if (readOnly) {
             throw new IllegalStateException("cannot create insert clause: dao is read only");
         }
-        return factory().insert(getEntityPath());
+        return factory().insert(entityPath);
     }
 
     public HibernateUpdateClause update() {
         if (readOnly) {
             throw new IllegalStateException("cannot create update clause: dao is read only");
         }
-        return factory().update(getEntityPath());
+        return factory().update(entityPath);
     }
 
     public HibernateDeleteClause delete() {
         if (readOnly) {
             throw new IllegalStateException("cannot create delete clause: dao is read only");
         }
-        return factory().delete(getEntityPath());
+        return factory().delete(entityPath);
     }
 
     public abstract Optional<T> tryGet(UUID id);
@@ -99,10 +101,12 @@ public abstract class BaseDAO<T extends Persistable> {
         return entityClass;
     }
 
+    public final EntityPath<T> getEntityPath() {
+        return entityPath;
+    }
+
     public final boolean isReadOnly() {
         return readOnly;
     }
-
-    public abstract EntityPath<T> getEntityPath();
 
 }

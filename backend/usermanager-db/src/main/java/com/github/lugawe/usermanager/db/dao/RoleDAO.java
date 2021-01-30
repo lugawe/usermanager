@@ -3,7 +3,6 @@ package com.github.lugawe.usermanager.db.dao;
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
 import com.github.lugawe.usermanager.model.db.QRole;
 import com.github.lugawe.usermanager.model.db.Role;
-import com.querydsl.core.types.EntityPath;
 import org.hibernate.SessionFactory;
 
 import javax.inject.Inject;
@@ -12,11 +11,11 @@ import java.util.UUID;
 
 public class RoleDAO extends BaseDAO<Role> {
 
-    private final QRole role = QRole.role;
+    protected static final QRole role = QRole.role;
 
     @Inject
     public RoleDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, Role.class);
+        super(sessionFactory, Role.class, role);
     }
 
     @Override
@@ -26,11 +25,6 @@ public class RoleDAO extends BaseDAO<Role> {
         }
         Role result = query().where(role.id.eq(id)).fetchOne();
         return Optional.ofNullable(result);
-    }
-
-    @Override
-    public final EntityPath<Role> getEntityPath() {
-        return role;
     }
 
 }

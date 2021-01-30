@@ -3,7 +3,6 @@ package com.github.lugawe.usermanager.db.dao;
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
 import com.github.lugawe.usermanager.model.db.QUser;
 import com.github.lugawe.usermanager.model.db.User;
-import com.querydsl.core.types.EntityPath;
 import org.hibernate.SessionFactory;
 
 import javax.inject.Inject;
@@ -12,11 +11,11 @@ import java.util.UUID;
 
 public class UserDAO extends BaseDAO<User> {
 
-    private final QUser user = QUser.user;
+    protected static final QUser user = QUser.user;
 
     @Inject
     public UserDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, User.class);
+        super(sessionFactory, User.class, user);
     }
 
     @Override
@@ -26,11 +25,6 @@ public class UserDAO extends BaseDAO<User> {
         }
         User result = query().where(user.id.eq(id)).fetchOne();
         return Optional.ofNullable(result);
-    }
-
-    @Override
-    public final EntityPath<User> getEntityPath() {
-        return user;
     }
 
 }
