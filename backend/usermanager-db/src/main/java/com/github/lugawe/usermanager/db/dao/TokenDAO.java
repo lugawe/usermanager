@@ -11,11 +11,11 @@ import java.util.UUID;
 
 public class TokenDAO extends BaseDAO<Token> {
 
-    protected static final QToken token = QToken.token;
+    public static final QToken TOKEN_PATH = QToken.token;
 
     @Inject
     public TokenDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, Token.class, token);
+        super(sessionFactory, Token.class, TOKEN_PATH);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class TokenDAO extends BaseDAO<Token> {
         if (id == null) {
             throw new NullPointerException("param id is null");
         }
-        Token result = query().where(token.id.eq(id)).fetchOne();
+        Token result = query().where(TOKEN_PATH.id.eq(id)).fetchOne();
         return Optional.ofNullable(result);
     }
 

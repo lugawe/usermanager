@@ -11,11 +11,11 @@ import java.util.UUID;
 
 public class UserDAO extends BaseDAO<User> {
 
-    protected static final QUser user = QUser.user;
+    public static final QUser USER_PATH = QUser.user;
 
     @Inject
     public UserDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, User.class, user);
+        super(sessionFactory, User.class, USER_PATH);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class UserDAO extends BaseDAO<User> {
         if (id == null) {
             throw new NullPointerException("param id is null");
         }
-        User result = query().where(user.id.eq(id)).fetchOne();
+        User result = query().where(USER_PATH.id.eq(id)).fetchOne();
         return Optional.ofNullable(result);
     }
 
