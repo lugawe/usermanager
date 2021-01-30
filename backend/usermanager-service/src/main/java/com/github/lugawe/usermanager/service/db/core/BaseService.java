@@ -13,8 +13,8 @@ public abstract class BaseService<T extends BaseDAO<?>> {
 
     private static final Logger log = LoggerFactory.getLogger(BaseService.class);
 
-    private final T baseDAO;
-    private final TransactionHandler transactionHandler;
+    protected final T baseDAO;
+    protected final TransactionHandler transactionHandler;
 
     public BaseService(T baseDAO, TransactionHandler transactionHandler) {
         this.baseDAO = Objects.requireNonNull(baseDAO);
