@@ -7,7 +7,9 @@ import com.github.lugawe.usermanager.model.db.QPassword;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 public class PasswordService extends BaseService<PasswordDAO> {
 
@@ -22,6 +24,15 @@ public class PasswordService extends BaseService<PasswordDAO> {
         return inTransaction(() -> {
             Password result = baseDAO.query().where(password.hash.eq(hash)).fetchFirst();
             return Optional.ofNullable(result);
+        });
+    }
+
+    public void updateLastAccess(UUID id) {
+        inTransaction(() -> {
+            baseDAO.update()
+                    .where(password.id.eq(id))
+                    .set(password.lastAccess, LocalDateTime.now())
+                    .execute();
         });
     }
 
