@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.service.logic;
+package com.github.lugawe.usermanager.service.logic.transaction;
 
 import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
 import com.github.lugawe.usermanager.db.transaction.TransactionException;

@@ -2,7 +2,7 @@ package com.github.lugawe.usermanager.service.test;
 
 import com.github.lugawe.usermanager.service.config.ServiceConfig;
 import com.github.lugawe.usermanager.service.inject.ServiceModule;
-import com.github.lugawe.usermanager.service.logic.DefaultTransactionHandler;
+import com.github.lugawe.usermanager.service.logic.transaction.DefaultTransactionHandler;
 import com.google.inject.Injector;
 import org.hibernate.SessionFactory;
 
