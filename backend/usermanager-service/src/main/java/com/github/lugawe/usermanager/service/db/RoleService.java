@@ -7,7 +7,6 @@ import com.github.lugawe.usermanager.model.db.Role;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
-import java.util.Optional;
 
 public class RoleService extends BaseService<RoleDAO> {
 
@@ -18,11 +17,8 @@ public class RoleService extends BaseService<RoleDAO> {
         super(dao, handler);
     }
 
-    public Optional<Role> getByName(String name) {
-        return inTransaction(() -> {
-            Role result = baseDAO.query().where(role.name.eq(name)).fetchFirst();
-            return Optional.ofNullable(result);
-        });
+    public Role getByName(String name) {
+        return inTransaction(() -> baseDAO.query().where(role.name.eq(name)).fetchFirst());
     }
 
 }

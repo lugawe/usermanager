@@ -8,7 +8,6 @@ import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 public class PasswordService extends BaseService<PasswordDAO> {
@@ -20,11 +19,8 @@ public class PasswordService extends BaseService<PasswordDAO> {
         super(dao, handler);
     }
 
-    public Optional<Password> getByHash(String hash) {
-        return inTransaction(() -> {
-            Password result = baseDAO.query().where(password.hash.eq(hash)).fetchFirst();
-            return Optional.ofNullable(result);
-        });
+    public Password getByHash(String hash) {
+        return inTransaction(() -> baseDAO.query().where(password.hash.eq(hash)).fetchFirst());
     }
 
     public void updateLastAccess(UUID id) {

@@ -7,7 +7,6 @@ import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
-import java.util.Optional;
 
 public class UserService extends BaseService<UserDAO> {
 
@@ -18,11 +17,8 @@ public class UserService extends BaseService<UserDAO> {
         super(dao, handler);
     }
 
-    public Optional<User> getByName(String name) {
-        return inTransaction(() -> {
-            User result = baseDAO.query().where(user.name.eq(name)).fetchFirst();
-            return Optional.ofNullable(result);
-        });
+    public User getByName(String name) {
+        return inTransaction(() -> baseDAO.query().where(user.name.eq(name)).fetchFirst());
     }
 
 }
