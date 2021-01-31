@@ -6,11 +6,15 @@ import com.github.lugawe.usermanager.service.db.PasswordService;
 import com.github.lugawe.usermanager.service.db.UserService;
 import com.github.lugawe.usermanager.service.validation.StringValidator;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.util.Optional;
 
 public class AuthService {
+
+    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
     private final UserService userService;
     private final PasswordService passwordService;
@@ -25,6 +29,8 @@ public class AuthService {
 
         String _name = name.get();
         String _password = password.get();
+
+        log.info("#login - name: {}", _name);
 
         User user = userService.getByName(_name);
         if (user != null) {
