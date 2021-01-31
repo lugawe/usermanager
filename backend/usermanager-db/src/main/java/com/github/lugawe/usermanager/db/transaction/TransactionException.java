@@ -16,8 +16,18 @@ public class TransactionException extends RuntimeException {
         super(message, cause);
     }
 
+    public TransactionException(String message, Throwable cause, TransactionHandler handler) {
+        this(message, cause);
+        this.transactionHandler = handler;
+    }
+
     public TransactionException(Throwable cause) {
         super(cause);
+    }
+
+    public TransactionException(Throwable cause, TransactionHandler handler) {
+        this(cause);
+        this.transactionHandler = handler;
     }
 
     public TransactionHandler getTransactionHandler() {

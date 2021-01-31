@@ -43,7 +43,7 @@ public class DefaultTransactionHandler implements TransactionHandler {
             return result;
         } catch (Exception ex) {
             rollback(txn);
-            throw new TransactionException(ex);
+            throw new TransactionException(ex, this);
         } finally {
             if (session != null) {
                 session.close();
