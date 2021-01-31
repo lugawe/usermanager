@@ -21,6 +21,7 @@ public abstract class BaseService<T extends BaseDAO<?>> implements TransactionHa
         log.debug("construct {} service", baseDAO.getEntityPath());
     }
 
+    @Override
     public <R> R inTransaction(GenericTransaction<R> transaction) {
         return transactionHandler.inTransaction(transaction);
     }
