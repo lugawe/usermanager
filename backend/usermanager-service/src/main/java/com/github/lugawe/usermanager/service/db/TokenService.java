@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class TokenService extends BaseService<TokenDAO> {
 
-    private static final QToken token = TokenDAO.TOKEN_PATH;
+    private static final QToken token = TokenDAO.TOKEN;
 
     @Inject
     public TokenService(TokenDAO dao, TransactionHandler handler) {

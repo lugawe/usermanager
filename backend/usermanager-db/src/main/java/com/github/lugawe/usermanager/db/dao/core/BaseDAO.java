@@ -17,7 +17,8 @@ public abstract class BaseDAO<T extends Persistable> {
     private final SessionFactory sessionFactory;
     private final Class<T> entityClass;
     private final EntityPath<T> entityPath;
-    private final boolean readOnly;
+
+    private boolean readOnly;
 
     public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, EntityPath<T> entityPath, boolean readOnly) {
         this.sessionFactory = Objects.requireNonNull(sessionFactory);
@@ -107,6 +108,10 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public final boolean isReadOnly() {
         return readOnly;
+    }
+
+    public final void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
     }
 
 }

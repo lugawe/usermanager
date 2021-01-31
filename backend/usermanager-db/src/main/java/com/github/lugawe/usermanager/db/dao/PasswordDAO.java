@@ -11,11 +11,11 @@ import java.util.UUID;
 
 public class PasswordDAO extends BaseDAO<Password> {
 
-    public static final QPassword PASSWORD_PATH = QPassword.password;
+    public static final QPassword PASSWORD = QPassword.password;
 
     @Inject
     public PasswordDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, Password.class, PASSWORD_PATH);
+        super(sessionFactory, Password.class, PASSWORD);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class PasswordDAO extends BaseDAO<Password> {
         if (id == null) {
             throw new NullPointerException("param id is null");
         }
-        Password result = query().where(PASSWORD_PATH.id.eq(id)).fetchOne();
+        Password result = query().where(PASSWORD.id.eq(id)).fetchOne();
         return Optional.ofNullable(result);
     }
 

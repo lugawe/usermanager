@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class RoleSetService extends BaseService<RoleSetDAO> {
 
-    private static final QRoleSet roleSet = RoleSetDAO.ROLE_SET_PATH;
+    private static final QRoleSet roleSet = RoleSetDAO.ROLE_SET;
 
     @Inject
     public RoleSetService(RoleSetDAO dao, TransactionHandler handler) {

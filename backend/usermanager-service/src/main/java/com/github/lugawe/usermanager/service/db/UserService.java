@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class UserService extends BaseService<UserDAO> {
 
-    private static final QUser user = UserDAO.USER_PATH;
+    private static final QUser user = UserDAO.USER;
 
     @Inject
     public UserService(UserDAO dao, TransactionHandler handler) {

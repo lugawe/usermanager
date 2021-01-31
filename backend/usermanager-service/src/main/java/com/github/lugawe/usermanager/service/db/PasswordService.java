@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class PasswordService extends BaseService<PasswordDAO> {
 
-    private static final QPassword password = PasswordDAO.PASSWORD_PATH;
+    private static final QPassword password = PasswordDAO.PASSWORD;
 
     @Inject
     public PasswordService(PasswordDAO dao, TransactionHandler handler) {

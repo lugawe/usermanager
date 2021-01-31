@@ -11,11 +11,11 @@ import java.util.UUID;
 
 public class RoleSetDAO extends BaseDAO<RoleSet> {
 
-    public static final QRoleSet ROLE_SET_PATH = QRoleSet.roleSet;
+    public static final QRoleSet ROLE_SET = QRoleSet.roleSet;
 
     @Inject
     public RoleSetDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, RoleSet.class, ROLE_SET_PATH);
+        super(sessionFactory, RoleSet.class, ROLE_SET);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class RoleSetDAO extends BaseDAO<RoleSet> {
         if (id == null) {
             throw new NullPointerException("param id is null");
         }
-        RoleSet result = query().where(ROLE_SET_PATH.id.eq(id)).fetchOne();
+        RoleSet result = query().where(ROLE_SET.id.eq(id)).fetchOne();
         return Optional.ofNullable(result);
     }
 
