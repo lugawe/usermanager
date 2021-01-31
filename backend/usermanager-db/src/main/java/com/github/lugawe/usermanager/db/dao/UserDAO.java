@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class UserDAO extends BaseDAO<User> {
 
-    public static final QUser USER = QUser.user;
+    public static final QUser USER = new QUser("user");
 
     @Inject
     public UserDAO(SessionFactory sessionFactory) {

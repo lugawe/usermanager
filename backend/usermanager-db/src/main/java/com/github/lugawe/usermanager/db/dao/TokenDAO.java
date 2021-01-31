@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class TokenDAO extends BaseDAO<Token> {
 
-    public static final QToken TOKEN = QToken.token;
+    public static final QToken TOKEN = new QToken("token");
 
     @Inject
     public TokenDAO(SessionFactory sessionFactory) {
