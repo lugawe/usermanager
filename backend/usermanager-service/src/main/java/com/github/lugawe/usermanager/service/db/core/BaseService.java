@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public abstract class BaseService<T extends BaseDAO<?>> {
+public abstract class BaseService<T extends BaseDAO<?>> implements TransactionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(BaseService.class);
 
