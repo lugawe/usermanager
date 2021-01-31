@@ -3,7 +3,6 @@ package com.github.lugawe.usermanager.service.db.core;
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
 import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
-import com.github.lugawe.usermanager.db.transaction.VoidTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,10 +23,6 @@ public abstract class BaseService<T extends BaseDAO<?>> implements TransactionHa
 
     public <R> R inTransaction(GenericTransaction<R> transaction) {
         return transactionHandler.inTransaction(transaction);
-    }
-
-    public void inTransaction(VoidTransaction transaction) {
-        transactionHandler.inTransaction(transaction);
     }
 
     public final T getBaseDAO() {
