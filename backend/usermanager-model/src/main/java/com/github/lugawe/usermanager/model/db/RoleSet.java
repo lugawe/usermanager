@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.model.db;
 
-import com.github.lugawe.usermanager.model.db.core.BaseEntity;
+import com.github.lugawe.usermanager.model.db.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

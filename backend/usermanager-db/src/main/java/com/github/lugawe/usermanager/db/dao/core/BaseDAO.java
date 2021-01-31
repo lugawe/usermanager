@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.db.dao.core;
 
-import com.github.lugawe.usermanager.model.db.core.Persistable;
+import com.github.lugawe.usermanager.model.db.base.Persistable;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.hibernate.*;
 import org.hibernate.Session;

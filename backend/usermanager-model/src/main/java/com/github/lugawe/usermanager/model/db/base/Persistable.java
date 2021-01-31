@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.model.db.core;
+package com.github.lugawe.usermanager.model.db.base;
 
 import java.io.Serializable;
 import java.util.UUID;
