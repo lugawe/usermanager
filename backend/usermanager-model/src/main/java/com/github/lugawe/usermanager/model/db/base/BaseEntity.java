@@ -7,16 +7,12 @@ import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable {
+public abstract class BaseEntity implements Persistable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "id", updatable = false)
     private UUID id;
-
-    @NotNull
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
 
     @NotNull
     @Column(name = "locked")
@@ -34,25 +30,13 @@ public abstract class BaseEntity implements Comparable<BaseEntity>, Persistable 
         this.id = id;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
+    @Override
     public boolean isLocked() {
         return locked;
     }
 
     public void setLocked(boolean locked) {
         this.locked = locked;
-    }
-
-    @Override
-    public int compareTo(BaseEntity entity) {
-        return getCreatedAt().compareTo(entity.getCreatedAt());
     }
 
 }

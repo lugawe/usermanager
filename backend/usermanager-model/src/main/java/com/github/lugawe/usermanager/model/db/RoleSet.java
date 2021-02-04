@@ -4,6 +4,7 @@ import com.github.lugawe.usermanager.model.db.base.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
@@ -25,6 +26,10 @@ public class RoleSet extends BaseEntity implements Iterable<Role> {
     @ManyToMany
     @JoinTable(name = "role_set_role", joinColumns = @JoinColumn(name = "role_set"), inverseJoinColumns = @JoinColumn(name = "role"))
     private Set<Role> roles;
+
+    @NotNull
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
     public RoleSet() {
     }
@@ -67,6 +72,14 @@ public class RoleSet extends BaseEntity implements Iterable<Role> {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
 }

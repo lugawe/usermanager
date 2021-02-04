@@ -17,6 +17,10 @@ public class Password extends BaseEntity {
     private String hash;
 
     @NotNull
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @NotNull
     @Column(name = "last_access")
     private LocalDateTime lastAccess;
 
@@ -29,6 +33,14 @@ public class Password extends BaseEntity {
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getLastAccess() {

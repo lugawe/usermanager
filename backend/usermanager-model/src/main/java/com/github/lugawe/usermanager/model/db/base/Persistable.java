@@ -7,4 +7,6 @@ public interface Persistable extends Serializable {
 
     UUID getId();
 
+    boolean isLocked();
+
 }

@@ -5,6 +5,7 @@ import com.github.lugawe.usermanager.model.db.base.BaseEntity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
@@ -13,6 +14,7 @@ public class User extends BaseEntity implements Principal {
     public enum Type {
 
         UNDEFINED("undefined"),
+        CUSTOM("custom"),
         VISITOR("visitor"),
         USER("user"),
         VERIFIED_USER("verified_user"),
@@ -48,6 +50,10 @@ public class User extends BaseEntity implements Principal {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_set")
     private RoleSet roleSet;
+
+    @NotNull
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
     public User() {
     }
@@ -86,6 +92,14 @@ public class User extends BaseEntity implements Principal {
 
     public void setRoleSet(RoleSet roleSet) {
         this.roleSet = roleSet;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
 }

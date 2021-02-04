@@ -40,6 +40,10 @@ public class Token extends BaseEntity {
     private Type type = Type.CUSTOM;
 
     @NotNull
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @NotNull
     @Column(name = "expires_at")
     private LocalDateTime expiresAt;
 
@@ -67,6 +71,14 @@ public class Token extends BaseEntity {
             throw new NullPointerException();
         }
         this.type = type;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getExpiresAt() {
