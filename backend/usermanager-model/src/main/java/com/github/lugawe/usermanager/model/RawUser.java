@@ -11,17 +11,22 @@ public class RawUser implements Principal, Serializable {
     private String name;
     private String type;
     private Set<String> roles;
-
-    private Map<String, Object> custom;
+    private Map<String, String> entries;
 
     public RawUser() {
     }
 
-    public RawUser(String id, String name, String type, Set<String> roles) {
+    public RawUser(String id, String name, String type, Set<String> roles, Map<String, String> entries) {
+        this();
         this.id = id;
         this.name = name;
         this.type = type;
         this.roles = roles;
+        this.entries = entries;
+    }
+
+    public RawUser(String id, String name, String type, Set<String> roles) {
+        this(id, name, type, roles, null);
     }
 
     public String getId() {
@@ -57,12 +62,12 @@ public class RawUser implements Principal, Serializable {
         this.roles = roles;
     }
 
-    public Map<String, Object> getCustom() {
-        return custom;
+    public Map<String, String> getEntries() {
+        return entries;
     }
 
-    public void setCustom(Map<String, Object> custom) {
-        this.custom = custom;
+    public void setEntries(Map<String, String> entries) {
+        this.entries = entries;
     }
 
 }
