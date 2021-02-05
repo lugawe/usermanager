@@ -40,6 +40,7 @@
         <!-- testing -->
         <junit.version>5.7.1</junit.version>
         <h2.version>1.4.200</h2.version>
+        <javafaker.version>1.0.2</javafaker.version>
         <!-- plugins -->
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -182,6 +183,13 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.javafaker</groupId>
+                <artifactId>javafaker</artifactId>
+                <version>${javafaker.version}</version>
                 <scope>test</scope>
             </dependency>
 
