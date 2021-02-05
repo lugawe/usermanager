@@ -1,6 +1,8 @@
 package com.github.lugawe.usermanager.service.logic;
 
 import com.github.lugawe.usermanager.model.db.Password;
+import com.github.lugawe.usermanager.model.db.Role;
+import com.github.lugawe.usermanager.model.db.RoleSet;
 import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.service.db.PasswordService;
 import com.github.lugawe.usermanager.service.db.UserService;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public class AuthService {
 
@@ -44,15 +47,15 @@ public class AuthService {
         return Optional.of(user);
     }
 
-    public Optional<User> login(StringValidator name, StringValidator plainPassword) {
+    public Optional<User> login(StringValidator userName, StringValidator plainPassword) {
 
-        String _name = name.get();
+        String _userName = userName.get();
         String _password = plainPassword.get();
 
-        log.info("#login - name: {}", _name);
+        log.info("#login - userName: {}", _userName);
 
         try {
-            User user = userService.getByName(_name);
+            User user = userService.getByName(_userName);
             if (user != null) {
                 Password password = user.getPassword();
                 if (password != null) {
@@ -66,6 +69,37 @@ public class AuthService {
         }
 
         return Optional.empty();
+    }
+
+    public boolean isUserInRole(User user, String role) {
+
+        if (user == null) {
+            throw new NullPointerException("param user is null");
+        }
+        if (role == null) {
+            throw new NullPointerException("param role is null");
+        }
+
+        log.info("#isUserInRole - userName: {}, roleName: {}", user.getName(), role);
+
+        try {
+            if (!user.isLocked()) {
+                if (user.getType().equals(User.Type.ADMIN)) {
+                    return true;
+                }
+                RoleSet roleSet = user.getRoleSet();
+                if (roleSet != null && !roleSet.isLocked()) {
+                    Set<Role> roles = roleSet.getRoles();
+                    if (roles != null && roles.size() > 0) {
+                        return roles.stream().anyMatch(r -> r.getName().equals(role));
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            log.warn("#isUserInRole", ex);
+        }
+
+        return false;
     }
 
 }
