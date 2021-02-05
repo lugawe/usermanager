@@ -30,12 +30,15 @@ public class AuthService {
     }
 
     protected boolean checkPassword(String plainPassword, Password password) {
-        plainPassword = Objects.requireNonNull(plainPassword);
+        Objects.requireNonNull(plainPassword);
+        Objects.requireNonNull(password);
         passwordService.updateLastAccess(password.getId());
         return BCrypt.checkpw(plainPassword, password.getHash());
     }
 
     protected Optional<User> check(User user, Password password) {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(password);
         if (user.isLocked()) {
             log.warn("#checkUser: user {} is locked", user.getId());
             return Optional.empty();
