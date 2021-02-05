@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import java.util.Objects;
 import java.util.Optional;
 
 public class AuthService {
@@ -26,12 +27,7 @@ public class AuthService {
     }
 
     protected boolean checkPassword(String plainPassword, Password password) {
-        if (plainPassword == null) {
-            throw new NullPointerException("param plainPassword is null");
-        }
-        if (password == null) {
-            throw new NullPointerException("param password is null");
-        }
+        plainPassword = Objects.requireNonNull(plainPassword);
         passwordService.updateLastAccess(password.getId());
         return BCrypt.checkpw(plainPassword, password.getHash());
     }
