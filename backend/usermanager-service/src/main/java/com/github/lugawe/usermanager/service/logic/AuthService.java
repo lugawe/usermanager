@@ -25,23 +25,50 @@ public class AuthService {
         this.passwordService = passwordService;
     }
 
-    public Optional<User> login(StringValidator name, StringValidator password) {
+    protected boolean checkPassword(String plainPassword, Password password) {
+        if (plainPassword == null) {
+            throw new NullPointerException("param plainPassword is null");
+        }
+        if (password == null) {
+            throw new NullPointerException("param password is null");
+        }
+        passwordService.updateLastAccess(password.getId());
+        return BCrypt.checkpw(plainPassword, password.getHash());
+    }
+
+    protected Optional<User> check(User user, Password password) {
+        if (user.isLocked()) {
+            log.warn("#checkUser: user {} is locked", user.getId());
+            return Optional.empty();
+        }
+        if (password.isLocked()) {
+            log.warn("#checkUser: password {} is locked", password.getId());
+            return Optional.empty();
+        }
+        return Optional.of(user);
+    }
+
+    public Optional<User> login(StringValidator name, StringValidator plainPassword) {
 
         String _name = name.get();
-        String _password = password.get();
+        String _password = plainPassword.get();
 
         log.info("#login - name: {}", _name);
 
-        User user = userService.getByName(_name);
-        if (user != null) {
-            Password pwd = user.getPassword();
-            if (pwd != null) {
-                if (BCrypt.checkpw(_password, pwd.getHash())) {
-                    passwordService.updateLastAccess(pwd.getId());
-                    return Optional.of(user);
+        try {
+            User user = userService.getByName(_name);
+            if (user != null) {
+                Password password = user.getPassword();
+                if (password != null) {
+                    if (checkPassword(_password, password)) {
+                        return check(user, password);
+                    }
                 }
             }
+        } catch (Exception ex) {
+            log.warn("#login", ex);
         }
+
         return Optional.empty();
     }
 
