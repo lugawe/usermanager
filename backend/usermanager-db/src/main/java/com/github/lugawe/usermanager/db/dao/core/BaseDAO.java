@@ -70,6 +70,16 @@ public abstract class BaseDAO<T extends Persistable> {
         return factory().insert(entityPath);
     }
 
+    public UUID insert(T entity) {
+        if (entity == null) {
+            throw new NullPointerException("param entity is null");
+        }
+        if (readOnly) {
+            throw new IllegalStateException("cannot insert entity: dao is read only");
+        }
+        return (UUID) session().save(entity);
+    }
+
     public HibernateUpdateClause update() {
         if (readOnly) {
             throw new IllegalStateException("cannot create update clause: dao is read only");
