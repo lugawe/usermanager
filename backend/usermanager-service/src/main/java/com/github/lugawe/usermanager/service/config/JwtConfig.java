@@ -6,10 +6,10 @@ import java.time.Duration;
 
 public class JwtConfig {
 
-    private String secret;
+    private String secret = "super_secret_123456";
 
-    private String issuer;
-    private Duration lifetime;
+    private String issuer = "usermanager";
+    private Duration lifetime = Duration.ofDays(365);
 
     public JwtConfig() {
     }
