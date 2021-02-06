@@ -19,11 +19,6 @@
 
             <dependency>
                 <groupId>com.github.lugawe.usermanager</groupId>
-                <artifactId>usermanager-auth</artifactId>
-                <version>0.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.lugawe.usermanager</groupId>
                 <artifactId>usermanager-db</artifactId>
                 <version>0.1</version>
             </dependency>
