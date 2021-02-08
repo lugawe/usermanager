@@ -7,7 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
 import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.service.config.JwtConfig;
-import com.github.lugawe.usermanager.util.Mapper;
+import com.github.lugawe.usermanager.service.util.Mapper;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
