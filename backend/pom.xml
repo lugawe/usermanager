@@ -21,7 +21,6 @@
         <module>usermanager-model</module>
         <module>usermanager-server</module>
         <module>usermanager-service</module>
-        <module>usermanager-util</module>
 
     </modules>
 

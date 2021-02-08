@@ -37,11 +37,6 @@
                 <artifactId>usermanager-service</artifactId>
                 <version>0.1</version>
             </dependency>
-            <dependency>
-                <groupId>com.github.lugawe.usermanager</groupId>
-                <artifactId>usermanager-util</artifactId>
-                <version>0.1</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
