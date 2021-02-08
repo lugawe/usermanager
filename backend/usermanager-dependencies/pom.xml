@@ -21,19 +21,21 @@
         <guice.version>4.2.3</guice.version>
         <auth0-java-jwt.version>3.12.1</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
+        <!-- dropwizard dependencies -->
+        <dropwizard.version>2.0.19</dropwizard.version>
         <!-- querydsl dependencies -->
         <querydsl.version>4.4.0</querydsl.version>
         <!-- hibernate dependencies -->
         <hibernate-core.version>5.4.27.Final</hibernate-core.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+        <!-- util dependencies -->
+        <apache.commons.version>3.11</apache.commons.version>
+        <reflections.version>0.9.12</reflections.version>
         <!-- javax dependencies -->
         <annotation-api.version>1.3.2</annotation-api.version>
         <inject.version>1</inject.version>
         <persistence-api.version>2.2</persistence-api.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
-        <!-- util dependencies -->
-        <apache.commons.version>3.11</apache.commons.version>
-        <reflections.version>0.9.12</reflections.version>
         <!-- logging dependencies -->
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
@@ -82,6 +84,26 @@
                 <version>${jbcrypt.version}</version>
             </dependency>
 
+            <!-- dropwizard dependencies -->
+
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-core</artifactId>
+                <version>${dropwizard.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-hibernate</artifactId>
+                <version>${dropwizard.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-auth</artifactId>
+                <version>${dropwizard.version}</version>
+            </dependency>
+
             <!-- querydsl dependencies -->
 
             <dependency>
@@ -116,6 +138,20 @@
                 <version>${hibernate-validator.version}</version>
             </dependency>
 
+            <!-- util dependencies -->
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
+            </dependency>
+
             <!-- javax dependencies -->
 
             <dependency>
@@ -140,20 +176,6 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${validation-api.version}</version>
-            </dependency>
-
-            <!-- util dependencies -->
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${apache.commons.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>${reflections.version}</version>
             </dependency>
 
             <!-- logging dependencies -->
