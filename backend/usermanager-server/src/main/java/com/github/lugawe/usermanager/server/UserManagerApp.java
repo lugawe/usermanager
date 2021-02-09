@@ -1,13 +1,12 @@
 package com.github.lugawe.usermanager.server;
 
+import com.github.lugawe.usermanager.server.core.CoreApp;
 import com.github.lugawe.usermanager.server.resources.InfoResource;
-import io.dropwizard.Application;
-import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserManagerApp extends Application<UserManagerConfiguration> {
+public class UserManagerApp extends CoreApp {
 
     private static final Logger log = LoggerFactory.getLogger(UserManagerApp.class);
 
@@ -16,19 +15,14 @@ public class UserManagerApp extends Application<UserManagerConfiguration> {
     }
 
     @Override
-    public void initialize(Bootstrap<UserManagerConfiguration> bootstrap) {
-        bootstrap.addBundle(new UserManagerHibernateBundle());
-    }
-
-    @Override
     public void run(UserManagerConfiguration configuration, Environment environment) throws Exception {
-        log.info("init logic");
+        super.run(configuration, environment);
         registerResources(environment);
     }
 
     private void registerResources(Environment environment) {
         environment.jersey().setUrlPattern("/api/*");
-        environment.jersey().register(new InfoResource());
+        environment.jersey().register(injector.getInstance(InfoResource.class));
     }
 
 }
