@@ -1,6 +1,7 @@
 package com.github.lugawe.usermanager.server;
 
 import com.github.lugawe.usermanager.server.core.CoreApp;
+import com.github.lugawe.usermanager.server.resources.AuthResource;
 import com.github.lugawe.usermanager.server.resources.InfoResource;
 import io.dropwizard.setup.Environment;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public class UserManagerApp extends CoreApp {
     }
 
     private void registerResources(Environment environment) {
-        environment.jersey().setUrlPattern("/api/*");
+        environment.jersey().register(injector.getInstance(AuthResource.class));
         environment.jersey().register(injector.getInstance(InfoResource.class));
     }
 
