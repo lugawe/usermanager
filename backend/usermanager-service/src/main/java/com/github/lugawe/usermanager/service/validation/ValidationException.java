@@ -12,6 +12,11 @@ public class ValidationException extends RuntimeException {
         super(message);
     }
 
+    public ValidationException(String message, Validator<?> validator) {
+        this(message);
+        this.validator = validator;
+    }
+
     public ValidationException(String message, Throwable cause) {
         super(message, cause);
     }
