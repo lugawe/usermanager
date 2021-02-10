@@ -17,10 +17,11 @@
 
     <properties>
         <!-- dependencies -->
-        <jackson.version>2.11.4</jackson.version>
         <guice.version>4.2.3</guice.version>
         <auth0-java-jwt.version>3.12.1</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
+        <!-- jackson dependencies -->
+        <jackson.version>2.11.4</jackson.version>
         <!-- dropwizard dependencies -->
         <dropwizard.version>2.0.19</dropwizard.version>
         <!-- querydsl dependencies -->
@@ -57,18 +58,6 @@
             <!-- dependencies -->
 
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
@@ -84,6 +73,26 @@
                 <groupId>org.mindrot</groupId>
                 <artifactId>jbcrypt</artifactId>
                 <version>${jbcrypt.version}</version>
+            </dependency>
+
+            <!-- jackson dependencies -->
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
             <!-- dropwizard dependencies -->
