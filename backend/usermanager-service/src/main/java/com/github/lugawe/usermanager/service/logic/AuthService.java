@@ -6,7 +6,7 @@ import com.github.lugawe.usermanager.model.db.RoleSet;
 import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.service.db.PasswordService;
 import com.github.lugawe.usermanager.service.db.UserService;
-import com.github.lugawe.usermanager.service.validation.StringValidator;
+import com.github.lugawe.usermanager.service.validation.Validator;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ public class AuthService {
         return Optional.of(user);
     }
 
-    public Optional<User> login(StringValidator userName, StringValidator plainPassword) {
+    public Optional<User> login(Validator<String> userName, Validator<String> plainPassword) {
 
         String _userName = userName.get();
         String _password = plainPassword.get();
