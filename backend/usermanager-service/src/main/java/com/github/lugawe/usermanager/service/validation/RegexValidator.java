@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 public class RegexValidator implements StringValidator {
 
+    public static final String MATCH_ALL_REGEX = "(.*?)";
+
     private final String target;
     private final String value;
     private final Pattern regexPattern;
