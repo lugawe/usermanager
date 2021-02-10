@@ -29,8 +29,12 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
     @Override
     public void run(UserManagerConfiguration configuration, Environment environment) throws Exception {
         log.info("init core logic");
-        environment.jersey().setUrlPattern("/api/*");
+        initJersey(environment);
         registerInjector(configuration);
+    }
+
+    private void initJersey(Environment environment) {
+        environment.jersey().setUrlPattern("/api/*");
     }
 
     private void registerInjector(UserManagerConfiguration configuration) {
