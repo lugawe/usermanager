@@ -5,7 +5,6 @@ import com.github.lugawe.usermanager.service.validation.RegexValidator;
 import com.github.lugawe.usermanager.service.validation.Validator;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.regex.Pattern;
 
 public class ValidationConfig {
 
@@ -38,8 +37,7 @@ public class ValidationConfig {
     //
 
     @JsonIgnore
-    private void checkValid(String regex) {
-        Pattern.compile(regex);
+    protected void checkValid(String regex) {
     }
 
     @JsonIgnore
