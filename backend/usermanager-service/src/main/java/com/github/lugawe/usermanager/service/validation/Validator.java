@@ -8,4 +8,16 @@ public interface Validator<T> {
         return true;
     }
 
+    default String type() {
+        return null;
+    }
+
+    default String pattern() {
+        return null;
+    }
+
+    default String target() {
+        return null;
+    }
+
 }
