@@ -7,7 +7,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
 import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.service.config.JwtConfig;
-import com.github.lugawe.usermanager.service.util.Mapper;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +30,13 @@ public class JwtHandler {
     }
 
     protected Map<String, Object> userToMap(User user) {
-        return user != null ? Mapper.toMap(user) : null;
+        // TODO
+        return new HashMap<>();
     }
 
     protected User mapToUser(Map<String, Object> map) {
-        return Mapper.fromMap(map, User.class);
+        // TODO
+        return new User();
     }
 
     public String encode(User user, JwtClaim... claims) {
