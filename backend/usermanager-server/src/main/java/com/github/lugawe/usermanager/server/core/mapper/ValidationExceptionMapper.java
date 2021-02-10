@@ -18,17 +18,17 @@ public class ValidationExceptionMapper implements ExceptionMapper<ValidationExce
     }
 
     protected Map<String, String> buildEntity(ValidationException e) {
+        Map<String, String> result = new HashMap<>();
         if (e != null) {
+            result.put("message", e.getMessage());
             Validator<?> validator = e.getValidator();
             if (validator != null) {
-                Map<String, String> result = new HashMap<>();
                 result.put("type", validator.type());
                 result.put("pattern", validator.pattern());
                 result.put("target", validator.target());
-                return result;
             }
         }
-        return null;
+        return result;
     }
 
 }
