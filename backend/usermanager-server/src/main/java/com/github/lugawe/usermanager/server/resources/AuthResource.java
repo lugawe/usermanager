@@ -1,15 +1,18 @@
 package com.github.lugawe.usermanager.server.resources;
 
-import com.github.lugawe.usermanager.server.resources.request.AuthLoginRequest;
+import com.github.lugawe.usermanager.server.model.request.AuthLoginRequest;
+import com.github.lugawe.usermanager.server.model.response.AuthLoginResponse;
 import com.github.lugawe.usermanager.service.config.ServiceConfig;
 import com.github.lugawe.usermanager.service.config.ValidationConfig;
 import com.github.lugawe.usermanager.service.logic.AuthService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 @Path("/auth")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -27,8 +30,8 @@ public class AuthResource {
 
     @POST
     @Path("/login")
-    public Response login(@Valid AuthLoginRequest request) {
-        return Response.ok().build();
+    public AuthLoginResponse login(@Valid AuthLoginRequest request) {
+        return null;
     }
 
 }

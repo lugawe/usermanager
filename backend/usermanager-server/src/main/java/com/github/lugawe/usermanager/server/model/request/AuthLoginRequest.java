@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.server.resources.request;
+package com.github.lugawe.usermanager.server.model.request;
 
 import javax.validation.constraints.NotEmpty;
 
