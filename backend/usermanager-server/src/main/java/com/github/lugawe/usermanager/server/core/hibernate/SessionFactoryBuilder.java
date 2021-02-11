@@ -37,6 +37,7 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
 
     private final DataSourceFactory dataSourceFactory;
     private final Environment environment;
+    protected SessionFactory sessionFactory;
 
     public SessionFactoryBuilder(DataSourceFactory dataSourceFactory, Environment environment) {
         this.dataSourceFactory = Objects.requireNonNull(dataSourceFactory);
@@ -49,9 +50,11 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
     }
 
     public SessionFactory build() {
-        ManagedDataSource dataSource = dataSourceFactory.build(environment.metrics(), "hibernate");
-        SessionFactory sessionFactory = buildSessionFactory(dataSource, dataSourceFactory.getProperties());
-        environment.lifecycle().manage(buildSessionFactoryManager(dataSource, sessionFactory));
+        if (sessionFactory == null) {
+            ManagedDataSource dataSource = dataSourceFactory.build(environment.metrics(), "hibernate");
+            sessionFactory = buildSessionFactory(dataSource, dataSourceFactory.getProperties());
+            environment.lifecycle().manage(buildSessionFactoryManager(dataSource, sessionFactory));
+        }
         return sessionFactory;
     }
 
