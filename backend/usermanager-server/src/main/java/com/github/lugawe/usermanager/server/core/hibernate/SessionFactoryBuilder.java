@@ -16,6 +16,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import org.hibernate.service.ServiceRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Provider;
 import javax.sql.DataSource;
@@ -23,6 +25,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class SessionFactoryBuilder implements Provider<SessionFactory> {
+
+    private static final Logger log = LoggerFactory.getLogger(SessionFactoryBuilder.class);
 
     public static final Class<?>[] ENTITY_CLASSES = new Class<?>[]{
             Persistable.class,
@@ -51,6 +55,7 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
 
     public SessionFactory build() {
         if (sessionFactory == null) {
+            log.info("start build");
             ManagedDataSource dataSource = dataSourceFactory.build(environment.metrics(), "hibernate");
             sessionFactory = buildSessionFactory(dataSource, dataSourceFactory.getProperties());
             environment.lifecycle().manage(buildSessionFactoryManager(dataSource, sessionFactory));
