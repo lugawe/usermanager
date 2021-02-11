@@ -35,12 +35,12 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
             User.class
     };
 
-    private final Environment environment;
     private final DataSourceFactory dataSourceFactory;
+    private final Environment environment;
 
-    public SessionFactoryBuilder(Environment environment, DataSourceFactory dataSourceFactory) {
-        this.environment = Objects.requireNonNull(environment);
+    public SessionFactoryBuilder(DataSourceFactory dataSourceFactory, Environment environment) {
         this.dataSourceFactory = Objects.requireNonNull(dataSourceFactory);
+        this.environment = Objects.requireNonNull(environment);
     }
 
     @Override

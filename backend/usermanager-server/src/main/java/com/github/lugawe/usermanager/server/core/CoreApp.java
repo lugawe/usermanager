@@ -32,7 +32,7 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
     }
 
     private void init(UserManagerConfiguration configuration, Environment environment) {
-        sessionFactoryBuilder = new SessionFactoryBuilder(environment, configuration.getDatabase());
+        sessionFactoryBuilder = new SessionFactoryBuilder(configuration.getDatabase(), environment);
         injector = new CoreInjector(configuration.getServiceConfig(), sessionFactoryBuilder.build()).buildInjector();
     }
 
