@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-hibernate</artifactId>
+            <artifactId>dropwizard-db</artifactId>
         </dependency>
 
         <dependency>

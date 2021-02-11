@@ -1,6 +1,7 @@
 package com.github.lugawe.usermanager.server.core;
 
 import com.github.lugawe.usermanager.server.UserManagerConfiguration;
+import com.github.lugawe.usermanager.server.core.hibernate.SessionFactoryBuilder;
 import com.github.lugawe.usermanager.server.core.mapper.ValidationExceptionMapper;
 import com.google.inject.Injector;
 import io.dropwizard.Application;
@@ -13,8 +14,7 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
 
     private static final Logger log = LoggerFactory.getLogger(CoreApp.class);
 
-    private final CoreHibernateBundle coreHibernateBundle = new CoreHibernateBundle();
-
+    protected SessionFactoryBuilder sessionFactoryBuilder;
     protected Injector injector;
 
     protected CoreApp() {
@@ -22,7 +22,6 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
 
     @Override
     public void initialize(Bootstrap<UserManagerConfiguration> bootstrap) {
-        bootstrap.addBundle(coreHibernateBundle);
     }
 
     @Override
@@ -33,7 +32,8 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
     }
 
     private void init(UserManagerConfiguration configuration, Environment environment) {
-        injector = new CoreInjector(configuration.getServiceConfig(), coreHibernateBundle.getSessionFactory()).buildInjector();
+        sessionFactoryBuilder = new SessionFactoryBuilder(environment, configuration.getDatabase());
+        injector = new CoreInjector(configuration.getServiceConfig(), sessionFactoryBuilder.build()).buildInjector();
     }
 
     private void initJersey(Environment environment) {
