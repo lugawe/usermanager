@@ -2,7 +2,7 @@ package com.github.lugawe.usermanager.server.model.request;
 
 import javax.validation.constraints.NotEmpty;
 
-public class AuthLoginRequest {
+public class AuthRegisterRequest {
 
     @NotEmpty
     private String name;
@@ -10,7 +10,10 @@ public class AuthLoginRequest {
     @NotEmpty
     private String password;
 
-    public AuthLoginRequest() {
+    @NotEmpty
+    private String email;
+
+    public AuthRegisterRequest() {
     }
 
     public String getName() {
@@ -27,6 +30,14 @@ public class AuthLoginRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
