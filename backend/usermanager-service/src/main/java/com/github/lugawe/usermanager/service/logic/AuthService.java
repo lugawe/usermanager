@@ -1,8 +1,6 @@
 package com.github.lugawe.usermanager.service.logic;
 
 import com.github.lugawe.usermanager.model.db.Password;
-import com.github.lugawe.usermanager.model.db.Role;
-import com.github.lugawe.usermanager.model.db.RoleSet;
 import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.service.db.PasswordService;
 import com.github.lugawe.usermanager.service.db.UserService;
@@ -14,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 public class AuthService {
 
@@ -27,13 +24,6 @@ public class AuthService {
     public AuthService(UserService userService, PasswordService passwordService) {
         this.userService = userService;
         this.passwordService = passwordService;
-    }
-
-    protected boolean checkPassword(String plainPassword, Password password) {
-        Objects.requireNonNull(plainPassword);
-        Objects.requireNonNull(password);
-        passwordService.updateLastAccess(password.getId());
-        return BCrypt.checkpw(plainPassword, password.getHash());
     }
 
     protected Optional<User> check(User user, Password password) {
@@ -62,7 +52,8 @@ public class AuthService {
             if (user != null) {
                 Password password = user.getPassword();
                 if (password != null) {
-                    if (checkPassword(_password, password)) {
+                    passwordService.updateLastAccess(password.getId());
+                    if (BCrypt.checkpw(_password, password.getHash())) {
                         return check(user, password);
                     }
                 }
@@ -72,37 +63,6 @@ public class AuthService {
         }
 
         return Optional.empty();
-    }
-
-    public boolean isUserInRole(User user, String role) {
-
-        if (user == null) {
-            throw new NullPointerException("param user is null");
-        }
-        if (role == null) {
-            throw new NullPointerException("param role is null");
-        }
-
-        log.info("#isUserInRole - userName: {}, roleName: {}", user.getName(), role);
-
-        try {
-            if (!user.isLocked()) {
-                if (user.getType().equals(User.Type.ADMIN)) {
-                    return true;
-                }
-                RoleSet roleSet = user.getRoleSet();
-                if (roleSet != null && !roleSet.isLocked()) {
-                    Set<Role> roles = roleSet.getRoles();
-                    if (roles != null && roles.size() > 0) {
-                        return roles.stream().anyMatch(r -> r.getName().equals(role));
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            log.warn("#isUserInRole", ex);
-        }
-
-        return false;
     }
 
 }
