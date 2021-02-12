@@ -18,7 +18,7 @@
     <properties>
         <!-- dependencies -->
         <guice.version>4.2.3</guice.version>
-        <auth0-java-jwt.version>3.12.1</auth0-java-jwt.version>
+        <auth0-java-jwt.version>3.13.0</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
         <!-- jackson dependencies -->
         <jackson.version>2.11.4</jackson.version>
@@ -27,7 +27,7 @@
         <!-- querydsl dependencies -->
         <querydsl.version>4.4.0</querydsl.version>
         <!-- hibernate dependencies -->
-        <hibernate-core.version>5.4.27.Final</hibernate-core.version>
+        <hibernate-core.version>5.4.28.Final</hibernate-core.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
         <!-- util dependencies -->
         <apache.commons.version>3.11</apache.commons.version>
