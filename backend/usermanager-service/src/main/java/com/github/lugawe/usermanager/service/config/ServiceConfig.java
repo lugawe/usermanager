@@ -3,8 +3,9 @@ package com.github.lugawe.usermanager.service.config;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.Valid;
+import java.io.Serializable;
 
-public class ServiceConfig {
+public class ServiceConfig implements Serializable {
 
     @Valid
     @JsonProperty("jwt")

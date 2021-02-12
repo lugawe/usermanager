@@ -42,7 +42,7 @@ public class JwtHandler {
     public String encode(User user, JwtClaim... claims) {
 
         Date now = new Date();
-        Date expiresAt = DateUtils.addMinutes(now, Math.toIntExact(jwtConfig.getLifetime().toMinutes()));
+        Date expiresAt = DateUtils.addMinutes(now, jwtConfig.getLifetime());
 
         JWTCreator.Builder builder = JWT.create();
         builder.withIssuedAt(now);

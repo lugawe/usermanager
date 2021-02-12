@@ -1,21 +1,33 @@
 package com.github.lugawe.usermanager.service.config;
 
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.time.Duration;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class JwtConfig {
+public class JwtConfig implements Serializable {
+
+    @JsonIgnore
+    private transient Algorithm algorithm;
 
     private String secret = "super_secret_123456";
 
     private String issuer = "usermanager";
-    private Duration lifetime = Duration.ofDays(365);
+    private int lifetime = 60 * 24 * 365;
 
     public JwtConfig() {
     }
 
+    public JwtConfig(Algorithm algorithm) {
+        this.algorithm = Objects.requireNonNull(algorithm);
+    }
+
     public Algorithm buildAlgorithm() {
-        return Algorithm.HMAC256(getSecret());
+        if (algorithm == null) {
+            algorithm = Algorithm.HMAC256(getSecret());
+        }
+        return algorithm;
     }
 
     public String getSecret() {
@@ -34,11 +46,11 @@ public class JwtConfig {
         this.issuer = issuer;
     }
 
-    public Duration getLifetime() {
+    public int getLifetime() {
         return lifetime;
     }
 
-    public void setLifetime(Duration lifetime) {
+    public void setLifetime(int lifetime) {
         this.lifetime = lifetime;
     }
 

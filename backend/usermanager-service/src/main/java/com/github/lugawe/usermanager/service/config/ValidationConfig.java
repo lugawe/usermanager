@@ -5,8 +5,9 @@ import com.github.lugawe.usermanager.service.validation.RegexValidator;
 import com.github.lugawe.usermanager.service.validation.Validator;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
-public class ValidationConfig {
+public class ValidationConfig implements Serializable {
 
     @NotEmpty
     private String userName = RegexValidator.MATCH_ALL_REGEX;
