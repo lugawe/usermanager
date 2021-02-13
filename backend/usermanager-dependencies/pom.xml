@@ -31,6 +31,7 @@
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
         <!-- util dependencies -->
         <apache.commons.version>3.11</apache.commons.version>
+        <apache.commons.validator.version>1.7</apache.commons.validator.version>
         <reflections.version>0.9.12</reflections.version>
         <!-- jdbc dependencies -->
         <h2.version>1.4.200</h2.version>
@@ -143,6 +144,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${apache.commons.validator.version}</version>
             </dependency>
 
             <dependency>
