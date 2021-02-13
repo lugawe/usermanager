@@ -1,12 +1,25 @@
 package com.github.lugawe.usermanager.server.model.response;
 
-public class AuthLoginResponse {
+import javax.ws.rs.core.Response;
+
+public class AuthLoginResponse implements BaseResponse {
 
     private boolean success;
     private String refreshToken;
     private String accessToken;
 
     public AuthLoginResponse() {
+    }
+
+    public AuthLoginResponse(boolean success, String refreshToken, String accessToken) {
+        this.success = success;
+        this.refreshToken = refreshToken;
+        this.accessToken = accessToken;
+    }
+
+    @Override
+    public Response toResponse() {
+        return Response.status(success ? 200 : 401).entity(this).build();
     }
 
     public boolean isSuccess() {
