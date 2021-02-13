@@ -6,6 +6,7 @@ import com.github.lugawe.usermanager.service.validation.Validator;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 public class ValidationConfig implements Serializable {
 
@@ -51,6 +52,7 @@ public class ValidationConfig implements Serializable {
 
     @JsonIgnore
     protected void checkValid(String regex) {
+        Pattern.compile(regex);
     }
 
     @JsonIgnore
