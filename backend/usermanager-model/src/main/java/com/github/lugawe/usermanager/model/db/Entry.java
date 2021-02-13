@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "entry")
+@Table(name = "entry", uniqueConstraints = @UniqueConstraint(columnNames = {"e_key", "user"}))
 public class Entry extends BaseEntity {
 
     @NotNull
