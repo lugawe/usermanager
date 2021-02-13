@@ -13,6 +13,9 @@ public class ValidationConfig implements Serializable {
     private String userName = RegexValidator.MATCH_ALL_REGEX;
 
     @NotEmpty
+    private String userMail = RegexValidator.MATCH_ALL_REGEX;
+
+    @NotEmpty
     private String userPassword = RegexValidator.MATCH_ALL_REGEX;
 
     public String getUserName() {
@@ -22,6 +25,15 @@ public class ValidationConfig implements Serializable {
     public void setUserName(String userName) {
         checkValid(userName);
         this.userName = userName;
+    }
+
+    public String getUserMail() {
+        return userMail;
+    }
+
+    public void setUserMail(String userMail) {
+        checkValid(userMail);
+        this.userMail = userMail;
     }
 
     public String getUserPassword() {
@@ -44,6 +56,11 @@ public class ValidationConfig implements Serializable {
     @JsonIgnore
     public Validator<String> userNameValidator(String input) {
         return new RegexValidator("userName", input, userName);
+    }
+
+    @JsonIgnore
+    public Validator<String> userMailValidator(String input) {
+        return new RegexValidator("userMail", input, userMail);
     }
 
     @JsonIgnore
