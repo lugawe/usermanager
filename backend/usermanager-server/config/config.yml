@@ -15,4 +15,4 @@ database:
 service:
   validation:
     userName: ^(?=[a-zA-Z0-9._]{4,20}$)(?!.*[_.]{2})[^_.].*[^_.]$
-    userPassword: ^(?=[^\\s\\\\]{6,64}$)(?=.*[0-9])(?=.*[A-Z])
+    userPassword: ^(?=[^\s\\]{6,64}$)(?=.*[0-9])(?=.*[A-Z])
