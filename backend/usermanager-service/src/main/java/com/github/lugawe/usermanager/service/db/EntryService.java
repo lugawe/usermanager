@@ -19,6 +19,16 @@ public class EntryService extends BaseService<EntryDAO> {
         super(dao, handler);
     }
 
+    public Optional<Entry> getGlobalEntry(String key) {
+        if (key == null || key.trim().isEmpty()) {
+            throw new IllegalArgumentException("param key is null or empty");
+        }
+        Entry result = inTransaction(() -> baseDAO.query()
+                .where(entry.user.isNull().and(entry.key.eq(key)))
+                .fetchFirst());
+        return Optional.ofNullable(result);
+    }
+
     public Optional<Entry> getEntry(User user, String key) {
         if (user == null) {
             throw new NullPointerException("param user is null");
