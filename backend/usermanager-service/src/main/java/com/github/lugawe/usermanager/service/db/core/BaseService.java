@@ -18,7 +18,7 @@ public abstract class BaseService<T extends BaseDAO<?>> implements TransactionHa
     public BaseService(T baseDAO, TransactionHandler transactionHandler) {
         this.baseDAO = Objects.requireNonNull(baseDAO);
         this.transactionHandler = Objects.requireNonNull(transactionHandler);
-        log.debug("construct {} service", baseDAO.getEntityPath());
+        log.info("construct {} service", baseDAO.getEntityPath());
     }
 
     @Override
