@@ -8,10 +8,10 @@ public class AuthRegisterRequest {
     private String name;
 
     @NotEmpty
-    private String password;
+    private String mail;
 
     @NotEmpty
-    private String email;
+    private String password;
 
     public AuthRegisterRequest() {
     }
@@ -24,20 +24,20 @@ public class AuthRegisterRequest {
         this.name = name;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
 }

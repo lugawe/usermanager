@@ -26,29 +26,26 @@ public class AuthService {
         this.passwordService = passwordService;
     }
 
-    protected Optional<User> check(User user, Password password) {
-        Objects.requireNonNull(user);
-        Objects.requireNonNull(password);
-        if (user.isLocked()) {
-            log.warn("#checkUser: user {} is locked", user.getId());
-            return Optional.empty();
-        }
-        if (password.isLocked()) {
-            log.warn("#checkUser: password {} is locked", password.getId());
-            return Optional.empty();
-        }
-        return Optional.of(user);
-    }
+    public Optional<User> register(Validator<String> name, Validator<String> mail, Validator<String> plainPassword) {
 
-    public Optional<User> login(Validator<String> userName, Validator<String> plainPassword) {
-
-        String _userName = userName.get();
+        String _name = name.get();
+        String _mail = mail.get();
         String _password = plainPassword.get();
 
-        log.info("#login - userName: {}", _userName);
+        log.info("#register - name: {}, mail: {}", _name, _mail);
+
+        return Optional.empty();
+    }
+
+    public Optional<User> login(Validator<String> name, Validator<String> plainPassword) {
+
+        String _name = name.get();
+        String _password = plainPassword.get();
+
+        log.info("#login - name: {}", _name);
 
         try {
-            User user = userService.getByName(_userName);
+            User user = userService.getByName(_name);
             if (user != null) {
                 Password password = user.getPassword();
                 if (password != null) {
@@ -63,6 +60,20 @@ public class AuthService {
         }
 
         return Optional.empty();
+    }
+
+    protected Optional<User> check(User user, Password password) {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(password);
+        if (user.isLocked()) {
+            log.warn("#checkUser: user {} is locked", user.getId());
+            return Optional.empty();
+        }
+        if (password.isLocked()) {
+            log.warn("#checkUser: password {} is locked", password.getId());
+            return Optional.empty();
+        }
+        return Optional.of(user);
     }
 
 }
