@@ -11,3 +11,8 @@ database:
   properties:
     hibernate.dialect: org.hibernate.dialect.H2Dialect
     hibernate.hbm2ddl.auto: create
+
+service:
+  validation:
+    userName: ^(?=[a-zA-Z0-9._]{4,20}$)(?!.*[_.]{2})[^_.].*[^_.]$
+    userPassword: ^(?=[^\\s\\\\]{6,64}$)(?=.*[0-9])(?=.*[A-Z])
