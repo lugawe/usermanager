@@ -2,6 +2,7 @@ package com.github.lugawe.usermanager.service.logic;
 
 import com.github.lugawe.usermanager.model.db.Password;
 import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.service.db.EntryService;
 import com.github.lugawe.usermanager.service.db.PasswordService;
 import com.github.lugawe.usermanager.service.db.UserService;
 import com.github.lugawe.usermanager.service.validation.Validator;
@@ -17,11 +18,13 @@ public class AuthService {
 
     private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
+    private final EntryService entryService;
     private final UserService userService;
     private final PasswordService passwordService;
 
     @Inject
-    public AuthService(UserService userService, PasswordService passwordService) {
+    public AuthService(EntryService entryService, UserService userService, PasswordService passwordService) {
+        this.entryService = entryService;
         this.userService = userService;
         this.passwordService = passwordService;
     }
@@ -34,7 +37,10 @@ public class AuthService {
 
         log.info("#register - name: {}, mail: {}", _name, _mail);
 
-        return Optional.empty();
+        Password password = passwordService.create(_password);
+        User user = userService.create(_name, password);
+
+        return Optional.ofNullable(user);
     }
 
     public Optional<User> login(Validator<String> name, Validator<String> plainPassword) {
