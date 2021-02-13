@@ -28,7 +28,7 @@ public class CoreInjector {
         return new ServiceModule(serviceConfig, sessionFactory, buildTransactionHandler());
     }
 
-    protected Injector buildInjector() {
+    public Injector buildInjector() {
         return Guice.createInjector(buildServiceModule());
     }
 
