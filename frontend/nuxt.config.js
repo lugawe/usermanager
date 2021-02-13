@@ -24,7 +24,12 @@ export default {
   components: true,
   buildModules: ['@nuxtjs/eslint-module'],
   modules: ['bootstrap-vue/nuxt', '@nuxtjs/axios', 'nuxt-i18n'],
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': { target: 'http://localhost:9000/api', pathRewrite: { '^/api/': '' } }
+  },
   i18n: {
     locales: availableLocales,
     defaultLocale: 'en-US',
