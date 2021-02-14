@@ -40,7 +40,7 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
 
     private void init(UserManagerConfiguration configuration, Environment environment) {
         sessionFactory = new SessionFactoryBuilder(configuration.getDatabase(), environment).build();
-        injector = new CoreInjector(configuration.getServiceConfig(), sessionFactory).buildInjector();
+        injector = new CoreInjector(configuration.getServiceConfig(), sessionFactory).buildInjector(new CoreModule());
     }
 
     private void initAuth(Environment environment) {
