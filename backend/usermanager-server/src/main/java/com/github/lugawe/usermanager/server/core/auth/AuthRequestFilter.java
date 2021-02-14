@@ -5,10 +5,12 @@ import io.dropwizard.auth.AuthFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
+import java.util.Objects;
 
 public class AuthRequestFilter extends AuthFilter<String, User> {
 
@@ -38,6 +40,16 @@ public class AuthRequestFilter extends AuthFilter<String, User> {
     }
 
     public static class Builder extends AuthFilterBuilder<String, User, AuthRequestFilter> {
+
+        public Builder() {
+        }
+
+        @Inject
+        public Builder(UserCoreAuthenticator authenticator, UserCoreAuthorizer authorizer) {
+            this();
+            setAuthenticator(Objects.requireNonNull(authenticator));
+            setAuthorizer(Objects.requireNonNull(authorizer));
+        }
 
         @Override
         protected AuthRequestFilter newInstance() {

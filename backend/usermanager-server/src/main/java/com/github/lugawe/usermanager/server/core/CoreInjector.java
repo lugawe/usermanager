@@ -6,6 +6,8 @@ import com.github.lugawe.usermanager.service.inject.ServiceModule;
 import com.github.lugawe.usermanager.service.logic.transaction.DefaultTransactionHandler;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Module;
+import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.SessionFactory;
 
 import java.util.Objects;
@@ -28,8 +30,8 @@ public class CoreInjector {
         return new ServiceModule(serviceConfig, sessionFactory, buildTransactionHandler());
     }
 
-    public Injector buildInjector() {
-        return Guice.createInjector(buildServiceModule());
+    public Injector buildInjector(Module... modules) {
+        return Guice.createInjector(ArrayUtils.add(modules, buildServiceModule()));
     }
 
 }
