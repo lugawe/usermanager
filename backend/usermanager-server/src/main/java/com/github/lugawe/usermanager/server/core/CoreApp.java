@@ -2,6 +2,7 @@ package com.github.lugawe.usermanager.server.core;
 
 import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.server.UserManagerConfiguration;
+import com.github.lugawe.usermanager.server.UserManagerModule;
 import com.github.lugawe.usermanager.server.core.auth.AuthRequestFilter;
 import com.github.lugawe.usermanager.server.core.hibernate.SessionFactoryBuilder;
 import com.github.lugawe.usermanager.server.core.mapper.ValidationExceptionMapper;
@@ -40,7 +41,7 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
 
     private void init(UserManagerConfiguration configuration, Environment environment) {
         sessionFactory = new SessionFactoryBuilder(configuration.getDatabase(), environment).build();
-        injector = new CoreInjector(configuration.getServiceConfig(), sessionFactory).build(new CoreModule());
+        injector = new CoreInjector(configuration.getServiceConfig(), sessionFactory).build(new UserManagerModule());
     }
 
     private void initAuth(Environment environment) {
