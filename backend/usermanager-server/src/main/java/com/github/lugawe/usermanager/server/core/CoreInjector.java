@@ -30,7 +30,7 @@ public class CoreInjector {
         return new ServiceModule(serviceConfig, sessionFactory, buildTransactionHandler());
     }
 
-    public Injector buildInjector(Module... modules) {
+    public Injector build(Module... modules) {
         return Guice.createInjector(ArrayUtils.add(modules, buildServiceModule()));
     }
 
