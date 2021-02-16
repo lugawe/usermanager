@@ -27,7 +27,8 @@ public class User extends BaseEntity implements Principal {
             this.type = type;
         }
 
-        public String getType() {
+        @Override
+        public String toString() {
             return type;
         }
 

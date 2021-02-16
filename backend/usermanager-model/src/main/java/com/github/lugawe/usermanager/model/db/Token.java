@@ -24,7 +24,8 @@ public class Token extends BaseEntity {
             this.type = type;
         }
 
-        public String getType() {
+        @Override
+        public String toString() {
             return type;
         }
 
