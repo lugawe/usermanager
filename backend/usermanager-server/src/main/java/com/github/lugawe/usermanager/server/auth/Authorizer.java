@@ -24,7 +24,7 @@ public class Authorizer implements UserAuthorizer {
             return false;
         }
         log.info("check user {} ({}) access, required role {}", user.getId(), user.getType(), role);
-        if (user.getType().equals(User.Type.ADMIN)) {
+        if (User.Type.ADMIN.equals(user.getType())) {
             return true;
         }
         return check(user.getRoleSet(), role);
