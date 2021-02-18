@@ -23,7 +23,7 @@ public class Authenticator implements UserAuthenticator {
 
     @Override
     public Optional<User> authenticate(String token) {
-        return userJwtHandler.getUser(token);
+        return userJwtHandler.decode(token);
     }
 
     @Override

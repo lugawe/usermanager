@@ -21,7 +21,7 @@ public class UserJwtHandler {
         this.userService = Objects.requireNonNull(userService);
     }
 
-    public Optional<User> getUser(String token) {
+    public Optional<User> decode(String token) {
         if (token == null || token.trim().isEmpty()) {
             return Optional.empty();
         }
@@ -31,6 +31,14 @@ public class UserJwtHandler {
         }
         String userId = id.get();
         return Optional.ofNullable(userService.getById(UUID.fromString(userId)));
+    }
+
+    public String encode(User user) {
+        if (user == null) {
+            throw new NullPointerException("param user is null");
+        }
+        JwtClaim claim = JwtClaim.of(USER_ID_CLAIM, user.getId().toString());
+        return jwtHandler.encode(claim);
     }
 
     public final JwtHandler getJwtHandler() {
