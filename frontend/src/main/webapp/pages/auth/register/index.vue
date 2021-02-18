@@ -111,6 +111,7 @@
 
 <script>
 import Validation from '~/validation/register'
+import auth from '~/services/auth'
 
 export default {
   name: 'Register',
@@ -146,6 +147,10 @@ export default {
   methods: {
     register(e) {
       e.preventDefault()
+      this.loading = true
+      auth.register(this.$axios, this.username, this.email, this.password).finally(() => {
+        this.loading = false
+      })
     },
     reset(e) {
       e.preventDefault()
@@ -155,8 +160,8 @@ export default {
       this.confirmPassword = ''
     },
     parseQueryParams() {
-      this.username = this.$route.query.username || ''
-      this.email = this.$route.query.email || ''
+      this.username = this.$route.query.username || this.username
+      this.email = this.$route.query.email || this.email
     }
   }
 }
