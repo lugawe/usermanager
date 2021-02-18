@@ -34,6 +34,9 @@
         <!-- -->
         <hr>
         <div class="bottom">
+          <b-alert :show="error" variant="danger">
+            {{ $t('auth.login.index.errorOccurred') }}
+          </b-alert>
           <div v-if="loading">
             <b-button variant="primary" class="float-right" disabled>
               <b-spinner small />
@@ -52,11 +55,14 @@
 </template>
 
 <script>
+import auth from '~/services/auth'
+
 export default {
   name: 'Login',
   data() {
     return {
       loading: false,
+      error: false,
       username: '',
       password: '',
       token: ''
@@ -68,6 +74,16 @@ export default {
   methods: {
     login(e) {
       e.preventDefault()
+      this.loading = true
+      this.error = false
+      auth
+        .login(this.$axios, this.username, this.password)
+        .catch((ex) => {
+          this.error = true
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
     reset(e) {
       e.preventDefault()
@@ -79,9 +95,9 @@ export default {
       if (this.$route.query.logout === 'true') {
         this.$store.commit('auth/logout')
       }
-      this.username = this.$route.query.username || ''
-      this.password = this.$route.query.password || ''
-      this.token = this.$route.query.token || ''
+      this.username = this.$route.query.username || this.username
+      this.password = this.$route.query.password || this.password
+      this.token = this.$route.query.token || this.token
     }
   }
 }

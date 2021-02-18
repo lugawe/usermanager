@@ -25,7 +25,8 @@
         "enterPassword": "Enter password...",
         "token": "Token",
         "enterToken": "Enter token...",
-        "canNotLogin": "Can't login?"
+        "canNotLogin": "Can't login?",
+        "errorOccurred": "An unexpected error occurred"
       }
     },
     "register": {
