@@ -29,18 +29,18 @@ public class AuthService {
         this.passwordService = passwordService;
     }
 
-    public Optional<User> register(Validator<String> name, Validator<String> mail, Validator<String> plainPassword) {
+    public User register(Validator<String> name, Validator<String> mail, Validator<String> plainPassword) {
 
         String _name = name.get();
         String _mail = mail.get();
         String _password = plainPassword.get();
 
-        log.info("#register - name: {}, mail: {}", _name, _mail);
-
         Password password = passwordService.create(_password);
         User user = userService.create(_name, password, null);
 
-        return Optional.ofNullable(user);
+        log.info("#register - user registered - id: {}, name: {}", user.getId(), user.getName());
+
+        return user;
     }
 
     public Optional<User> login(Validator<String> name, Validator<String> plainPassword) {
