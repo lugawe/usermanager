@@ -10,6 +10,7 @@ import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class UserService extends BaseService<UserDAO> {
 
@@ -20,7 +21,17 @@ public class UserService extends BaseService<UserDAO> {
         super(dao, handler);
     }
 
+    public User getById(UUID id) {
+        if (id == null) {
+            throw new NullPointerException("param id is null");
+        }
+        return inTransaction(() -> baseDAO.query().where(user.id.eq(id)).fetchFirst());
+    }
+
     public User getByName(String name) {
+        if (name == null) {
+            throw new NullPointerException("param name is null");
+        }
         return inTransaction(() -> baseDAO.query().where(user.name.eq(name)).fetchFirst());
     }
 
