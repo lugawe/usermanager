@@ -93,6 +93,9 @@
         <!-- -->
         <hr>
         <div class="bottom">
+          <b-alert :show="error" variant="danger">
+            {{ $t('auth.register.index.errorOccurred') }}
+          </b-alert>
           <div v-if="loading">
             <b-button variant="primary" class="float-right" disabled>
               <b-spinner small />
@@ -118,6 +121,7 @@ export default {
   data() {
     return {
       loading: false,
+      error: false,
       username: '',
       email: '',
       password: '',
@@ -148,9 +152,15 @@ export default {
     register(e) {
       e.preventDefault()
       this.loading = true
-      auth.register(this.$axios, this.username, this.email, this.password).finally(() => {
-        this.loading = false
-      })
+      this.error = false
+      auth
+        .register(this.$axios, this.username, this.email, this.password)
+        .catch((ex) => {
+          this.error = true
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
     reset(e) {
       e.preventDefault()

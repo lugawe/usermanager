@@ -38,7 +38,8 @@
         "password": "Password",
         "enterPassword": "Enter password...",
         "confirmPassword": "Confirm password",
-        "enterConfirmPassword": "Re-Enter password..."
+        "enterConfirmPassword": "Re-Enter password...",
+        "errorOccurred": "An unexpected error occurred"
       }
     }
   },
