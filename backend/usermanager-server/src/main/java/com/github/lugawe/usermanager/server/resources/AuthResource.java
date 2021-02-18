@@ -11,6 +11,7 @@ import com.github.lugawe.usermanager.service.config.ValidationConfig;
 import com.github.lugawe.usermanager.service.logic.AuthService;
 import com.github.lugawe.usermanager.service.validation.Validator;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -47,6 +48,13 @@ public class AuthResource {
 
         User user = authService.register(name, mail, password);
         return new AuthRegisterResponse(true, user.getName()).toResponse();
+    }
+
+    @PermitAll
+    @POST
+    @Path("/check")
+    public Response check() {
+        return Response.ok().build();
     }
 
     @POST
