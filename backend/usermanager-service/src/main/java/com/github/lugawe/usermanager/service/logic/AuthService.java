@@ -38,7 +38,7 @@ public class AuthService {
         log.info("#register - name: {}, mail: {}", _name, _mail);
 
         Password password = passwordService.create(_password);
-        User user = userService.create(_name, password);
+        User user = userService.create(_name, password, null);
 
         return Optional.ofNullable(user);
     }
