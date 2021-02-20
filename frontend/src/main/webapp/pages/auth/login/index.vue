@@ -70,9 +70,6 @@ export default {
   },
   mounted() {
     this.parseQueryParams()
-    if (this.isLoggedIn) {
-      this.info(this.$t('basic.warning'), this.$t('auth.login.index.alreadyLoggedIn'))
-    }
   },
   methods: {
     logout() {
@@ -118,6 +115,8 @@ export default {
     parseQueryParams() {
       if (this.$route.query.logout === 'true') {
         this.logout()
+      } else if (this.isLoggedIn) {
+        this.info(this.$t('basic.warning'), this.$t('auth.login.index.alreadyLoggedIn'))
       }
       this.username = this.$route.query.username || this.username
       this.password = this.$route.query.password || this.password
