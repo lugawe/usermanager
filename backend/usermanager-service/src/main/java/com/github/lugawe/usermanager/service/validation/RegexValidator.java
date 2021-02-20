@@ -1,6 +1,5 @@
 package com.github.lugawe.usermanager.service.validation;
 
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class RegexValidator implements Validator<String> {
