@@ -1,5 +1,7 @@
 package com.github.lugawe.usermanager.server.util;
 
+import org.apache.commons.lang3.time.DateUtils;
+
 import javax.ws.rs.core.NewCookie;
 import java.util.Date;
 
@@ -57,6 +59,14 @@ public class CookieBuilder {
     public CookieBuilder expiry(Date expiry) {
         this.expiry = expiry;
         return this;
+    }
+
+    public CookieBuilder lifetime(int seconds) {
+        if (seconds < 0) {
+            throw new IllegalArgumentException("param seconds can't be negative");
+        }
+        Date date = DateUtils.addSeconds(new Date(), seconds);
+        return expiry(date);
     }
 
     public CookieBuilder secure(boolean secure) {
