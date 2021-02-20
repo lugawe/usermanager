@@ -28,18 +28,18 @@ public class UserCoreAuthenticator implements Authenticator<String, User> {
             throw new AuthenticationException("user authenticator not available");
         }
         Optional<User> principal = authenticator.authenticate(token);
-        if (principal.isPresent()) {
-            return check(principal.get());
+        if (!principal.isPresent()) {
+            return Optional.empty();
         }
-        return Optional.empty();
+        return check(principal.get());
     }
 
     protected Optional<User> check(User user) {
-        if (!user.isLocked()) {
-            log.info("user authenticated: {} ({})", user.getName(), user.getId());
-            return Optional.of(user);
+        if (user.isLocked()) {
+            return Optional.empty();
         }
-        return Optional.empty();
+        log.info("user authenticated: {} ({})", user.getName(), user.getId());
+        return Optional.of(user);
     }
 
 }
