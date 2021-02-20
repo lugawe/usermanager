@@ -1,5 +1,8 @@
 package com.github.lugawe.usermanager.server.model.response;
 
+import com.github.lugawe.usermanager.server.core.auth.AuthRequestFilter;
+
+import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
 public class AuthLoginResponse implements BaseResponse {
@@ -19,7 +22,8 @@ public class AuthLoginResponse implements BaseResponse {
 
     @Override
     public Response toResponse() {
-        return Response.status(success ? 200 : 401).entity(this).build();
+        NewCookie cookie = AuthRequestFilter.createAccessTokenCookie(accessToken);
+        return Response.status(success ? 200 : 401).entity(this).cookie(cookie).build();
     }
 
     public boolean isSuccess() {

@@ -13,7 +13,7 @@ public class AuthLogoutResponse implements BaseResponse {
     @Override
     public Response toResponse() {
         NewCookie cookie = AuthRequestFilter.createAccessTokenCookie("");
-        return Response.ok().cookie(cookie).build();
+        return Response.status(200).entity(this).cookie(cookie).build();
     }
 
 }
