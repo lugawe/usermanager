@@ -73,6 +73,17 @@ export default {
     this.parseQueryParams()
   },
   methods: {
+    logout() {
+      this.loading = true
+      auth
+        .logout(this.$axios)
+        .then((response) => {
+          this.$store.commit('auth/logout')
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
     login(e) {
       e.preventDefault()
       this.loading = true
@@ -100,7 +111,7 @@ export default {
     },
     parseQueryParams() {
       if (this.$route.query.logout === 'true') {
-        this.$store.commit('auth/logout')
+        this.logout()
       }
       this.username = this.$route.query.username || this.username
       this.password = this.$route.query.password || this.password
