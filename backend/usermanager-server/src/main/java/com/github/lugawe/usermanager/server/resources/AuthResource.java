@@ -4,6 +4,7 @@ import com.github.lugawe.usermanager.model.db.User;
 import com.github.lugawe.usermanager.server.model.request.AuthLoginRequest;
 import com.github.lugawe.usermanager.server.model.request.AuthRegisterRequest;
 import com.github.lugawe.usermanager.server.model.response.AuthLoginResponse;
+import com.github.lugawe.usermanager.server.model.response.AuthLogoutResponse;
 import com.github.lugawe.usermanager.server.model.response.AuthRegisterResponse;
 import com.github.lugawe.usermanager.service.auth.jwt.UserJwtHandler;
 import com.github.lugawe.usermanager.service.config.ServiceConfig;
@@ -58,6 +59,13 @@ public class AuthResource {
         result.put("id", user.getId().toString());
         result.put("name", user.getName());
         return Response.ok(result).build();
+    }
+
+    @GET
+    @Path("/logout")
+    public Response logout() {
+        AuthLogoutResponse response = new AuthLogoutResponse();
+        return response.toResponse();
     }
 
     @POST
