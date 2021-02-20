@@ -38,6 +38,13 @@ public class AuthResource {
         this.userJwtHandler = userJwtHandler;
     }
 
+    protected Map<String, String> user(User user) {
+        Map<String, String> result = new HashMap<>();
+        result.put("id", user.getId().toString());
+        result.put("name", user.getName());
+        return result;
+    }
+
     protected NewCookie accessTokenCookie(String token) {
         return AuthRequestFilter.createAccessTokenCookie(token);
     }
@@ -62,10 +69,7 @@ public class AuthResource {
     @GET
     @Path("/check")
     public Response check(@Auth User user) {
-        Map<String, String> result = new HashMap<>();
-        result.put("id", user.getId().toString());
-        result.put("name", user.getName());
-        return Response.ok(result).build();
+        return Response.ok(user(user)).build();
     }
 
     @GET
@@ -88,9 +92,11 @@ public class AuthResource {
             throw new WebApplicationException(Response.status(401).build());
         }
 
-        String accessToken = userJwtHandler.encode(user.get());
+        User authenticatedUser = user.get();
+
+        String accessToken = userJwtHandler.encode(authenticatedUser);
         NewCookie cookie = accessTokenCookie(accessToken);
-        return Response.ok().cookie(cookie).build();
+        return Response.ok(user(authenticatedUser)).cookie(cookie).build();
     }
 
 }
