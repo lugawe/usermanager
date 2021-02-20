@@ -65,8 +65,7 @@ export default {
       error: false,
       errorText: '',
       username: '',
-      password: '',
-      token: ''
+      password: ''
     }
   },
   mounted() {
@@ -119,7 +118,6 @@ export default {
       }
       this.username = this.$route.query.username || this.username
       this.password = this.$route.query.password || this.password
-      this.token = this.$route.query.token || this.token
     }
   }
 }
