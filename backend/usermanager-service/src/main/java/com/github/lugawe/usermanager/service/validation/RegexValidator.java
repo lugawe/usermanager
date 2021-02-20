@@ -23,10 +23,10 @@ public class RegexValidator implements Validator<String> {
 
     @Override
     public String get() throws ValidationException {
-        if (isValid()) {
-            return value;
+        if (!isValid()) {
+            throw new ValidationException("validation failed", this);
         }
-        throw new ValidationException("validation failed", this);
+        return value;
     }
 
     @Override
