@@ -60,11 +60,13 @@
 </template>
 
 <script>
+import auth from '~/services/auth'
+
 export default {
   name: 'DefaultLayout',
   data() {
     return {
-      enabled: true
+      enabled: false
     }
   },
   computed: {
@@ -75,6 +77,9 @@ export default {
       return this.$i18n.locales
     }
   },
+  mounted() {
+    this.checkLogin()
+  },
   methods: {
     isActiveLocale(code) {
       return this.$i18n.locale === code
@@ -84,9 +89,27 @@ export default {
     },
     formatLocale(locale) {
       return locale.name
+    },
+    checkLogin() {
+      auth
+        .check(this.$axios)
+        .then((response) => {
+          const data = response.data
+          const info = {
+            id: data.id,
+            name: data.name
+          }
+          this.$store.commit('auth/login', { user: info })
+        })
+        .catch((ex) => {
+          this.$store.commit('auth/logout')
+        })
+        .finally(() => {
+          this.enabled = true
+        })
     }
   }
 }
 </script>
 
-<style></style>
+<style scoped></style>

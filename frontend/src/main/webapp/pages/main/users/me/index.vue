@@ -1,6 +1,6 @@
 <template>
   <div id="main-users-me-index">
-    me
+    {{ user.name }}
   </div>
 </template>
 
