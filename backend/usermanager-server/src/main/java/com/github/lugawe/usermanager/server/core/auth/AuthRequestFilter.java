@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.NewCookie;
@@ -29,9 +30,11 @@ public class AuthRequestFilter extends AuthFilter<String, User> {
             if (accessToken != null && !accessToken.trim().isEmpty()) {
                 if (authenticate(context, accessToken, SecurityContext.BASIC_AUTH)) {
                     log.info("authenticate ok - {}", info(context));
+                    return;
                 }
             }
         }
+        throw new WebApplicationException(unauthorizedHandler.buildResponse(prefix, realm));
     }
 
     protected String info(ContainerRequestContext context) {
@@ -55,6 +58,8 @@ public class AuthRequestFilter extends AuthFilter<String, User> {
     public static class Builder extends AuthFilterBuilder<String, User, AuthRequestFilter> {
 
         public Builder() {
+            setRealm("");
+            setPrefix("");
         }
 
         @Inject
