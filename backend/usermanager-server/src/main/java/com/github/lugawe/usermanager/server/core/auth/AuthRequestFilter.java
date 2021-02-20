@@ -1,8 +1,8 @@
 package com.github.lugawe.usermanager.server.core.auth;
 
 import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.server.util.CookieBuilder;
 import io.dropwizard.auth.AuthFilter;
-import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,14 +12,14 @@ import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Objects;
 
 public class AuthRequestFilter extends AuthFilter<String, User> {
 
     private static final Logger log = LoggerFactory.getLogger(AuthRequestFilter.class);
 
     public static final String COOKIE_ACCESS_TOKEN = "access_token";
+    public static final String COOKIE_ACCESS_TOKEN_PATH = "/api/";
+    public static final int COOKIE_ACCESS_TOKEN_EXPIRY = 60 * 60 * 24 * 365;
 
     @Override
     public void filter(ContainerRequestContext context) throws IOException {
@@ -43,13 +43,13 @@ public class AuthRequestFilter extends AuthFilter<String, User> {
     }
 
     public static NewCookie createAccessTokenCookie(String token) {
-        int maxAge = 60 * 60 * 24 * 365 * 10;
-        Date expiry = DateUtils.addSeconds(new Date(), maxAge);
-        return new NewCookie(COOKIE_ACCESS_TOKEN, token,
-                null, null,
-                NewCookie.DEFAULT_VERSION, "usermanager_access_token",
-                maxAge, expiry,
-                false, true);
+        return new CookieBuilder()
+                .name(COOKIE_ACCESS_TOKEN)
+                .value(token)
+                .httpOnly(true)
+                .path(COOKIE_ACCESS_TOKEN_PATH)
+                .lifetime(COOKIE_ACCESS_TOKEN_EXPIRY)
+                .build();
     }
 
     public static class Builder extends AuthFilterBuilder<String, User, AuthRequestFilter> {
@@ -60,8 +60,8 @@ public class AuthRequestFilter extends AuthFilter<String, User> {
         @Inject
         public Builder(UserCoreAuthenticator authenticator, UserCoreAuthorizer authorizer) {
             this();
-            setAuthenticator(Objects.requireNonNull(authenticator));
-            setAuthorizer(Objects.requireNonNull(authorizer));
+            setAuthenticator(authenticator);
+            setAuthorizer(authorizer);
         }
 
         @Override
