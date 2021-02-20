@@ -70,6 +70,9 @@ export default {
   },
   mounted() {
     this.parseQueryParams()
+    if (this.isLoggedIn) {
+      this.info(this.$t('basic.warning'), this.$t('auth.login.index.alreadyLoggedIn'))
+    }
   },
   methods: {
     logout() {

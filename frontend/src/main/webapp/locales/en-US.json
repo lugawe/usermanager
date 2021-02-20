@@ -3,6 +3,13 @@
   "usermanager": "Usermanager",
   "disabled": "Disabled",
   "enabled": "Enabled",
+  "basic": {
+    "yes": "Yes",
+    "no": "No",
+    "info": "Info",
+    "warning": "Warning",
+    "error": "Error"
+  },
   "nav": {
     "dashboard": "Dashboard",
     "register": "Register",
@@ -26,6 +33,7 @@
         "token": "Token",
         "enterToken": "Enter token...",
         "canNotLogin": "Can't login?",
+        "alreadyLoggedIn": "You are already logged in",
         "invalidCredentials": "Invalid credentials",
         "errorOccurred": "An unexpected error occurred"
       }
