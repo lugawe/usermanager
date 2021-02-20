@@ -36,9 +36,6 @@ if (!Vue.__base_mixin__) {
       },
       info(toastTitle, toastText, toastAutoHideDelay = 5000) {
         this.toast(toastTitle, toastText, toastAutoHideDelay, 'default')
-      },
-      error(toastTitle, toastText, toastAutoHideDelay = 5000) {
-        this.toast(toastTitle, toastText, toastAutoHideDelay, 'danger')
       }
     }
   }
