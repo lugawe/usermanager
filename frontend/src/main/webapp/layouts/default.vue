@@ -112,4 +112,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.usermanager {
+  background-color: white;
+}
+</style>
