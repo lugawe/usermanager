@@ -26,6 +26,7 @@
         "token": "Token",
         "enterToken": "Enter token...",
         "canNotLogin": "Can't login?",
+        "invalidCredentials": "Invalid credentials",
         "errorOccurred": "An unexpected error occurred"
       }
     },

@@ -35,7 +35,7 @@
         <hr>
         <div class="bottom">
           <b-alert :show="error" variant="danger">
-            {{ $t('auth.login.index.errorOccurred') }}
+            {{ $t(errorText) }}
           </b-alert>
           <div v-if="loading">
             <b-button variant="primary" class="float-right" disabled>
@@ -63,6 +63,7 @@ export default {
     return {
       loading: false,
       error: false,
+      errorText: '',
       username: '',
       password: '',
       token: ''
@@ -76,9 +77,15 @@ export default {
       e.preventDefault()
       this.loading = true
       this.error = false
+      this.errorText = ''
       auth
         .login(this.$axios, this.username, this.password)
         .catch((ex) => {
+          if (ex.response.status === 401) {
+            this.errorText = 'auth.login.index.invalidCredentials'
+          } else {
+            this.errorText = 'auth.login.index.errorOccurred'
+          }
           this.error = true
         })
         .finally(() => {
