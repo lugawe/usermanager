@@ -25,16 +25,12 @@ public class AuthRequestFilter extends AuthFilter<String, User> {
     @Override
     public void filter(ContainerRequestContext context) throws IOException {
         Cookie cookie = context.getCookies().get(COOKIE_ACCESS_TOKEN);
-        if (cookie != null) {
-            String accessToken = cookie.getValue();
-            if (accessToken != null && !accessToken.trim().isEmpty()) {
-                if (authenticate(context, accessToken, SecurityContext.BASIC_AUTH)) {
-                    log.info("authenticate ok - {}", info(context));
-                    return;
-                }
-            }
+        if (cookie == null) {
+            throw new WebApplicationException(unauthorizedHandler.buildResponse(prefix, realm));
         }
-        throw new WebApplicationException(unauthorizedHandler.buildResponse(prefix, realm));
+        if (authenticate(context, cookie.getValue(), SecurityContext.BASIC_AUTH)) {
+            log.info("authenticate ok - {}", info(context));
+        }
     }
 
     protected String info(ContainerRequestContext context) {
