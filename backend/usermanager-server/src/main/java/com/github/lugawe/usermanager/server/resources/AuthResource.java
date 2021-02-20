@@ -10,16 +10,16 @@ import com.github.lugawe.usermanager.service.config.ServiceConfig;
 import com.github.lugawe.usermanager.service.config.ValidationConfig;
 import com.github.lugawe.usermanager.service.logic.AuthService;
 import com.github.lugawe.usermanager.service.validation.Validator;
+import io.dropwizard.auth.Auth;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Path("/auth")
@@ -51,10 +51,13 @@ public class AuthResource {
     }
 
     @PermitAll
-    @POST
+    @GET
     @Path("/check")
-    public Response check() {
-        return Response.ok().build();
+    public Response check(@Auth User user) {
+        Map<String, String> result = new HashMap<>();
+        result.put("id", user.getId().toString());
+        result.put("name", user.getName());
+        return Response.ok(result).build();
     }
 
     @POST

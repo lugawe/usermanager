@@ -8,7 +8,7 @@ const register = function(axios, userName, userMail, userPassword) {
 }
 
 const check = function(axios) {
-  return axios.post(checkURL, {})
+  return axios.get(checkURL)
 }
 
 const login = function(axios, userName, userPassword) {
