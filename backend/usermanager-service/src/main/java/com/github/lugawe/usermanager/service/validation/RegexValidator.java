@@ -14,7 +14,7 @@ public class RegexValidator implements Validator<String> {
     public RegexValidator(String target, String value, String regex) {
         this.target = target;
         this.value = value;
-        this.regexPattern = Pattern.compile(Objects.requireNonNull(regex));
+        this.regexPattern = Pattern.compile(regex);
     }
 
     public RegexValidator(String value, String regex) {
