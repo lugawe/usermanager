@@ -31,7 +31,7 @@ export default {
   },
   mounted() {
     if (!this.isLoggedIn) {
-      this.gotoLoginPage()
+      this.gotoLogin()
     }
   }
 }

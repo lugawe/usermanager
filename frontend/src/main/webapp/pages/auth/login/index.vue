@@ -91,7 +91,10 @@ export default {
       this.errorText = ''
       auth
         .login(this.$axios, this.username, this.password)
-        .then((response) => {})
+        .then((response) => {
+          this.$store.commit('auth/login', { user: response.data })
+          this.gotoDashboard()
+        })
         .catch((ex) => {
           if (ex.response.status === 401) {
             this.errorText = 'auth.login.index.invalidCredentials'

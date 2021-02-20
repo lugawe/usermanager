@@ -94,12 +94,7 @@ export default {
       auth
         .check(this.$axios)
         .then((response) => {
-          const data = response.data
-          const info = {
-            id: data.id,
-            name: data.name
-          }
-          this.$store.commit('auth/login', { user: info })
+          this.$store.commit('auth/login', { user: response.data })
         })
         .catch((ex) => {
           this.$store.commit('auth/logout')

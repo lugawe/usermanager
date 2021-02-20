@@ -20,11 +20,11 @@ if (!Vue.__base_mixin__) {
           }
         }
       },
-      gotoLoginPage() {
-        this.gotoPage('/auth/login')
-      },
-      gotoMainPage() {
+      gotoDashboard() {
         this.gotoPage('/')
+      },
+      gotoLogin() {
+        this.gotoPage('/auth/login')
       },
       toast(toastTitle, toastText, toastAutoHideDelay, toastVariant) {
         this.$bvToast.toast(toastText, {
