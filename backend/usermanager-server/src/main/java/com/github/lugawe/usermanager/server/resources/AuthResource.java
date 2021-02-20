@@ -1,11 +1,9 @@
 package com.github.lugawe.usermanager.server.resources;
 
 import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.server.core.auth.AuthRequestFilter;
 import com.github.lugawe.usermanager.server.model.request.AuthLoginRequest;
 import com.github.lugawe.usermanager.server.model.request.AuthRegisterRequest;
-import com.github.lugawe.usermanager.server.model.response.AuthLoginResponse;
-import com.github.lugawe.usermanager.server.model.response.AuthLogoutResponse;
-import com.github.lugawe.usermanager.server.model.response.AuthRegisterResponse;
 import com.github.lugawe.usermanager.service.auth.jwt.UserJwtHandler;
 import com.github.lugawe.usermanager.service.config.ServiceConfig;
 import com.github.lugawe.usermanager.service.config.ValidationConfig;
@@ -18,6 +16,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +38,10 @@ public class AuthResource {
         this.userJwtHandler = userJwtHandler;
     }
 
+    protected NewCookie accessTokenCookie(String token) {
+        return AuthRequestFilter.createAccessTokenCookie(token);
+    }
+
     @POST
     @Path("/register")
     public Response register(@Valid AuthRegisterRequest request) {
@@ -48,7 +51,11 @@ public class AuthResource {
         Validator<String> password = validationConfig.userPasswordValidator(request.getPassword());
 
         User user = authService.register(name, mail, password);
-        return new AuthRegisterResponse(true, user.getName()).toResponse();
+        if (user == null) {
+            throw new WebApplicationException(Response.status(400).build());
+        }
+
+        return Response.ok(user.getId().toString()).build();
     }
 
     @PermitAll
@@ -64,8 +71,8 @@ public class AuthResource {
     @GET
     @Path("/logout")
     public Response logout() {
-        AuthLogoutResponse response = new AuthLogoutResponse();
-        return response.toResponse();
+        NewCookie cookie = accessTokenCookie("");
+        return Response.ok().cookie(cookie).build();
     }
 
     @POST
@@ -77,12 +84,13 @@ public class AuthResource {
 
         Optional<User> user = authService.login(name, password);
 
-        if (user.isPresent()) {
-            String accessToken = userJwtHandler.encode(user.get());
-            return new AuthLoginResponse(true, null, accessToken).toResponse();
-        } else {
-            return new AuthLoginResponse(false, null, null).toResponse();
+        if (!user.isPresent()) {
+            throw new WebApplicationException(Response.status(401).build());
         }
+
+        String accessToken = userJwtHandler.encode(user.get());
+        NewCookie cookie = accessTokenCookie(accessToken);
+        return Response.ok().cookie(cookie).build();
     }
 
 }
