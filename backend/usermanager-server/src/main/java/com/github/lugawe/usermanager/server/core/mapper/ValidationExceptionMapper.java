@@ -3,6 +3,7 @@ package com.github.lugawe.usermanager.server.core.mapper;
 import com.github.lugawe.usermanager.service.validation.ValidationException;
 import com.github.lugawe.usermanager.service.validation.Validator;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
@@ -11,6 +12,10 @@ import java.util.Map;
 
 @Provider
 public class ValidationExceptionMapper implements ExceptionMapper<ValidationException> {
+
+    @Inject
+    public ValidationExceptionMapper() {
+    }
 
     @Override
     public Response toResponse(ValidationException e) {
