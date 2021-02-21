@@ -1,0 +1,12 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9000
+
+database:
+  driverClass: org.postgresql.Driver
+  user: postgres
+  password: xxxx
+  url: jdbc:postgresql://localhost:5432/usermanager
+  properties:
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
