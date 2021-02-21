@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "entry", uniqueConstraints = @UniqueConstraint(columnNames = {"e_key", "user"}))
+@Table(name = "entry", uniqueConstraints = @UniqueConstraint(columnNames = {"e_key", "um_user"}))
 public class Entry extends BaseEntity {
 
     @NotNull
@@ -18,7 +18,7 @@ public class Entry extends BaseEntity {
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "um_user")
     private User user;
 
     public Entry() {

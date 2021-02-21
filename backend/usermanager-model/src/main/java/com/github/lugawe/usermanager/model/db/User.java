@@ -8,7 +8,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "um_user")
 public class User extends BaseEntity implements Principal {
 
     public enum Type {
@@ -16,7 +16,7 @@ public class User extends BaseEntity implements Principal {
         UNDEFINED("undefined"),
         CUSTOM("custom"),
         VISITOR("visitor"),
-        USER("user"),
+        BASIC_USER("basic_user"),
         VERIFIED_USER("verified_user"),
         MANAGER("manager"),
         ADMIN("admin");

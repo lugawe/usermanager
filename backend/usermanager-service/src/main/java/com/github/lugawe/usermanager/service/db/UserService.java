@@ -41,7 +41,7 @@ public class UserService extends BaseService<UserDAO> {
 
         User user = new User();
         user.setName(name);
-        user.setType(User.Type.USER);
+        user.setType(User.Type.BASIC_USER);
         user.setPassword(password);
         user.setRoleSet(roleSet);
         user.setCreatedAt(now);
