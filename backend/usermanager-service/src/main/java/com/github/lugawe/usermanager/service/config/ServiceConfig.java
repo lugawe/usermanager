@@ -12,6 +12,10 @@ public class ServiceConfig implements Serializable {
     private JwtConfig jwtConfig = new JwtConfig();
 
     @Valid
+    @JsonProperty("user")
+    private UserConfig userConfig = new UserConfig();
+
+    @Valid
     @JsonProperty("validation")
     private ValidationConfig validationConfig = new ValidationConfig();
 
@@ -21,6 +25,14 @@ public class ServiceConfig implements Serializable {
 
     public void setJwtConfig(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;
+    }
+
+    public UserConfig getUserConfig() {
+        return userConfig;
+    }
+
+    public void setUserConfig(UserConfig userConfig) {
+        this.userConfig = userConfig;
     }
 
     public ValidationConfig getValidationConfig() {
