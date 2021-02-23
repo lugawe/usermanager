@@ -7,6 +7,7 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.db.ManagedDataSource;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Environment;
+import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.BootstrapServiceRegistry;
 import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
@@ -28,7 +29,7 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
 
     private static final Logger log = LoggerFactory.getLogger(SessionFactoryBuilder.class);
 
-    public static final Class<?>[] ENTITY_CLASSES = new Class<?>[]{
+    public static final Class<?>[] CORE_ENTITY_CLASSES = new Class<?>[]{
             Persistable.class,
             BaseEntity.class,
             Entry.class,
@@ -41,11 +42,21 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
 
     private final DataSourceFactory dataSourceFactory;
     private final Environment environment;
+    private final Class<?>[] entityClasses;
+
     protected SessionFactory sessionFactory;
 
-    public SessionFactoryBuilder(DataSourceFactory dataSourceFactory, Environment environment) {
+    public SessionFactoryBuilder(DataSourceFactory dataSourceFactory,
+                                 Environment environment,
+                                 Class<?>[] entityClasses) {
+
         this.dataSourceFactory = Objects.requireNonNull(dataSourceFactory);
         this.environment = Objects.requireNonNull(environment);
+        this.entityClasses = ArrayUtils.addAll(CORE_ENTITY_CLASSES, entityClasses);
+    }
+
+    public SessionFactoryBuilder(DataSourceFactory dataSourceFactory, Environment environment) {
+        this(dataSourceFactory, environment, new Class<?>[0]);
     }
 
     @Override
@@ -73,7 +84,7 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
         for (Map.Entry<String, String> property : properties.entrySet()) {
             configuration.setProperty(property.getKey(), property.getValue());
         }
-        for (Class<?> entityClass : ENTITY_CLASSES) {
+        for (Class<?> entityClass : entityClasses) {
             configuration.addAnnotatedClass(entityClass);
         }
 
@@ -96,6 +107,10 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
 
     protected Managed buildSessionFactoryManager(ManagedDataSource dataSource, SessionFactory sessionFactory) {
         return new SessionFactoryManager(dataSource, sessionFactory);
+    }
+
+    public final Class<?>[] getEntityClasses() {
+        return entityClasses;
     }
 
 }
