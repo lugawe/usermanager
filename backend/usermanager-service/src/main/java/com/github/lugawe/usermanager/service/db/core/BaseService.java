@@ -13,25 +13,19 @@ public abstract class BaseService<T extends BaseDAO<?>> implements TransactionHa
     private static final Logger log = LoggerFactory.getLogger(BaseService.class);
 
     protected final T baseDAO;
-    protected final TransactionHandler transactionHandler;
 
-    public BaseService(T baseDAO, TransactionHandler transactionHandler) {
+    public BaseService(T baseDAO) {
         this.baseDAO = Objects.requireNonNull(baseDAO);
-        this.transactionHandler = Objects.requireNonNull(transactionHandler);
         log.info("construct {} service", baseDAO.getEntityPath());
     }
 
     @Override
     public <R> R inTransaction(GenericTransaction<R> transaction) {
-        return transactionHandler.inTransaction(transaction);
+        return baseDAO.inTransaction(transaction);
     }
 
     public final T getBaseDAO() {
         return baseDAO;
-    }
-
-    public final TransactionHandler getTransactionHandler() {
-        return transactionHandler;
     }
 
 }

@@ -13,8 +13,8 @@ public class RoleSetService extends BaseService<RoleSetDAO> {
     private static final QRoleSet roleSet = RoleSetDAO.ROLE_SET;
 
     @Inject
-    public RoleSetService(RoleSetDAO dao, TransactionHandler handler) {
-        super(dao, handler);
+    public RoleSetService(RoleSetDAO dao) {
+        super(dao);
     }
 
     public RoleSet getByName(String name) {

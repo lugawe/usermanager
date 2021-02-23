@@ -1,7 +1,6 @@
 package com.github.lugawe.usermanager.service.db;
 
 import com.github.lugawe.usermanager.db.dao.PasswordDAO;
-import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.Password;
 import com.github.lugawe.usermanager.model.db.QPassword;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
@@ -16,8 +15,8 @@ public class PasswordService extends BaseService<PasswordDAO> {
     private static final QPassword password = PasswordDAO.PASSWORD;
 
     @Inject
-    public PasswordService(PasswordDAO dao, TransactionHandler handler) {
-        super(dao, handler);
+    public PasswordService(PasswordDAO dao) {
+        super(dao);
     }
 
     protected String hash(String plainPassword) {

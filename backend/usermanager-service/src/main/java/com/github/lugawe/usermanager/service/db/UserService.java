@@ -1,7 +1,6 @@
 package com.github.lugawe.usermanager.service.db;
 
 import com.github.lugawe.usermanager.db.dao.UserDAO;
-import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.Password;
 import com.github.lugawe.usermanager.model.db.QUser;
 import com.github.lugawe.usermanager.model.db.RoleSet;
@@ -17,8 +16,8 @@ public class UserService extends BaseService<UserDAO> {
     private static final QUser user = UserDAO.USER;
 
     @Inject
-    public UserService(UserDAO dao, TransactionHandler handler) {
-        super(dao, handler);
+    public UserService(UserDAO dao) {
+        super(dao);
     }
 
     public User getById(UUID id) {
