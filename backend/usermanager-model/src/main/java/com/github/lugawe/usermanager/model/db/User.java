@@ -8,8 +8,10 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "um_user")
+@Table(name = User.TABLE_NAME)
 public class User extends BaseEntity implements Principal {
+
+    public static final String TABLE_NAME = "um_user";
 
     public enum Type {
 

@@ -9,8 +9,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "password")
+@Table(name = Password.TABLE_NAME)
 public class Password extends BaseEntity {
+
+    public static final String TABLE_NAME = "password";
 
     @NotNull
     @Column(name = "hash")

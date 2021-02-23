@@ -10,8 +10,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Entity
-@Table(name = "role_set")
+@Table(name = RoleSet.TABLE_NAME)
 public class RoleSet extends BaseEntity implements Iterable<Role> {
+
+    public static final String TABLE_NAME = "role_set";
 
     @NotNull
     @Column(name = "name", unique = true)

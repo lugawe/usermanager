@@ -8,8 +8,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "role")
+@Table(name = Role.TABLE_NAME)
 public class Role extends BaseEntity {
+
+    public static final String TABLE_NAME = "role";
 
     @NotNull
     @Column(name = "name", unique = true)

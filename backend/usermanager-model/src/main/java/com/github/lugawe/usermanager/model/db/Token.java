@@ -7,8 +7,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "token")
+@Table(name = Token.TABLE_NAME)
 public class Token extends BaseEntity {
+
+    public static final String TABLE_NAME = "token";
 
     public enum Type {
 
