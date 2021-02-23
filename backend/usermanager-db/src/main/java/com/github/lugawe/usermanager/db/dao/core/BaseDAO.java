@@ -1,5 +1,7 @@
 package com.github.lugawe.usermanager.db.dao.core;
 
+import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
+import com.github.lugawe.usermanager.db.transaction.TransactionException;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.base.Persistable;
 import com.querydsl.core.types.EntityPath;
@@ -11,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public abstract class BaseDAO<T extends Persistable> {
+public abstract class BaseDAO<T extends Persistable> implements TransactionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(BaseDAO.class);
 
@@ -114,6 +116,11 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public List<T> fetchAll() {
         return Collections.unmodifiableList(query().fetch());
+    }
+
+    @Override
+    public <R> R inTransaction(GenericTransaction<R> transaction) throws TransactionException {
+        return transactionHandler.inTransaction(transaction);
     }
 
     public final SessionFactory getSessionFactory() {
