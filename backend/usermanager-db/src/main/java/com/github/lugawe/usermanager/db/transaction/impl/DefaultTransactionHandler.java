@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.service.logic.transaction;
+package com.github.lugawe.usermanager.db.transaction.impl;
 
 import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
 import com.github.lugawe.usermanager.db.transaction.TransactionException;
@@ -63,6 +63,10 @@ public class DefaultTransactionHandler implements TransactionHandler {
         if (transaction != null && transaction.isActive()) {
             transaction.rollback();
         }
+    }
+
+    public final Provider<SessionFactory> getSessionFactoryProvider() {
+        return sessionFactoryProvider;
     }
 
 }

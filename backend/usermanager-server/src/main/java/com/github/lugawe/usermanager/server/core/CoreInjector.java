@@ -1,9 +1,9 @@
 package com.github.lugawe.usermanager.server.core;
 
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
+import com.github.lugawe.usermanager.db.transaction.impl.DefaultTransactionHandler;
 import com.github.lugawe.usermanager.service.config.ServiceConfig;
 import com.github.lugawe.usermanager.service.inject.ServiceModule;
-import com.github.lugawe.usermanager.service.logic.transaction.DefaultTransactionHandler;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
