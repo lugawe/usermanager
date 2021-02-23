@@ -6,6 +6,7 @@ import com.github.lugawe.usermanager.server.UserManagerModule;
 import com.github.lugawe.usermanager.server.core.auth.AuthRequestFilter;
 import com.github.lugawe.usermanager.server.core.hibernate.SessionFactoryBuilder;
 import com.github.lugawe.usermanager.server.core.mapper.ValidationExceptionMapper;
+import com.github.lugawe.usermanager.server.health.DatabaseHealthCheck;
 import com.google.inject.Injector;
 import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
@@ -35,6 +36,7 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
     public void run(UserManagerConfiguration configuration, Environment environment) throws Exception {
         log.info("init core");
         init(configuration, environment);
+        initHealthChecks(environment);
         initAuth(environment);
         initLogic(environment);
     }
@@ -43,6 +45,11 @@ public abstract class CoreApp extends Application<UserManagerConfiguration> {
         sessionFactory = new SessionFactoryBuilder(configuration.getDatabase(), environment).build();
         injector = new CoreInjector(configuration.getServiceConfig(), sessionFactory).build();
         injector = injector.createChildInjector(injector.getInstance(UserManagerModule.class));
+    }
+
+    private void initHealthChecks(Environment environment) {
+        log.info("init health checks");
+        environment.healthChecks().register("database", injector.getInstance(DatabaseHealthCheck.class));
     }
 
     private void initAuth(Environment environment) {
