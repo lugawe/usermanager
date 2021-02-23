@@ -26,7 +26,11 @@ public class RoleSet extends BaseEntity implements Iterable<Role> {
     private String type;
 
     @ManyToMany
-    @JoinTable(name = "role_set_role", joinColumns = @JoinColumn(name = "role_set"), inverseJoinColumns = @JoinColumn(name = "role"))
+    @JoinTable(
+            name = RoleSet.TABLE_NAME + "_" + Role.TABLE_NAME,
+            joinColumns = @JoinColumn(name = RoleSet.TABLE_NAME),
+            inverseJoinColumns = @JoinColumn(name = Role.TABLE_NAME)
+    )
     private Set<Role> roles;
 
     @NotNull

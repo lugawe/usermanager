@@ -46,12 +46,12 @@ public class User extends BaseEntity implements Principal {
     private Type type = Type.UNDEFINED;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "password")
+    @OneToOne
+    @JoinColumn(name = Password.TABLE_NAME)
     private Password password;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_set")
+    @JoinColumn(name = RoleSet.TABLE_NAME)
     private RoleSet roleSet;
 
     @NotNull
