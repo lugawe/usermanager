@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class RoleSetDAO extends BaseDAO<RoleSet> {
 
-    public static final QRoleSet ROLE_SET = new QRoleSet("roleSet");
+    public static final QRoleSet ROLE_SET = new QRoleSet(RoleSet.TABLE_NAME);
 
     @Inject
     public RoleSetDAO(SessionFactory sessionFactory) {

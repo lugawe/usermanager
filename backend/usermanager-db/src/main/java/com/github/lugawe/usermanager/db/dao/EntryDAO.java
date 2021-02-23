@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class EntryDAO extends BaseDAO<Entry> {
 
-    public static final QEntry ENTRY = new QEntry("entry");
+    public static final QEntry ENTRY = new QEntry(Entry.TABLE_NAME);
 
     @Inject
     public EntryDAO(SessionFactory sessionFactory) {

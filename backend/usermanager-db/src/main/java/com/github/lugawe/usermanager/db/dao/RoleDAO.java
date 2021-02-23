@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class RoleDAO extends BaseDAO<Role> {
 
-    public static final QRole ROLE = new QRole("role");
+    public static final QRole ROLE = new QRole(Role.TABLE_NAME);
 
     @Inject
     public RoleDAO(SessionFactory sessionFactory) {
