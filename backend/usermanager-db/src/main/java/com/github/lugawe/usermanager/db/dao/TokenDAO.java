@@ -1,6 +1,7 @@
 package com.github.lugawe.usermanager.db.dao;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
+import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.QToken;
 import com.github.lugawe.usermanager.model.db.Token;
 import org.hibernate.SessionFactory;
@@ -14,8 +15,10 @@ public class TokenDAO extends BaseDAO<Token> {
     public static final QToken TOKEN = new QToken(Token.TABLE_NAME);
 
     @Inject
-    public TokenDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, Token.class, TOKEN);
+    public TokenDAO(SessionFactory sessionFactory,
+                    TransactionHandler transactionHandler) {
+
+        super(sessionFactory, transactionHandler, Token.class, TOKEN);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.lugawe.usermanager.db.dao;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
+import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.QUser;
 import com.github.lugawe.usermanager.model.db.User;
 import org.hibernate.SessionFactory;
@@ -14,8 +15,10 @@ public class UserDAO extends BaseDAO<User> {
     public static final QUser USER = new QUser(User.TABLE_NAME);
 
     @Inject
-    public UserDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, User.class, USER);
+    public UserDAO(SessionFactory sessionFactory,
+                   TransactionHandler transactionHandler) {
+
+        super(sessionFactory, transactionHandler, User.class, USER);
     }
 
     @Override

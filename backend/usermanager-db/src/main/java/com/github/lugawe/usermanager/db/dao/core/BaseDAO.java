@@ -1,5 +1,6 @@
 package com.github.lugawe.usermanager.db.dao.core;
 
+import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.base.Persistable;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.hibernate.*;
@@ -15,20 +16,31 @@ public abstract class BaseDAO<T extends Persistable> {
     private static final Logger log = LoggerFactory.getLogger(BaseDAO.class);
 
     private final SessionFactory sessionFactory;
+    private final TransactionHandler transactionHandler;
     private final Class<T> entityClass;
     private final EntityPath<T> entityPath;
 
     private boolean readOnly;
 
-    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, EntityPath<T> entityPath, boolean readOnly) {
+    public BaseDAO(SessionFactory sessionFactory,
+                   TransactionHandler transactionHandler,
+                   Class<T> entityClass,
+                   EntityPath<T> entityPath,
+                   boolean readOnly) {
+
         this.sessionFactory = Objects.requireNonNull(sessionFactory);
+        this.transactionHandler = Objects.requireNonNull(transactionHandler);
         this.entityClass = Objects.requireNonNull(entityClass);
         this.entityPath = Objects.requireNonNull(entityPath);
         this.readOnly = readOnly;
     }
 
-    public BaseDAO(SessionFactory sessionFactory, Class<T> entityClass, EntityPath<T> entityPath) {
-        this(sessionFactory, entityClass, entityPath, false);
+    public BaseDAO(SessionFactory sessionFactory,
+                   TransactionHandler transactionHandler,
+                   Class<T> entityClass,
+                   EntityPath<T> entityPath) {
+
+        this(sessionFactory, transactionHandler, entityClass, entityPath, false);
     }
 
     protected Session configureSession(Session session) {
@@ -106,6 +118,10 @@ public abstract class BaseDAO<T extends Persistable> {
 
     public final SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public final TransactionHandler getTransactionHandler() {
+        return transactionHandler;
     }
 
     public final Class<T> getEntityClass() {

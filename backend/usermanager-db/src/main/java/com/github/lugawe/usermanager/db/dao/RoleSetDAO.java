@@ -1,6 +1,7 @@
 package com.github.lugawe.usermanager.db.dao;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
+import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.QRoleSet;
 import com.github.lugawe.usermanager.model.db.RoleSet;
 import org.hibernate.SessionFactory;
@@ -14,8 +15,10 @@ public class RoleSetDAO extends BaseDAO<RoleSet> {
     public static final QRoleSet ROLE_SET = new QRoleSet(RoleSet.TABLE_NAME);
 
     @Inject
-    public RoleSetDAO(SessionFactory sessionFactory) {
-        super(sessionFactory, RoleSet.class, ROLE_SET);
+    public RoleSetDAO(SessionFactory sessionFactory,
+                      TransactionHandler transactionHandler) {
+
+        super(sessionFactory, transactionHandler, RoleSet.class, ROLE_SET);
     }
 
     @Override
