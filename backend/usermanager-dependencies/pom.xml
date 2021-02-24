@@ -23,7 +23,7 @@
         <!-- jackson dependencies -->
         <jackson.version>2.11.4</jackson.version>
         <!-- dropwizard dependencies -->
-        <dropwizard.version>2.0.19</dropwizard.version>
+        <dropwizard.version>2.0.20</dropwizard.version>
         <!-- querydsl dependencies -->
         <querydsl.version>4.4.0</querydsl.version>
         <!-- hibernate dependencies -->
