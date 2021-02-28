@@ -4,7 +4,7 @@ import com.github.lugawe.usermanager.model.db.auth.Password;
 import com.github.lugawe.usermanager.model.db.auth.Role;
 import com.github.lugawe.usermanager.model.db.auth.RoleSet;
 import com.github.lugawe.usermanager.model.db.auth.User;
-import com.github.lugawe.usermanager.model.db.core.BaseEntity;
+import com.github.lugawe.usermanager.model.db.core.EntityCore;
 import com.github.lugawe.usermanager.model.db.core.Persistable;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.db.ManagedDataSource;
@@ -34,7 +34,7 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
 
     public static final Class<?>[] CORE_ENTITY_CLASSES = new Class<?>[]{
             Persistable.class,
-            BaseEntity.class,
+            EntityCore.class,
             Password.class,
             Role.class,
             RoleSet.class,
