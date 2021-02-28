@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.db.dao.core;
 
-import com.github.lugawe.usermanager.model.db.base.Persistable;
+import com.github.lugawe.usermanager.model.db.core.Persistable;
 
 public class LockedEntityException extends RuntimeException {
 

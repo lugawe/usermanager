@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.model.db.auth;
 
-import com.github.lugawe.usermanager.model.db.base.BaseEntity;
+import com.github.lugawe.usermanager.model.db.core.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
