@@ -37,10 +37,6 @@ public class User extends EntityCore implements Principal {
     }
 
     @NotNull
-    @Column(name = "name", unique = true)
-    private String name;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private Type type = Type.UNDEFINED;
@@ -63,11 +59,7 @@ public class User extends EntityCore implements Principal {
 
     @Override
     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return getId().toString();
     }
 
     public Type getType() {
