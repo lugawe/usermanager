@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class BaseEntity implements Persistable {
+public abstract class EntityCore implements Persistable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -17,7 +17,7 @@ public abstract class BaseEntity implements Persistable {
     @Column(name = "locked")
     private boolean locked;
 
-    public BaseEntity() {
+    public EntityCore() {
     }
 
     @Override

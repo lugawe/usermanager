@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.model.db.auth;
 
-import com.github.lugawe.usermanager.model.db.core.BaseEntity;
+import com.github.lugawe.usermanager.model.db.core.EntityCore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = Password.TABLE_NAME)
-public class Password extends BaseEntity {
+public class Password extends EntityCore {
 
     public static final String TABLE_NAME = "password";
 

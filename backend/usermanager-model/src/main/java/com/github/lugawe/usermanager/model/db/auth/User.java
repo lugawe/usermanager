@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.model.db.auth;
 
-import com.github.lugawe.usermanager.model.db.core.BaseEntity;
+import com.github.lugawe.usermanager.model.db.core.EntityCore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = User.TABLE_NAME)
-public class User extends BaseEntity implements Principal {
+public class User extends EntityCore implements Principal {
 
     public static final String TABLE_NAME = "um_user";
 

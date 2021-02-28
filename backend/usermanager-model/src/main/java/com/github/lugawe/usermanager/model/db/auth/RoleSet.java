@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.model.db.auth;
 
-import com.github.lugawe.usermanager.model.db.core.BaseEntity;
+import com.github.lugawe.usermanager.model.db.core.EntityCore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = RoleSet.TABLE_NAME)
-public class RoleSet extends BaseEntity implements Iterable<Role> {
+public class RoleSet extends EntityCore implements Iterable<Role> {
 
     public static final String TABLE_NAME = "role_set";
 
