@@ -2,8 +2,8 @@ package com.github.lugawe.usermanager.db.dao;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
-import com.github.lugawe.usermanager.model.db.QRole;
-import com.github.lugawe.usermanager.model.db.Role;
+import com.github.lugawe.usermanager.model.db.auth.QRole;
+import com.github.lugawe.usermanager.model.db.auth.Role;
 import org.hibernate.SessionFactory;
 
 import javax.inject.Inject;

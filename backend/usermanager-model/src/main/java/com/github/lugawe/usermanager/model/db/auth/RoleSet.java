@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.model.db;
+package com.github.lugawe.usermanager.model.db.auth;
 
 import com.github.lugawe.usermanager.model.db.base.BaseEntity;
 
