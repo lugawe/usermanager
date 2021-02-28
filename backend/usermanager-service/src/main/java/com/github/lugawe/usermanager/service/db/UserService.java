@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.service.db;
 
-import com.github.lugawe.usermanager.db.dao.UserDAO;
+import com.github.lugawe.usermanager.db.dao.auth.UserDAO;
 import com.github.lugawe.usermanager.model.db.auth.Password;
 import com.github.lugawe.usermanager.model.db.auth.QUser;
 import com.github.lugawe.usermanager.model.db.auth.RoleSet;

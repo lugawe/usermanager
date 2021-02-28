@@ -1,7 +1,7 @@
 package com.github.lugawe.usermanager.service.test;
 
 import com.github.javafaker.Faker;
-import com.github.lugawe.usermanager.db.dao.UserDAO;
+import com.github.lugawe.usermanager.db.dao.auth.UserDAO;
 import com.github.lugawe.usermanager.model.db.auth.Password;
 import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.db.UserService;

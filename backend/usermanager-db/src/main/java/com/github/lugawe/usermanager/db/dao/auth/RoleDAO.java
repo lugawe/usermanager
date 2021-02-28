@@ -1,4 +1,4 @@
-package com.github.lugawe.usermanager.db.dao;
+package com.github.lugawe.usermanager.db.dao.auth;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
