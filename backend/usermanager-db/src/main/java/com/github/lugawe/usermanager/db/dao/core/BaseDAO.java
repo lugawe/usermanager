@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.db.dao.core;
 
-import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
+import com.github.lugawe.usermanager.db.transaction.Transaction;
 import com.github.lugawe.usermanager.db.transaction.TransactionException;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import com.github.lugawe.usermanager.model.db.base.Persistable;
@@ -57,7 +57,7 @@ public abstract class BaseDAO<T extends Persistable> implements TransactionHandl
         return configureSession(sessionFactory.getCurrentSession());
     }
 
-    protected HibernateQueryFactory factory() {
+    public HibernateQueryFactory factory() {
         log.debug("create new hibernate query factory");
         return new HibernateQueryFactory(this::session);
     }
@@ -122,7 +122,7 @@ public abstract class BaseDAO<T extends Persistable> implements TransactionHandl
     }
 
     @Override
-    public <R> R inTransaction(GenericTransaction<R> transaction) throws TransactionException {
+    public <R> R inTransaction(Transaction<R> transaction) throws TransactionException {
         return transactionHandler.inTransaction(transaction);
     }
 
