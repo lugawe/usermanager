@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.server.core;
 
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.server.UserManagerConfiguration;
 import com.github.lugawe.usermanager.server.UserManagerModule;
 import com.github.lugawe.usermanager.server.core.auth.AuthRequestFilter;

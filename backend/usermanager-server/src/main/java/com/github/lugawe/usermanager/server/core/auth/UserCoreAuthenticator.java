@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.server.core.auth;
 
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.auth.UserAuthenticator;
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.Authenticator;

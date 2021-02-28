@@ -2,8 +2,8 @@ package com.github.lugawe.usermanager.service.test;
 
 import com.github.javafaker.Faker;
 import com.github.lugawe.usermanager.db.dao.UserDAO;
-import com.github.lugawe.usermanager.model.db.Password;
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.Password;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.db.UserService;
 import com.google.inject.Injector;
 

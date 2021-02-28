@@ -1,8 +1,8 @@
 package com.github.lugawe.usermanager.service.db;
 
 import com.github.lugawe.usermanager.db.dao.RoleDAO;
-import com.github.lugawe.usermanager.model.db.QRole;
-import com.github.lugawe.usermanager.model.db.Role;
+import com.github.lugawe.usermanager.model.db.auth.QRole;
+import com.github.lugawe.usermanager.model.db.auth.Role;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ public class RoleService extends BaseService<RoleDAO> {
     }
 
     public Role getByName(String name) {
-        return inTransaction(() -> baseDAO.query().where(role.name.eq(name)).fetchFirst());
+        return inTransaction((s) -> baseDAO.query().where(role.name.eq(name)).fetchFirst());
     }
 
 }

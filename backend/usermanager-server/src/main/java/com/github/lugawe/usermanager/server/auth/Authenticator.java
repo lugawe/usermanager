@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.server.auth;
 
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.auth.UserAuthenticator;
 import com.github.lugawe.usermanager.service.auth.jwt.UserJwtHandler;
 import org.slf4j.Logger;

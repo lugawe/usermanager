@@ -1,10 +1,10 @@
 package com.github.lugawe.usermanager.service.db;
 
 import com.github.lugawe.usermanager.db.dao.UserDAO;
-import com.github.lugawe.usermanager.model.db.Password;
-import com.github.lugawe.usermanager.model.db.QUser;
-import com.github.lugawe.usermanager.model.db.RoleSet;
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.Password;
+import com.github.lugawe.usermanager.model.db.auth.QUser;
+import com.github.lugawe.usermanager.model.db.auth.RoleSet;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
 
 import javax.inject.Inject;
@@ -24,14 +24,14 @@ public class UserService extends BaseService<UserDAO> {
         if (id == null) {
             throw new NullPointerException("param id is null");
         }
-        return inTransaction(() -> baseDAO.query().where(user.id.eq(id)).fetchFirst());
+        return inTransaction((s) -> baseDAO.query().where(user.id.eq(id)).fetchFirst());
     }
 
     public User getByName(String name) {
         if (name == null) {
             throw new NullPointerException("param name is null");
         }
-        return inTransaction(() -> baseDAO.query().where(user.name.eq(name)).fetchFirst());
+        return inTransaction((s) -> baseDAO.query().where(user.name.eq(name)).fetchFirst());
     }
 
     public User create(String name, Password password, RoleSet roleSet) {
@@ -45,7 +45,7 @@ public class UserService extends BaseService<UserDAO> {
         user.setRoleSet(roleSet);
         user.setCreatedAt(now);
 
-        return inTransaction(() -> baseDAO.get(baseDAO.insert(user)));
+        return inTransaction((s) -> baseDAO.get(baseDAO.insert(user)));
     }
 
 }

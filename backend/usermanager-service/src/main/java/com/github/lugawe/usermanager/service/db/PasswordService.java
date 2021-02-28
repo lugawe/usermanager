@@ -1,8 +1,8 @@
 package com.github.lugawe.usermanager.service.db;
 
 import com.github.lugawe.usermanager.db.dao.PasswordDAO;
-import com.github.lugawe.usermanager.model.db.Password;
-import com.github.lugawe.usermanager.model.db.QPassword;
+import com.github.lugawe.usermanager.model.db.auth.Password;
+import com.github.lugawe.usermanager.model.db.auth.QPassword;
 import com.github.lugawe.usermanager.service.db.core.BaseService;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -32,7 +32,7 @@ public class PasswordService extends BaseService<PasswordDAO> {
         password.setCreatedAt(now);
         password.setLastAccess(now);
 
-        return inTransaction(() -> baseDAO.get(baseDAO.insert(password)));
+        return inTransaction((s) -> baseDAO.get(baseDAO.insert(password)));
     }
 
     public void updateLastAccess(UUID id) {

@@ -1,8 +1,8 @@
 package com.github.lugawe.usermanager.server.auth;
 
-import com.github.lugawe.usermanager.model.db.Role;
-import com.github.lugawe.usermanager.model.db.RoleSet;
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.Role;
+import com.github.lugawe.usermanager.model.db.auth.RoleSet;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.auth.UserAuthorizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

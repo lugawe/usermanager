@@ -1,6 +1,6 @@
 package com.github.lugawe.usermanager.service.auth.jwt;
 
-import com.github.lugawe.usermanager.model.db.User;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.service.db.UserService;
 
 import javax.inject.Inject;

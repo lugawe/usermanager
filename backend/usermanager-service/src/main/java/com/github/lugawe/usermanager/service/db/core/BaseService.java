@@ -1,7 +1,7 @@
 package com.github.lugawe.usermanager.service.db.core;
 
 import com.github.lugawe.usermanager.db.dao.core.BaseDAO;
-import com.github.lugawe.usermanager.db.transaction.GenericTransaction;
+import com.github.lugawe.usermanager.db.transaction.Transaction;
 import com.github.lugawe.usermanager.db.transaction.TransactionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +20,15 @@ public abstract class BaseService<T extends BaseDAO<?>> implements TransactionHa
     }
 
     @Override
-    public <R> R inTransaction(GenericTransaction<R> transaction) {
+    public <R> R inTransaction(Transaction<R> transaction) {
         return baseDAO.inTransaction(transaction);
+    }
+
+    public void inTransaction(Runnable runnable) {
+        inTransaction((session) -> {
+            runnable.run();
+            return true;
+        });
     }
 
     public final T getBaseDAO() {

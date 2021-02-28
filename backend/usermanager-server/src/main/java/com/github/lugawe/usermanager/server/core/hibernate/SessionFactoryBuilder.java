@@ -1,6 +1,9 @@
 package com.github.lugawe.usermanager.server.core.hibernate;
 
-import com.github.lugawe.usermanager.model.db.*;
+import com.github.lugawe.usermanager.model.db.auth.Password;
+import com.github.lugawe.usermanager.model.db.auth.Role;
+import com.github.lugawe.usermanager.model.db.auth.RoleSet;
+import com.github.lugawe.usermanager.model.db.auth.User;
 import com.github.lugawe.usermanager.model.db.base.BaseEntity;
 import com.github.lugawe.usermanager.model.db.base.Persistable;
 import io.dropwizard.db.DataSourceFactory;
@@ -32,11 +35,9 @@ public class SessionFactoryBuilder implements Provider<SessionFactory> {
     public static final Class<?>[] CORE_ENTITY_CLASSES = new Class<?>[]{
             Persistable.class,
             BaseEntity.class,
-            Entry.class,
             Password.class,
             Role.class,
             RoleSet.class,
-            Token.class,
             User.class
     };
 
