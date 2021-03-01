@@ -17,7 +17,7 @@
 
     <properties>
         <!-- dependencies -->
-        <guice.version>4.2.3</guice.version>
+        <guice.version>5.0.1</guice.version>
         <auth0-java-jwt.version>3.13.0</auth0-java-jwt.version>
         <jbcrypt.version>0.4</jbcrypt.version>
         <!-- jackson dependencies -->
