@@ -5,13 +5,14 @@ import com.github.lugawe.usermanager.model.db.core.EntityCore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = User.TABLE_NAME)
 public class User extends EntityCore implements Principal {
 
-    public static final String TABLE_NAME = "um_user";
+    public static final String TABLE_NAME = "auth_user";
+    public static final String FK_USER_PASSWORD = "fk_user_password";
+    public static final String FK_USER_ROLE_SET = "fk_user_role_set";
 
     public enum Type {
 
@@ -25,7 +26,7 @@ public class User extends EntityCore implements Principal {
 
         private final String type;
 
-        private Type(final String type) {
+        Type(final String type) {
             this.type = type;
         }
 
@@ -43,16 +44,12 @@ public class User extends EntityCore implements Principal {
 
     @NotNull
     @OneToOne
-    @JoinColumn(name = Password.TABLE_NAME)
+    @JoinColumn(name = Password.TABLE_NAME, foreignKey = @ForeignKey(name = FK_USER_PASSWORD))
     private Password password;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = RoleSet.TABLE_NAME)
+    @JoinColumn(name = RoleSet.TABLE_NAME, foreignKey = @ForeignKey(name = FK_USER_ROLE_SET))
     private RoleSet roleSet;
-
-    @NotNull
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
 
     public User() {
     }
@@ -68,7 +65,7 @@ public class User extends EntityCore implements Principal {
 
     public void setType(Type type) {
         if (type == null) {
-            throw new NullPointerException();
+            throw new NullPointerException("param type is null");
         }
         this.type = type;
     }
@@ -87,14 +84,6 @@ public class User extends EntityCore implements Principal {
 
     public void setRoleSet(RoleSet roleSet) {
         this.roleSet = roleSet;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
 }

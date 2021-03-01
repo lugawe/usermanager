@@ -4,8 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class EntityCore implements Persistable {
 
     @Id
@@ -29,7 +28,6 @@ public abstract class EntityCore implements Persistable {
         this.id = id;
     }
 
-    @Override
     public boolean isLocked() {
         return locked;
     }

@@ -10,17 +10,17 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Entity
-@Table(name = RoleSet.TABLE_NAME)
+@Table(name = RoleSet.TABLE_NAME, uniqueConstraints = {
+        @UniqueConstraint(name = RoleSet.UC_ROLE_SET_NAME, columnNames = {"name"})
+})
 public class RoleSet extends EntityCore implements Iterable<Role> {
 
     public static final String TABLE_NAME = "role_set";
+    public static final String UC_ROLE_SET_NAME = "uc_role_set_name";
 
     @NotNull
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
-    private String description;
 
     @Column(name = "type")
     private String type;
@@ -54,14 +54,6 @@ public class RoleSet extends EntityCore implements Iterable<Role> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getType() {

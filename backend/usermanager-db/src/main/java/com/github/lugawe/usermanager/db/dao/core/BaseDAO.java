@@ -91,9 +91,6 @@ public abstract class BaseDAO<T extends Persistable> implements TransactionHandl
         if (readOnly) {
             throw new IllegalStateException("cannot insert entity: dao is read only");
         }
-        if (entity.isLocked()) {
-            throw new LockedEntityException(entity);
-        }
         return (UUID) session().save(entity);
     }
 
